@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour
     public float smoothTime = 0.3F;
     private Vector3 velocity = Vector3.zero;
 
-    public Transform planet;
+    Transform planet;
 
     //vars
     Vector3 planetPosition;
@@ -16,8 +16,8 @@ public class CameraController : MonoBehaviour
     //UNITY FUNCTIONS
     void Update()
     {
+        Rotate();
         Move();
-        Rotate();            
     }
 
     //PUBLIC FUNCTIONS
@@ -29,16 +29,21 @@ public class CameraController : MonoBehaviour
     //PRIVATE FUNCTIONS
     void Move()
     {
-        // Define a target position above and behind the target transform
-        planetPosition = planet.TransformPoint(new Vector3(0, 0, 3));
+        if(transform.position != planet.position)
+        {
+            Vector3 planetNormal = //Vector3.Normalize(planet.position + (planet.gameObject.GetComponent<PlanetInformation>().GetGuide().transform.up));
+            // Define a target position above and behind the target transform
+            planetPosition = planetNormal*15;//planet.TransformPoint(new Vector3(direccion.x, direccion.y, 3));
 
-        // Smoothly move the camera towards that planet position
-        transform.position = Vector3.SmoothDamp(transform.position, planetPosition, ref velocity, smoothTime);
+
+            // Smoothly move the camera towards that planet position
+            transform.position = Vector3.SmoothDamp(transform.position, planetPosition, ref velocity, smoothTime);
+        }
     }
 
     void Rotate()
     {
-        transform.LookAt(player);
+        transform.LookAt(planet);
     }
 
 }

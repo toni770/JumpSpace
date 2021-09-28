@@ -8,29 +8,29 @@ public class PlayerController : MonoBehaviour
     [Header("Movement")]
     public float speed = 5;
     public float rotSpeed = 100;
+
     [Header("Jump")]
     public float jumpForce = 2;
     public float extraGravity = 5;
     public float jumpCD = 0.5f;
 
     GameObject actualPlanet;
+
     Rigidbody rb;
     bool isGrounded = true;
     bool jumpCharged = true;
-    bool changingPlanet = false;
+    bool changingPlanet = true;
 
     //vars
     float jumpCount = 0;
-    float h, v;
-    Vector3 movement, vel;
 
-    // Start is called before the first frame update
+
+    //UNITY FUNCTIONS
     void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         Gravity();
@@ -48,7 +48,10 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (changingPlanet) GameManager.Instance.ChangePlanet(collision.gameObject);
+        if (changingPlanet)
+        {
+            ChangePlanet(collision.gameObject);
+        }
         isGrounded = true;
         changingPlanet = false;
     }
@@ -56,6 +59,9 @@ public class PlayerController : MonoBehaviour
     {
         isGrounded = false;
     }
+
+
+    //PRIVATE FUNCTIONS
     void Gravity()
     {
         
@@ -70,10 +76,7 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
-        if (Input.GetKey(KeyCode.UpArrow)) { transform.Translate(new Vector3(0, 0, speed * Time.deltaTime)); }
-        if (Input.GetKey(KeyCode.DownArrow)) { transform.Translate(new Vector3(0, 0, -speed * Time.deltaTime)); }
-        if (Input.GetKey(KeyCode.LeftArrow)) { transform.Rotate(0, -rotSpeed * Time.deltaTime,0); }
-        if (Input.GetKey(KeyCode.RightArrow)) { transform.Rotate(0, rotSpeed * Time.deltaTime, 0); }
+        transform.Translate(Vector3.forward*speed * Time.deltaTime);
     }
 
     void Jump()
@@ -94,6 +97,20 @@ public class PlayerController : MonoBehaviour
                 jumpCharged = true;
             }
         }
+    }
+    
+    void GetDirection(Transform guide)
+    {
+        transform.rotation = Quaternion.LookRotation(guide.transform.forward);
+    }
+
+    void ChangePlanet(GameObject planet)
+    {
+        GameManager.Instance.ChangePlanet(planet);
+        GetDirection(planet.GetComponent<PlanetInformation>().GetGuide());
+        transform.position = planet.GetComponent<PlanetInformation>().GetGuide().position;
+
+        actualPlanet = planet;
     }
 
     bool CanJump()

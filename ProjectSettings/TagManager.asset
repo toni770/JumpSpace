@@ -5,11 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Planet
+  - Guia
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Invisible
   - Water
   - UI
   - 
