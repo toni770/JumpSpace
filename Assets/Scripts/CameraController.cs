@@ -5,7 +5,9 @@ using System.Collections.Generic;
 public class CameraController : MonoBehaviour
 {
     public Transform player;
-    public float smoothTime = 0.3F;
+    public float smoothTime = 1F;
+    public float rotSpeed = 1;
+    public float distance = 70;
     private Vector3 velocity = Vector3.zero;
 
     Transform planet;
@@ -31,10 +33,8 @@ public class CameraController : MonoBehaviour
     {
         if(transform.position != planet.position)
         {
-            Vector3 planetNormal = //Vector3.Normalize(planet.position + (planet.gameObject.GetComponent<PlanetInformation>().GetGuide().transform.up));
             // Define a target position above and behind the target transform
-            planetPosition = planetNormal*15;//planet.TransformPoint(new Vector3(direccion.x, direccion.y, 3));
-
+            planetPosition = planet.GetComponent<PlanetInformation>().GetGuide().TransformPoint(new Vector3(0, -distance, 0));
 
             // Smoothly move the camera towards that planet position
             transform.position = Vector3.SmoothDamp(transform.position, planetPosition, ref velocity, smoothTime);
@@ -43,7 +43,12 @@ public class CameraController : MonoBehaviour
 
     void Rotate()
     {
-        transform.LookAt(planet);
+       // transform.LookAt(planet);
+
+        var targetRotation = Quaternion.LookRotation(planet.position - transform.position);
+
+        // Smoothly rotate towards the target point.
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotSpeed * Time.deltaTime);
     }
 
 }

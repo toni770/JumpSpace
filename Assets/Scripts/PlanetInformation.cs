@@ -5,16 +5,22 @@ using UnityEngine;
 public class PlanetInformation : MonoBehaviour
 {
     Transform guide;
-
+    public float minSize = 6.5f, maxSize = 9f;
     void Awake()
     {
         guide = transform.GetChild(0);
-        guide.transform.Rotate(Random.Range(0,360), 0, 0);
+        //ChangeSize();
     }
 
     public Transform GetGuide()
     {
         return guide;
+    }
+
+    void ChangeSize()
+    {
+        float num = Random.Range(minSize, maxSize);
+        transform.localScale = new Vector3(num, num, num);
     }
     
 

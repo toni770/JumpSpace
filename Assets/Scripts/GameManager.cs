@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public CameraController cam;
     public GameObject planetObject;
 
+    public int minPlanets = 2, maxPlanets = 4;
+
     List<GameObject> planets;
 
 
@@ -30,11 +32,6 @@ public class GameManager : MonoBehaviour
         planets = new List<GameObject>();
     }
 
-    void Update()
-    {
-        
-    }
-
     //PUBLIC FUNCTIONS
     public void ChangePlanet(GameObject planet)
     {
@@ -43,7 +40,7 @@ public class GameManager : MonoBehaviour
         actualPlanet = planet;
         cam.ChangePlanet(planet.transform);
 
-        SpawnPlanets(3);
+        SpawnPlanets(Random.Range(minPlanets,maxPlanets+1));
 
     }
     //PRIVATE FUNCTIONS
@@ -51,7 +48,8 @@ public class GameManager : MonoBehaviour
     void SpawnPlanets(int num)
     {
         Vector3 point = actualPlanet.transform.position;
-        float radius = 15;
+        float baseRadius = 15;
+        float radius = 0;
         GameObject center = new GameObject();
         center.transform.position = actualPlanet.transform.position;
 
@@ -59,7 +57,7 @@ public class GameManager : MonoBehaviour
         {
 
             /* Distance around the circle */
-            float radians = 2 * Mathf.PI  / num * i;
+            float radians = -300+  Mathf.PI  / num * i;
 
             /* Get the vector direction */
             float vertical = Mathf.Sin(radians);
@@ -67,6 +65,7 @@ public class GameManager : MonoBehaviour
 
             Vector3 spawnDir = new Vector3(horizontal, 0, vertical);
 
+            radius = baseRadius;// (actualPlanet.transform.localScale.x/6.5f) * baseRadius;
             /* Get the spawn position */
             Vector3 spawnPos = point + spawnDir * radius; // Radius is just the distance away from the point
 
