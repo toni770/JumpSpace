@@ -9,7 +9,7 @@ public class PlayerPhysics : MonoBehaviour
     public bool isGrounded = true;
 
     [SerializeField]
-    private float extraGravity = 15;
+    private float extraGravity = 15; //Increase gravity for a faster falling
 
     private PlayerMovement playerMovement;
 
@@ -19,6 +19,7 @@ public class PlayerPhysics : MonoBehaviour
     private void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
+        GameManager.Instance.PlanetChanged += SetNewPlanet;
     }
 
     private void Update()
@@ -28,17 +29,19 @@ public class PlayerPhysics : MonoBehaviour
 
     private void Gravity()
     {
-        if (!isGrounded && !changingPlanet)
-        {
-            Physics.gravity = (actualPlanet.transform.position - transform.position) * extraGravity;
-        }
-        else Physics.gravity = actualPlanet.transform.position - transform.position;
+        Physics.gravity = actualPlanet.transform.position - transform.position;
 
-        transform.rotation = Quaternion.FromToRotation(transform.up, -Physics.gravity) * transform.rotation;
+        if (!isGrounded && !changingPlanet) Physics.gravity *= extraGravity; //Extra gravity on normal jump
+
+        transform.rotation = Quaternion.FromToRotation(transform.up, -Physics.gravity) * transform.rotation; //Feet always aim to floor
     }
     private void ChangePlanet(GameObject planet)
     {
         GameManager.Instance.ChangePlanet(planet);
+    }
+
+    private void SetNewPlanet(GameObject planet) //Set starting position and rotation on new planet
+    {
         playerMovement.GetDirection(planet.GetComponent<PlanetInformation>().GetGuide());
         transform.position = planet.GetComponent<PlanetInformation>().GetGuide().position;
 
@@ -47,23 +50,33 @@ public class PlayerPhysics : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Planet")
+        if (other.CompareTag("Planet")) //On enter planet's atmosphere
         {
             actualPlanet = other.gameObject;
             changingPlanet = true;
         }
+        else if(other.tag == "End")
+        {
+            GameManager.Instance.EndAchieved();
+        }
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (changingPlanet)
+        if(collision.transform.CompareTag("Planet"))
         {
-            ChangePlanet(collision.gameObject);
+            if (changingPlanet) //New planet achieved
+            {
+                ChangePlanet(collision.gameObject);
+            }
+            isGrounded = true;
+            changingPlanet = false;
         }
-        isGrounded = true;
-        changingPlanet = false;
     }
     private void OnCollisionExit(Collision collision)
     {
-        isGrounded = false;
+        if (collision.transform.CompareTag("Planet"))
+        {
+            isGrounded = false;
+        }
     }
 }

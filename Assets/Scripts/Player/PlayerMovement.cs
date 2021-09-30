@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
 
     private PlayerPhysics playerPhysics;
 
-    public event Action Move;
+    public event Action Move = delegate { }; //Subs: PlayerMovement
 
     private void Awake()
     {

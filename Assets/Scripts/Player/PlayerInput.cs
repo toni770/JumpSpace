@@ -10,7 +10,7 @@ public class PlayerInput : MonoBehaviour
 {
     private PlayerJump playerJump;
 
-    public event Action Jump = delegate{};
+    public event Action Jump = delegate{}; //Subs: PlayerJumps
 
     private void Awake()
     {

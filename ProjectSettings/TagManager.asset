@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Planet
   - Guia
+  - End
   layers:
   - Default
   - TransparentFX

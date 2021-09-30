@@ -12,9 +12,7 @@ public class PlayerJump : MonoBehaviour
     private PlayerPhysics playerPhysics;
     private Rigidbody rb;
 
-    private bool jumpCharged = true;
-
-    private float jumpCount = 0;
+    private float nextJumpTime = 0;
 
     private void Awake()
     {
@@ -23,29 +21,21 @@ public class PlayerJump : MonoBehaviour
         playerPhysics = GetComponent<PlayerPhysics>();
     }
 
-    private void Update()
-    {
-        if (!jumpCharged)
-        {
-            jumpCount += Time.deltaTime;
-            if (jumpCount >= jumpCD)
-            {
-                jumpCount = 0;
-                jumpCharged = true;
-            }
-        }
-    }
-
     public bool CanJump()
     {
-        return playerPhysics.isGrounded && jumpCharged;
+        return playerPhysics.isGrounded && JumpCharged();
     }
 
     private void Jump()
     {
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
         playerPhysics.isGrounded = false;
-        jumpCharged = false;
+        nextJumpTime = Time.time + jumpCD;
+    }
+
+    private bool JumpCharged()
+    {
+        return Time.time >= nextJumpTime;
     }
 
 

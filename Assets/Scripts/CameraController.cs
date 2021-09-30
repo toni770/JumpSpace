@@ -16,19 +16,22 @@ public class CameraController : MonoBehaviour
     Vector3 planetPosition;
 
     //UNITY FUNCTIONS
+    private void Awake()
+    {
+        GameManager.Instance.PlanetChanged += ChangePlanet;
+    }
     void Update()
     {
         Rotate();
         Move();
     }
 
-    //PUBLIC FUNCTIONS
-    public void ChangePlanet(Transform newPlanet) //Called by: GameManager on player change planet
+    private void ChangePlanet(GameObject newPlanet) 
     {
-        planet = newPlanet;
+
+        planet = newPlanet.transform;
     }
 
-    //PRIVATE FUNCTIONS
     void Move()
     {
         if(transform.position != planet.position)
