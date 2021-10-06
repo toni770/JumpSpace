@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class PlanetInformation : MonoBehaviour
 {
-    Transform guide;
-    public float minSize = 6.5f, maxSize = 9f;
-    void Awake()
+    [SerializeField]
+    private float minSize = 0.1f;
+    [SerializeField]
+    private float maxSize = 1.2f;
+    [SerializeField]
+    private Transform guide;
+    [SerializeField]
+    private SphereCollider col;
+
+    private float initialScale = 1;
+
+
+    private void Awake()
     {
-        guide = transform.GetChild(0);
-        //ChangeSize();
+        ChangeSize();
     }
 
     public Transform GetGuide()
@@ -17,11 +26,22 @@ public class PlanetInformation : MonoBehaviour
         return guide;
     }
 
-    void ChangeSize()
+    public float GetInitialScale()
+    {
+        return initialScale;
+    }
+
+    private void ChangeSize()
     {
         float num = Random.Range(minSize, maxSize);
+        initialScale = transform.localScale.x;
         transform.localScale = new Vector3(num, num, num);
+        ResizeCollider();
     }
-    
 
+    private void ResizeCollider()
+    {
+        if (col != null)
+            col.radius = col.radius * initialScale / transform.localScale.x;
+    }
 }

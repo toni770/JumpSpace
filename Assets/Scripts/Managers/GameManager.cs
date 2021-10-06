@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     private int actualLvl = 0;
 
     public event Action EndGame = delegate { }; //Subs: GameManager, UIManager
-    public event Action<GameObject> PlanetChanged = delegate { }; //Subs: GameManager, PlanetsManager, CameraController, PlayerPhysics
+    public event Action<GameObject> PlanetChanged = delegate { }; //Subs: GameManager, CameraController, PlayerPhysics
 
     private PlanetsManager planetsManager;
 
@@ -74,6 +74,7 @@ public class GameManager : MonoBehaviour
 
         if (actualLvl <= levels)
         {
+            planetsManager.ChangePlanet(planet);
             planetsManager.SpawnPlanets(actualLvl == levels);
         }
     }

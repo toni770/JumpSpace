@@ -4,35 +4,42 @@ using System.Collections.Generic;
 
 public class CameraController : MonoBehaviour
 {
-    public Transform player;
-    public float smoothTime = 1F;
-    public float rotSpeed = 1;
-    public float distance = 70;
+    [SerializeField]
+    private Transform player;
+    [SerializeField]
+    private float smoothTime = 1F;
+    [SerializeField]
+    private float rotSpeed = 1;
+    [SerializeField]
+    private float distance = 70;
+
     private Vector3 velocity = Vector3.zero;
 
-    Transform planet;
+    private Transform planet;
 
     //vars
-    Vector3 planetPosition;
+    private Vector3 planetPosition;
 
     //UNITY FUNCTIONS
     private void Awake()
     {
         GameManager.Instance.PlanetChanged += ChangePlanet;
     }
-    void Update()
+    private void Update()
     {
-        Rotate();
-        Move();
+        if(planet != null)
+        {
+            Rotate();
+            Move();
+        }
     }
 
     private void ChangePlanet(GameObject newPlanet) 
     {
-
         planet = newPlanet.transform;
     }
 
-    void Move()
+    private void Move()
     {
         if(transform.position != planet.position)
         {
@@ -44,9 +51,8 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    void Rotate()
+    private void Rotate()
     {
-       // transform.LookAt(planet);
 
         var targetRotation = Quaternion.LookRotation(planet.position - transform.position);
 

@@ -42,6 +42,7 @@ public class PlayerPhysics : MonoBehaviour
 
     private void SetNewPlanet(GameObject planet) //Set starting position and rotation on new planet
     {
+        print("YA");
         playerMovement.GetDirection(planet.GetComponent<PlanetInformation>().GetGuide());
         transform.position = planet.GetComponent<PlanetInformation>().GetGuide().position;
 
@@ -62,6 +63,7 @@ public class PlayerPhysics : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
+        print("LISTOS...");
         if(collision.transform.CompareTag("Planet"))
         {
             if (changingPlanet) //New planet achieved

@@ -9,38 +9,36 @@ public class PlanetsManager : MonoBehaviour
     [SerializeField]
     private int maxPlanets = 4;
     [SerializeField]
-    private GameObject planetPrefab;
+    private GameObject[] planetPrefabList;
     [SerializeField]
-    private GameObject planetEnd;
+    private GameObject[] planetEndList;
 
     private GameObject actualPlanet;
 
     //vars
     GameObject empty;
     float radians, vertical, horizontal;
-    int i;
+    int i, rand;
     Vector3 spawnDir, spawnPos;
     GameObject planetObj;
+    PlanetInformation planetInfo;
 
-    private void Awake()
-    {
-        GetComponent<GameManager>().PlanetChanged += ChangePlanet;
-    }
-
-    private void ChangePlanet(GameObject planet) { actualPlanet = planet; }
+    public void ChangePlanet(GameObject planet) { actualPlanet = planet; }
 
     public void SpawnPlanets(bool end)
     {
-        if(!end) SpawnAroundAlgorithm(Random.Range(minPlanets, maxPlanets + 1), planetPrefab); //Spawn next planets
-        else  SpawnAroundAlgorithm(1, planetEnd); //Spawn the goal
+        if(!end) SpawnAroundAlgorithm(Random.Range(minPlanets, maxPlanets + 1), planetPrefabList); //Spawn next planets
+        else  SpawnAroundAlgorithm(1, planetEndList); //Spawn the goal
     }
 
-    void SpawnAroundAlgorithm(int numOfPlanets, GameObject planetPrefab) //Spawn gameobject in a circle around a point
+    private void SpawnAroundAlgorithm(int numOfPlanets, GameObject[] planetPrefab) //Spawn gameobject in a circle around a point
     {
         //Creates an empty gameObject to store the planets
         empty = new GameObject();
         empty.name = "PlanetGroup";
         empty.transform.position = actualPlanet.transform.position;
+
+        planetInfo = actualPlanet.GetComponent<PlanetInformation>();
 
         //For each planet
         for (i = 0; i < numOfPlanets; i++)
@@ -55,13 +53,16 @@ public class PlanetsManager : MonoBehaviour
             Vector3 spawnDir = new Vector3(horizontal, 0, vertical);
 
             /* Get the spawn position */
-            Vector3 spawnPos = actualPlanet.transform.position + spawnDir * 15; // Radius is just the distance away from the point
+            Vector3 spawnPos = actualPlanet.transform.position + spawnDir * (15 * (actualPlanet.transform.localScale.x /planetInfo.GetInitialScale())); // Radius is just the distance away from the point
 
             /* Now spawn */
-            planetObj = Instantiate(planetPrefab, spawnPos, Quaternion.identity, empty.transform);
+            rand = Random.Range(0, planetPrefab.Length);
+            planetObj = Instantiate(planetPrefab[rand], spawnPos, Quaternion.identity, empty.transform);
             planetObj.transform.LookAt(actualPlanet.transform);
         }
 
-        empty.transform.rotation = actualPlanet.GetComponent<PlanetInformation>().GetGuide().rotation;
+        empty.transform.rotation = planetInfo.GetGuide().rotation;
     }
+
+
 }
