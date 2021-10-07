@@ -11,6 +11,9 @@ public class PlayerPhysics : MonoBehaviour
     [SerializeField]
     private float extraGravity = 15; //Increase gravity for a faster falling
 
+    [SerializeField]
+    private GameObject firstPlanet; //Increase gravity for a faster falling
+
     private PlayerMovement playerMovement;
 
     private bool changingPlanet = true;
@@ -21,7 +24,10 @@ public class PlayerPhysics : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         GameManager.Instance.PlanetChanged += SetNewPlanet;
     }
-
+    private void Start()
+    {
+        SetNewPlanet(firstPlanet);
+    }
     private void Update()
     {
         Gravity();
@@ -29,11 +35,14 @@ public class PlayerPhysics : MonoBehaviour
 
     private void Gravity()
     {
-        Physics.gravity = actualPlanet.transform.position - transform.position;
+        if (actualPlanet != null)
+        {
+            Physics.gravity = actualPlanet.transform.position - transform.position;
 
-        if (!isGrounded && !changingPlanet) Physics.gravity *= extraGravity; //Extra gravity on normal jump
+            if (!isGrounded && !changingPlanet) Physics.gravity *= extraGravity; //Extra gravity on normal jump
 
-        transform.rotation = Quaternion.FromToRotation(transform.up, -Physics.gravity) * transform.rotation; //Feet always aim to floor
+            transform.rotation = Quaternion.FromToRotation(transform.up, -Physics.gravity) * transform.rotation; //Feet always aim to floor
+        }
     }
     private void ChangePlanet(GameObject planet)
     {
@@ -42,28 +51,32 @@ public class PlayerPhysics : MonoBehaviour
 
     private void SetNewPlanet(GameObject planet) //Set starting position and rotation on new planet
     {
-        print("YA");
-        playerMovement.GetDirection(planet.GetComponent<PlanetInformation>().GetGuide());
-        transform.position = planet.GetComponent<PlanetInformation>().GetGuide().position;
+        playerMovement.GetDirection(planet.GetComponent<PlanetController>().GetGuide());
+        transform.position = planet.GetComponent<PlanetController>().GetGuide().position;
 
         actualPlanet = planet;
     }
 
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.CompareTag("Planet")) //On enter planet's atmosphere
         {
             actualPlanet = other.gameObject;
             changingPlanet = true;
         }
-        else if(other.tag == "End")
+        else if(other.CompareTag("End"))
         {
             GameManager.Instance.EndAchieved();
+        }
+        else if(other.CompareTag("Coin"))
+        {
+            Destroy(other.gameObject);
+            GameManager.Instance.GetCollector(1);
         }
     }
     private void OnCollisionEnter(Collision collision)
     {
-        print("LISTOS...");
         if(collision.transform.CompareTag("Planet"))
         {
             if (changingPlanet) //New planet achieved

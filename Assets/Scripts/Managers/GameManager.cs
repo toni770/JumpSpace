@@ -8,12 +8,16 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private int levels = 5;
 
-    private int actualLvl = 0;
+    [SerializeField]
+    private int minCollectors = 10;
 
-    public event Action EndGame = delegate { }; //Subs: GameManager, UIManager
+    private int actualLvl = 0;
+    private int actualCollector = 0;
+
     public event Action<GameObject> PlanetChanged = delegate { }; //Subs: GameManager, CameraController, PlayerPhysics
 
     private PlanetsManager planetsManager;
+    private UIManager uiManager;
 
     private static GameManager _instance;
     public static GameManager Instance
@@ -32,9 +36,10 @@ public class GameManager : MonoBehaviour
     {
         _instance = this;
 
-        EndGame += FinishGame;
         PlanetChanged += OnPlanetChanged;
+
         planetsManager = GetComponent<PlanetsManager>();
+        uiManager = GetComponent<UIManager>();
     }
 
     private void Start()
@@ -51,21 +56,26 @@ public class GameManager : MonoBehaviour
 
     public void EndAchieved()
     {
-        if (EndGame != null)
-            EndGame();
+        Debug.Log("Game finished");
+        Time.timeScale = 0;
+
+        uiManager.ShowEndScreen(actualCollector >= minCollectors);
     }
+
+    public void GetCollector(int quantity)
+    {
+        actualCollector += quantity;
+        uiManager.UpdateCollectorText(actualCollector, minCollectors);
+    }
+
 
     //PRIVATE FUNCTIONS
 
     void StartGame()
     {
         actualLvl = 0;
-    }
-
-    void FinishGame()
-    {
-        Debug.Log("Game finished");
-        Time.timeScale = 0;
+        actualCollector = 0;
+        uiManager.UpdateCollectorText(actualCollector, minCollectors);
     }
 
     private void OnPlanetChanged(GameObject planet)
@@ -78,6 +88,4 @@ public class GameManager : MonoBehaviour
             planetsManager.SpawnPlanets(actualLvl == levels);
         }
     }
-
-
 }

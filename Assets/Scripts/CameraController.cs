@@ -44,7 +44,7 @@ public class CameraController : MonoBehaviour
         if(transform.position != planet.position)
         {
             // Define a target position above and behind the target transform
-            planetPosition = planet.GetComponent<PlanetInformation>().GetGuide().TransformPoint(new Vector3(0, -distance, 0));
+            planetPosition = planet.GetComponent<PlanetController>().GetGuide().TransformPoint(new Vector3(0, -distance, 0));
 
             // Smoothly move the camera towards that planet position
             transform.position = Vector3.SmoothDamp(transform.position, planetPosition, ref velocity, smoothTime);

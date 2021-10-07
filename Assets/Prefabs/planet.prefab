@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 766728175164777311}
   - component: {fileID: 766728175164777308}
   - component: {fileID: 766728175164777309}
-  - component: {fileID: 7794636143400965882}
   m_Layer: 0
   m_Name: planet
   m_TagString: Untagged
@@ -83,22 +82,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7794636143400965882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 766728175164777299}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb7bd40e4454a0b4ab316ffa6525ec63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minSize: 6.5
-  maxSize: 9
-  guide: {fileID: 0}
-  col: {fileID: 0}
 --- !u!1 &6147128604246516464
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,9 +186,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6147128606079943477}
-  - component: {fileID: 6147128606079943476}
   - component: {fileID: 6147128606079943479}
   - component: {fileID: 8460119350814506167}
+  - component: {fileID: 7224250850187541508}
   m_Layer: 0
   m_Name: planet
   m_TagString: Planet
@@ -228,22 +211,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6147128606079943476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6147128606079943478}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb7bd40e4454a0b4ab316ffa6525ec63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minSize: 0.7
-  maxSize: 1.3
-  guide: {fileID: 6147128604246516479}
-  col: {fileID: 8460119350814506167}
 --- !u!135 &6147128606079943479
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -270,3 +237,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 7.6
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7224250850187541508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6147128606079943478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0aaaa46dbcabd049addecab99e5889b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minSize: 1
+  maxSize: 1
+  guide: {fileID: 6147128604246516479}
+  col: {fileID: 8460119350814506167}

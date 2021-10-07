@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlanetInformation : MonoBehaviour
+public class PlanetController : MonoBehaviour
 {
     [SerializeField]
     private float minSize = 0.1f;

@@ -9,14 +9,29 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject endScreen;
+    [SerializeField]
+    private GameObject PlayScreen;
 
-    private void Awake()
-    {
-        GetComponent<GameManager>().EndGame += ShowEndScreen;
+    [SerializeField]
+    private Text collectorText;
+
+    [SerializeField]
+    private Text endText;
+
+
+    public void ShowEndScreen(bool victory)
+    { 
+        endScreen.SetActive(true);
+        PlayScreen.SetActive(false);
+
+        endText.text = victory ? "YOU WIN" : "YOU LOSE";
     }
 
-    private void ShowEndScreen() { endScreen.SetActive(true); }
-
+    public void UpdateCollectorText(int quantity, int minQuantity)
+    {
+        collectorText.text = quantity.ToString() + "/" + minQuantity;
+    }
     //BUTTON FUNCTIONS
     public void PlayAgain() { SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); }
+
 }
