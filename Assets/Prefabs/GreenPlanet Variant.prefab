@@ -11,21 +11,25 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4216f86952ba04749a2116f0747435f2, type: 2}
+    - target: {fileID: 3610048288910053079, guid: 87e22b37d14a3ff46bf1272c35cc4199, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4216f86952ba04749a2116f0747435f2, type: 2}
     - target: {fileID: 6147128606079943477, guid: 87e22b37d14a3ff46bf1272c35cc4199, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6147128606079943477, guid: 87e22b37d14a3ff46bf1272c35cc4199, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.14
+      value: 11.013328
       objectReference: {fileID: 0}
     - target: {fileID: 6147128606079943477, guid: 87e22b37d14a3ff46bf1272c35cc4199, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.0919085
+      value: 2.2066274
       objectReference: {fileID: 0}
     - target: {fileID: 6147128606079943477, guid: 87e22b37d14a3ff46bf1272c35cc4199, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -22.73
+      value: -7.6444893
       objectReference: {fileID: 0}
     - target: {fileID: 6147128606079943477, guid: 87e22b37d14a3ff46bf1272c35cc4199, type: 3}
       propertyPath: m_LocalRotation.w
@@ -57,7 +61,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6147128606079943478, guid: 87e22b37d14a3ff46bf1272c35cc4199, type: 3}
       propertyPath: m_Name
-      value: GreenPlanet
+      value: GreenPlanet Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87e22b37d14a3ff46bf1272c35cc4199, type: 3}
