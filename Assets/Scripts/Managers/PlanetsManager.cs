@@ -24,19 +24,33 @@ public class PlanetsManager : MonoBehaviour
     private GameObject[] planetEndList;
 
 
-
+    private List<GameObject> planetList;
     private GameObject actualPlanet;
 
     //vars
-    GameObject emptyGameObject;
-    GameObject groupOfItems, groupOfPlanets;
-    float vertical, horizontal;
-    int i, j, rand;
-    Vector3 spawnDir, spawnPos;
-    GameObject planetObj, itemObj;
-    PlanetController planetInfo;
+    private GameObject emptyGameObject;
+    private GameObject groupOfItems, groupOfPlanets;
+    private float vertical, horizontal;
+    private int i, j, rand;
+    private Vector3 spawnDir, spawnPos;
+    private GameObject planetObj, itemObj;
+    private PlanetController planetInfo;
 
-    public void ChangePlanet(GameObject planet) { actualPlanet = planet; }
+    private void Awake()
+    {
+        planetList = new List<GameObject>();
+    }
+    public void ChangePlanet(GameObject planet) 
+    {
+        for (int i = 0; i < planetList.Count; i++)
+        {
+            if (planetList[i] != planet)
+                planetList[i].GetComponent<PlanetController>().Destroy();
+        }
+
+        actualPlanet = planet;
+        planetList.Add(planet);
+    }
 
     public void SpawnPlanets(bool end)
     {
@@ -62,6 +76,7 @@ public class PlanetsManager : MonoBehaviour
             /* Now spawn */
             rand = Random.Range(0, planetPrefab.Length);
             planetObj = Instantiate(planetPrefab[rand], spawnPos, Quaternion.identity, groupOfPlanets.transform);
+            planetList.Add(planetObj);
 
             if (numOfPlanets > 1 && Random.Range(0, 2) == 0)
                 SpawnItems(Random.Range(minCollectors, maxCollectors+1), collectorPrefab, planetObj);

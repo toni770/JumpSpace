@@ -53,7 +53,6 @@ public class PlayerPhysics : MonoBehaviour
     {
         playerMovement.GetDirection(planet.GetComponent<PlanetController>().GetGuide());
         transform.position = planet.GetComponent<PlanetController>().GetGuide().position;
-
         actualPlanet = planet;
     }
 
@@ -85,13 +84,6 @@ public class PlayerPhysics : MonoBehaviour
             }
             isGrounded = true;
             changingPlanet = false;
-        }
-    }
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.transform.CompareTag("Planet"))
-        {
-            isGrounded = false;
         }
     }
 }

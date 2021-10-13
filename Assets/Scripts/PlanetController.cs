@@ -13,12 +13,25 @@ public class PlanetController : MonoBehaviour
     [SerializeField]
     private SphereCollider col;
 
-    private float initialScale = 1;
+    [SerializeField]
+    private ParticleSystem dissapearParticles;
 
+    private Animator anim;
+    private float initialScale = 1;
+    private bool destroying = false;
 
     private void Awake()
     {
+        anim = GetComponent<Animator>();
         ChangeSize();
+    }
+
+    private void Update()
+    {
+        if(destroying && !dissapearParticles.isPlaying)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public Transform GetGuide()
@@ -44,4 +57,17 @@ public class PlanetController : MonoBehaviour
         if (col != null)
             col.radius = col.radius * initialScale / transform.localScale.x;
     }
+
+    public void playParticles()
+    {
+        dissapearParticles.Play();
+        destroying = true;
+    }
+
+    public void Destroy()
+    {
+        anim.SetTrigger("Destroy");
+    }
+
+
 }
