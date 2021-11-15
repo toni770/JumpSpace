@@ -9,55 +9,30 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private float smoothTime = 1F;
     [SerializeField]
-    private float rotSpeed = 1;
-    [SerializeField]
-    private float distance = 70;
+    private Vector3 offset = new Vector3(0, 24.1f, -9.2f);
+
 
     private Vector3 velocity = Vector3.zero;
 
-    private Transform planet;
 
     //vars
-    private Vector3 planetPosition;
+    private Vector3 targetPosition;
 
-    //UNITY FUNCTIONS
-    private void Awake()
-    {
-        GameManager.Instance.PlanetChanged += ChangePlanet;
-    }
     private void Update()
     {
-        if(planet != null)
-        {
-            Rotate();
-            Move();
-        }
+        Follow();
+        //Rotate();
     }
 
-    private void ChangePlanet(GameObject newPlanet) 
+    private void Follow()
     {
-        planet = newPlanet.transform;
-    }
-
-    private void Move()
-    {
-        if(transform.position != planet.position)
-        {
-            // Define a target position above and behind the target transform
-            planetPosition = planet.GetComponent<PlanetController>().GetGuide().TransformPoint(new Vector3(0, -distance, 0));
-
-            // Smoothly move the camera towards that planet position
-            transform.position = Vector3.SmoothDamp(transform.position, planetPosition, ref velocity, smoothTime);
-        }
+        transform.position = Vector3.SmoothDamp(transform.position, player.position + offset, ref velocity, smoothTime);
     }
 
     private void Rotate()
     {
-
-        var targetRotation = Quaternion.LookRotation(planet.position - transform.position);
-
-        // Smoothly rotate towards the target point.
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotSpeed * Time.deltaTime);
+        transform.LookAt(player);
     }
+
 
 }

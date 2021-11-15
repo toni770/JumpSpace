@@ -8,6 +8,9 @@ TagManager:
   - Guia
   - End
   - Coin
+  - Fuel
+  - PowerUp
+  - Bullet
   layers:
   - Default
   - TransparentFX

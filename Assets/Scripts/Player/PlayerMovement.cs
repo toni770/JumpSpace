@@ -1,37 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
-    public float speed = 9;
+    private float speed = 5;
+    [SerializeField]
+    private float rotSmooth = 5;
 
-    private PlayerPhysics playerPhysics;
+    private PlayerInput playerInput;
 
-    public event Action Move = delegate { }; //Subs: PlayerMovement
+    //vars
+    float heading;
+    Quaternion desiredRotQ;
+    private Vector3 dir;
 
     private void Awake()
     {
-        playerPhysics = GetComponent<PlayerPhysics>();
-        Move += MoveCharacter;
+        playerInput = GetComponent<PlayerInput>();    
     }
 
     private void Update()
     {
-        if(Move!= null && playerPhysics.isGrounded)
-            Move();
+        Move();
+        //Rotate();
     }
 
-    public void GetDirection(Transform guide)
+    private void Move()
     {
-        transform.rotation = Quaternion.LookRotation(guide.transform.forward);
+        dir = new Vector3(playerInput.horizontal, 0, playerInput.vertical).normalized * Time.deltaTime * speed;
+
+        transform.Translate(dir);
     }
 
-    private void MoveCharacter()
+    private void Rotate()
     {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
-    }
+        heading = Mathf.Atan2(playerInput.horizontal, playerInput.vertical);
+        if (playerInput.horizontal != 0 || playerInput.vertical != 0)
+        {
+            //transform.localRotation = Quaternion.Euler(0, heading * Mathf.Rad2Deg, 0);
+            desiredRotQ = Quaternion.Euler(0, heading * Mathf.Rad2Deg, 0);
 
+            transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotQ, Time.deltaTime * rotSmooth);
+        }
+    }
 }

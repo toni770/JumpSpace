@@ -1,28 +1,20 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(PlayerPhysics))]
-[RequireComponent(typeof(PlayerMovement))]
-[RequireComponent(typeof(PlayerJump))]
 public class PlayerInput : MonoBehaviour
 {
-    private PlayerJump playerJump;
-
-    public event Action Jump = delegate{}; //Subs: PlayerJumps
-
-    private void Awake()
-    {
-        playerJump = GetComponent<PlayerJump>();
-    }
+    public float horizontal { get; private set; }
+    public float vertical { get; private set; }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && playerJump.CanJump())
-        {
-            if(Jump != null)
-                Jump();
-        }
+        GetDirections();
+    }
+
+    private void GetDirections()
+    {
+        vertical = Input.GetAxis("Vertical");
+        horizontal = Input.GetAxis("Horizontal");
     }
 }
