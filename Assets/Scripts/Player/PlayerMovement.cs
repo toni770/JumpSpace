@@ -5,32 +5,37 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
-    private float speed = 5;
-    [SerializeField]
     private float rotSmooth = 5;
 
     private PlayerInput playerInput;
+    private PlayerStats playerStats;
+    //private PlayerFuel playerFuel;
 
     //vars
     float heading;
     Quaternion desiredRotQ;
     private Vector3 dir;
+    IInteractable interactable;
 
     private void Awake()
     {
-        playerInput = GetComponent<PlayerInput>();    
+        playerInput = GetComponent<PlayerInput>();
+        playerStats = GetComponent<PlayerStats>();
+        //playerFuel = GetComponent<PlayerFuel>();
     }
 
     private void Update()
     {
-        Move();
-        //Rotate();
+        if(GameManager.Instance.isPlaying)
+        {
+            Move();
+            //Rotate();
+        }
     }
 
     private void Move()
     {
-        dir = new Vector3(playerInput.horizontal, 0, playerInput.vertical).normalized * Time.deltaTime * speed;
-
+        dir = new Vector3(playerInput.horizontal, 0, playerInput.vertical).normalized * Time.deltaTime * playerStats.speed;
         transform.Translate(dir);
     }
 
@@ -43,6 +48,14 @@ public class PlayerMovement : MonoBehaviour
             desiredRotQ = Quaternion.Euler(0, heading * Mathf.Rad2Deg, 0);
 
             transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotQ, Time.deltaTime * rotSmooth);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if((interactable = other.GetComponent<IInteractable>()) != null)
+        {
+            interactable.Interact(gameObject);
         }
     }
 }

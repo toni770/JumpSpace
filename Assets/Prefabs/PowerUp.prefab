@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 3438690254805444380}
   - component: {fileID: 3438690254805444381}
   - component: {fileID: 3438690254805444378}
+  - component: {fileID: 8633771600013865964}
   m_Layer: 0
   m_Name: PowerUp
   m_TagString: PowerUp
@@ -140,3 +141,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planet: {fileID: 0}
+--- !u!114 &8633771600013865964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3438690254805444383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05c78e06f66a5a64da24a41b179835a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

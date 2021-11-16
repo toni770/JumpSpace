@@ -106,9 +106,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1124596209558046441}
   - component: {fileID: 1124596209558046446}
+  - component: {fileID: 519431302}
+  - component: {fileID: 2437724780238152684}
   m_Layer: 0
   m_Name: Nave
-  m_TagString: Untagged
+  m_TagString: Ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -141,3 +143,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planet: {fileID: 0}
+--- !u!135 &519431302
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124596209558046440}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.83
+  m_Center: {x: 0, y: -0.89, z: 0}
+--- !u!114 &2437724780238152684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124596209558046440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16cf20d7414077a49b8ab2a85f9a97fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -11,6 +11,10 @@ TagManager:
   - Fuel
   - PowerUp
   - Bullet
+  - Trash
+  - Ship
+  - Atractor
+  - Atmosphere
   layers:
   - Default
   - TransparentFX

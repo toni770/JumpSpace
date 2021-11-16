@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Gravity : MonoBehaviour
 {
-
+    [HideInInspector]
     public GameObject planet;
     private void Update()
     {

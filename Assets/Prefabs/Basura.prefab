@@ -92,9 +92,10 @@ GameObject:
   - component: {fileID: 2834005011174845525}
   - component: {fileID: 2834005011174845526}
   - component: {fileID: 2834005011174845524}
+  - component: {fileID: 4228593171156788111}
   m_Layer: 0
   m_Name: Basura
-  m_TagString: Untagged
+  m_TagString: Trash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -140,3 +141,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planet: {fileID: 0}
+--- !u!114 &4228593171156788111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2834005011174845527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 271433b9c7d80de42b0e9b3fbfcfeaa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  atractSpeed: 10
