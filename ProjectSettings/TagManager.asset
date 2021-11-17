@@ -15,6 +15,7 @@ TagManager:
   - Ship
   - Atractor
   - Atmosphere
+  - Turret
   layers:
   - Default
   - TransparentFX

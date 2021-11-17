@@ -331,6 +331,7 @@ GameObject:
   - component: {fileID: 5802315017403626477}
   - component: {fileID: 5802315017403626476}
   - component: {fileID: 67931363}
+  - component: {fileID: 8481861525561264600}
   - component: {fileID: 67931362}
   - component: {fileID: 67931358}
   - component: {fileID: 67931359}
@@ -380,11 +381,23 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5802315017403626478}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 7
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8481861525561264600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5802315017403626478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6fdd5f061b902b4785b9c7c0bc78b07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &67931362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,10 +410,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f165632e429fb54092ef1bf826819e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turretOff: {fileID: 0}
-  turretPatrol: {fileID: 0}
-  turretAttack: {fileID: 0}
-  turretStun: {fileID: 0}
+  turretOff: {fileID: 67931361}
+  turretPatrol: {fileID: 67931360}
+  turretAttack: {fileID: 67931359}
+  turretStun: {fileID: 67931358}
   target: {fileID: 0}
 --- !u!114 &67931358
 MonoBehaviour:
@@ -414,6 +427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96dadda8db1587047bca9d4ee29a4d47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stunTime: 5
 --- !u!114 &67931359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,7 +442,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 4544436129196652327, guid: 4ace4f79107214d4c96ee995b99d3899, type: 3}
   bulletPosition: {fileID: 1100047307}
-  shootSpeed: 1
+  shootSpeed: 0.5
+  rotSpeed: 4
 --- !u!114 &67931360
 MonoBehaviour:
   m_ObjectHideFlags: 0

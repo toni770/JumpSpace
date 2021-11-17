@@ -12,20 +12,30 @@ public class TurretAttack : MonoBehaviour
 
     [SerializeField]
     private float shootSpeed = 1;
-    [SerializeField][Range(0,1)]
-    private float rotDamp = 1;
+    [SerializeField]
+    private float rotSpeed = 4;
 
     private TurretStateMachine stateMachine;
+    private TurretPlayerDetection playerDetection;
     private float shootCount = 0;
 
     private void Awake()
     {
         stateMachine = GetComponent<TurretStateMachine>();
+        playerDetection = GetComponent<TurretPlayerDetection>();
         shootCount = 0;
     }
 
     private void Update()
     {
+        if(!playerDetection.PlayerInRange())
+        {
+            stateMachine.NewState(stateMachine.turretPatrol);
+            return;
+        }
+            
+
+
         if (stateMachine.target != null && GameManager.Instance.isPlaying)
         {
             Rotate();
@@ -45,10 +55,12 @@ public class TurretAttack : MonoBehaviour
 
     public void Rotate()
     {
-        var lookPos = stateMachine.target.position - transform.position;
-        lookPos.y = 0;
+        var lookPos = new Vector3(stateMachine.target.position.x, 
+                                    transform.position.y , 
+                                    stateMachine.target.position.z) - transform.position;
+
         var rotation = Quaternion.LookRotation(lookPos);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotDamp);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotSpeed * Time.deltaTime);
     }
 
 
@@ -57,12 +69,10 @@ public class TurretAttack : MonoBehaviour
         Instantiate(bullet, bulletPosition.position, transform.rotation);
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnEnable()
     {
-        if (other.CompareTag("Player"))
-        {
-            stateMachine.NewState(stateMachine.turretPatrol);
-            stateMachine.target = null;
-        }
+        print("TURRET: ATTACK");
     }
+
+
 }

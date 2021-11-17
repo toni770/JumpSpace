@@ -23,7 +23,6 @@ public class Trash : MonoBehaviour, IInteractable
     {
         if(other.CompareTag("Atractor"))
         {
-            print("EY");
             atract = true;
             targetPos = other.transform;
         }

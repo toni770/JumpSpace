@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class Gravity : MonoBehaviour
 {
-    [HideInInspector]
     public GameObject planet;
+
+    [SerializeField]
+    private bool staticItem = true;
+
+    private void Awake()
+    {
+        if (staticItem)
+            ApplyGravity();
+    }
     private void Update()
     {
-        ApplyGravity();
+        if(!staticItem)
+            ApplyGravity();
     }
 
     private void ApplyGravity()

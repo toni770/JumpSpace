@@ -6,6 +6,7 @@ public class PowerUp : MonoBehaviour, IInteractable
 {
     public void Interact(GameObject player)
     {
+        player.GetComponent<PlayerStats>().EnterGodMode(true);
         Destroy(gameObject);
     }
 }

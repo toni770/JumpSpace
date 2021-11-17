@@ -30,11 +30,14 @@ public class PlayerFuel : MonoBehaviour
 
     private void Update()
     {
-        if(!isReserve)
-            GetDamage(Time.deltaTime * fuelConsumitionSpeed);
-        else
-            if(Time.time >= reserveCount)
+        if(!playerStats.isGodMode)
+        {
+            if (!isReserve)
+                GetDamage(Time.deltaTime * fuelConsumitionSpeed);
+            else if (Time.time >= reserveCount)
                 Death();
+        }
+
     }
 
     private void StartGame()
@@ -44,17 +47,19 @@ public class PlayerFuel : MonoBehaviour
 
     public void GetDamage(float damage)
     {
-        if (isReserve) Death();
-        else
+        if(!playerStats.isGodMode)
         {
-            currentFuel -= damage;
-            if (currentFuel <= 0)
+            if (isReserve) Death();
+            else
             {
-                currentFuel = 0;
-                GetReserve(true);
+                currentFuel -= damage;
+                if (currentFuel <= 0)
+                {
+                    currentFuel = 0;
+                    GetReserve(true);
+                }
+                GameManager.Instance.UpdateFuel(currentFuel, playerStats.maxFuel);
             }
-
-            GameManager.Instance.UpdateFuel(currentFuel, playerStats.maxFuel);
         }
     }
 
@@ -68,6 +73,7 @@ public class PlayerFuel : MonoBehaviour
     private void GetReserve(bool reserve)
     {
         isReserve = reserve;
+        playerStats.EnterReserve(reserve);
         if(reserve)
         {
             reserveCount = Time.time + fuelReserveTime;

@@ -6,19 +6,25 @@ public class TurretPatrol : MonoBehaviour
 {
 
     private TurretStateMachine stateMachine;
+    private TurretPlayerDetection playerDetection;
 
     private void Awake()
     {
         stateMachine = GetComponent<TurretStateMachine>();
+        playerDetection = GetComponent<TurretPlayerDetection>();
     }
 
-
-    private void OnTriggerEnter(Collider other)
+    private void Update()
     {
-        if (other.CompareTag("Player"))
+        if(playerDetection.PlayerInRange())
         {
             stateMachine.NewState(stateMachine.turretAttack);
-            stateMachine.target = other.transform;
         }
     }
+
+    private void OnEnable()
+    {
+        print("TURRET: PATROL");
+    }
+
 }

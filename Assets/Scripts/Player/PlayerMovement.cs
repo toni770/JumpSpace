@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
 
     private PlayerInput playerInput;
     private PlayerStats playerStats;
-    //private PlayerFuel playerFuel;
+    private PlayerFuel playerFuel;
 
     //vars
     float heading;
@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>();
         playerStats = GetComponent<PlayerStats>();
-        //playerFuel = GetComponent<PlayerFuel>();
+        playerFuel = GetComponent<PlayerFuel>();
     }
 
     private void Update()

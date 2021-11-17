@@ -4,15 +4,34 @@ using UnityEngine;
 
 public class TurretStun : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    [SerializeField]
+    private float stunTime = 5;
+
+    private TurretStateMachine stateMachine;
+    private TurretPlayerDetection playerDetection;
+
+    float stunCount = 0;
+
+    private void Awake()
     {
-        
+        stateMachine = GetComponent<TurretStateMachine>();
+        playerDetection = GetComponent<TurretPlayerDetection>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if(Time.time >= stunCount)
+        {
+            if(playerDetection.PlayerInRange())
+                stateMachine.NewState(stateMachine.turretAttack);
+            else
+                stateMachine.NewState(stateMachine.turretPatrol);
+        }
+    }
+    private void OnEnable()
+    {
+        stunCount = Time.time + stunTime;
+        print("TURRET: STUN");
     }
 }
