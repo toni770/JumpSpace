@@ -7,6 +7,9 @@ public class PlayerInput : MonoBehaviour
     public float horizontal { get; private set; }
     public float vertical { get; private set; }
 
+    [SerializeField]
+    private bl_Joystick joystick;
+
     private void Update()
     {
         GetDirections();
@@ -14,7 +17,7 @@ public class PlayerInput : MonoBehaviour
 
     private void GetDirections()
     {
-        vertical = Input.GetAxis("Vertical");
-        horizontal = Input.GetAxis("Horizontal");
+        vertical =  Input.GetAxis("Vertical");
+        horizontal =  Input.GetAxis("Horizontal");
     }
 }

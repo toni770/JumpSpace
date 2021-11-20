@@ -29,26 +29,34 @@ public class PlayerMovement : MonoBehaviour
         if(GameManager.Instance.isPlaying)
         {
             Move();
-            //Rotate();
+            Rotate();
         }
     }
 
     private void Move()
     {
         dir = new Vector3(playerInput.horizontal, 0, playerInput.vertical).normalized * Time.deltaTime * playerStats.speed;
-        transform.Translate(dir);
+        if (playerInput.horizontal != 0 || playerInput.vertical != 0)  transform.Translate(Vector3.forward * Time.deltaTime * playerStats.speed);
     }
 
     private void Rotate()
     {
+        if(Input.GetKey(KeyCode.A))
+        {
+            transform.Rotate(0, -150 * Time.deltaTime, 0);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            transform.Rotate(0, 150 * Time.deltaTime, 0);
+        }
+        /*
         heading = Mathf.Atan2(playerInput.horizontal, playerInput.vertical);
         if (playerInput.horizontal != 0 || playerInput.vertical != 0)
         {
-            //transform.localRotation = Quaternion.Euler(0, heading * Mathf.Rad2Deg, 0);
             desiredRotQ = Quaternion.Euler(0, heading * Mathf.Rad2Deg, 0);
 
             transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotQ, Time.deltaTime * rotSmooth);
-        }
+        }*/
     }
 
     private void OnTriggerEnter(Collider other)

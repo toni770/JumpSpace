@@ -4,35 +4,24 @@ using System.Collections.Generic;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField]
-    private Transform player;
-    [SerializeField]
-    private float smoothTime = 1F;
-    [SerializeField]
-    private Vector3 offset = new Vector3(0, 24.1f, -9.2f);
+    public Transform target;
+    public float upDistance = 7.0f;
+    public float backDistance = 10.0f;
+    public float trackingSpeed = 3.0f;
+    public float rotationSpeed = 9.0f;
 
+    private Vector3 v3To;
+    private Quaternion qTo;
 
-    private Vector3 velocity = Vector3.zero;
-
-
-    //vars
-    private Vector3 targetPosition;
-
-    private void Update()
+    void LateUpdate()
     {
-        Follow();
-        //Rotate();
-    }
+        v3To = target.position - target.forward * backDistance + target.up * upDistance;
+        transform.position = Vector3.Lerp(transform.position, v3To, trackingSpeed * Time.deltaTime);
 
-    private void Follow()
-    {
-        transform.position = Vector3.SmoothDamp(transform.position, player.position + offset, ref velocity, smoothTime);
-    }
+        qTo = Quaternion.LookRotation(new Vector3(target.position.x, target.position.y, target.position.z) - transform.position, target.up);
+        transform.rotation = Quaternion.Slerp(transform.rotation, qTo, rotationSpeed * Time.deltaTime);
 
-    private void Rotate()
-    {
-        transform.LookAt(player);
+        
     }
-
 
 }
