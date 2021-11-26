@@ -15,13 +15,15 @@ public class CameraController : MonoBehaviour
 
     void LateUpdate()
     {
-        v3To = target.position - target.forward * backDistance + target.up * upDistance;
-        transform.position = Vector3.Lerp(transform.position, v3To, trackingSpeed * Time.deltaTime);
+        if(target!=null)
+        {
+            v3To = target.position - target.forward * backDistance + target.up * upDistance;
+            transform.position = Vector3.Lerp(transform.position, v3To, trackingSpeed * Time.deltaTime);
 
-        qTo = Quaternion.LookRotation(new Vector3(target.position.x, target.position.y, target.position.z) - transform.position, target.up);
-        transform.rotation = Quaternion.Slerp(transform.rotation, qTo, rotationSpeed * Time.deltaTime);
+            qTo = Quaternion.LookRotation(new Vector3(target.position.x, target.position.y, target.position.z) - transform.position, target.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, qTo, rotationSpeed * Time.deltaTime);
+        }
 
-        
     }
 
 }

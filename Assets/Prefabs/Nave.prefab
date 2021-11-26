@@ -143,6 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planet: {fileID: 0}
+  staticItem: 1
 --- !u!135 &519431302
 SphereCollider:
   m_ObjectHideFlags: 0

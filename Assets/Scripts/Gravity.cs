@@ -6,18 +6,10 @@ public class Gravity : MonoBehaviour
 {
     public GameObject planet;
 
-    [SerializeField]
-    private bool staticItem = true;
-
-    private void Awake()
-    {
-        if (staticItem)
-            ApplyGravity();
-    }
     private void Update()
     {
-        if(!staticItem)
-            ApplyGravity();
+        //MoveToDistance();
+        ApplyGravity();
     }
 
     private void ApplyGravity()
@@ -28,5 +20,16 @@ public class Gravity : MonoBehaviour
 
             transform.rotation = Quaternion.FromToRotation(transform.up, -Physics.gravity) * transform.rotation; //Feet always aim to floor
         }
+    }
+
+    public void MoveToDistance(float distance)
+    {
+   
+        //Calculate the vector between the object and the player
+        Vector3 dir = transform.position - planet.transform.position;
+ 
+                
+        transform.position = dir.normalized * distance;
+        
     }
 }

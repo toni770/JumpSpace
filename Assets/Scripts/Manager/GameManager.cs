@@ -6,13 +6,18 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField]
     private int trashNeeded = 20;
+    [SerializeField] private int actualLevel = 1;
+    [SerializeField] private CameraController cameraController;
 
     public bool isPlaying { get; private set; } = false;
 
     private int actualTrash = 0;
 
     private UIManager uiManager;
+    private LevelManager levelManager;
     private static GameManager _instance;
+
+
 
     public static GameManager Instance
     {
@@ -31,6 +36,7 @@ public class GameManager : MonoBehaviour
     {
         _instance = this;
         uiManager = GetComponent<UIManager>();
+        levelManager = GetComponent<LevelManager>();
     }
     private void Start()
     {
@@ -39,6 +45,10 @@ public class GameManager : MonoBehaviour
 
     private void StartGame()
     {
+        levelManager.LoadLevel(actualLevel);
+
+        cameraController.target = levelManager.player.transform;
+
         isPlaying = true;
         actualTrash = 0;
         uiManager.UpdateTrash(actualTrash, trashNeeded);

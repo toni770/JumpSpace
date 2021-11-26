@@ -61,6 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planet: {fileID: 0}
+  staticItem: 1
 --- !u!114 &725274434579765238
 MonoBehaviour:
   m_ObjectHideFlags: 0

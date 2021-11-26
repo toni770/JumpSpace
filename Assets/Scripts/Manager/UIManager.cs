@@ -6,6 +6,13 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    private enum level
+    {
+        MainMenu,
+        Game, 
+        Shop
+    }
+
     [Header("MENUS")]
     [SerializeField]
     private GameObject gameMenu;
@@ -40,6 +47,11 @@ public class UIManager : MonoBehaviour
     public void UpdateFuel(float actual, float max)
     {
         fuelSlider.fillAmount = actual / max;
+    }
+
+    public void PlayGame()
+    {
+        SceneManager.LoadScene(((int)level.Game));
     }
 
 }
