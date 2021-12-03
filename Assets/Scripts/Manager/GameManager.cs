@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField]
-    private int trashNeeded = 20;
+    [SerializeField] private int trashNeeded = 20;
+    [SerializeField] [Range(0, 1)] private float percentExtraTrash = 0.2f;
     [SerializeField] private int actualLevel = 1;
     [SerializeField] private CameraController cameraController;
 
@@ -77,5 +77,15 @@ public class GameManager : MonoBehaviour
     public void UpdateFuel(float actual, float max)
     {
         uiManager.UpdateFuel(actual, max);
+    }
+
+    public int GetTrashNeeded()
+    {
+        return trashNeeded;
+    }
+
+    public int GetExtraTrash()
+    {
+        return trashNeeded + (int)(trashNeeded * percentExtraTrash);
     }
 }

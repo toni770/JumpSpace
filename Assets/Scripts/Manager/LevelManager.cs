@@ -12,6 +12,8 @@ public class LevelManager : MonoBehaviour
     [Space]
     public GameObject[] planets;
 
+
+
     
     public GameObject player { private set; get; }
 
@@ -25,6 +27,9 @@ public class LevelManager : MonoBehaviour
 
 
     private Planet actualPlanet;
+    private bool[] trashSpawned;
+    private int pos;
+    int num;
     public void LoadLevel(int level)
     {
         if(!test)
@@ -37,20 +42,42 @@ public class LevelManager : MonoBehaviour
             actualPlanet = planetInScene;
         }
 
+        actualPlanet.InitSpawns();
+
         player = Instantiate(playerPrefab, actualPlanet.playerSpawn.position, Quaternion.identity);
 
         SpawnItem(actualPlanet.turretSpawns, turretPrefab);
         SpawnItem(actualPlanet.fuelSpawns, fuelPrefab);
         SpawnItem(actualPlanet.powerUpSpawns, powerUpPrefab);
-        SpawnItem(actualPlanet.trashSpawns, trashPrefab);
+
+        SpawnTrash(actualPlanet.trashSpawns, trashPrefab);
 
     }
 
-    private void SpawnItem(Transform[] positions, GameObject prefab)
+    private void SpawnItem(List<Transform> positions, GameObject prefab)
     {
-        for (int i = 0; i < positions.Length; i++)
+        for (int i = 0; i < positions.Count; i++)
         {
             Instantiate(prefab, positions[i].position, Quaternion.identity);
+        }
+    }
+
+    private void SpawnTrash(List<Transform> positions, GameObject prefab)
+    {
+        trashSpawned = new bool[positions.Count];
+        num = GameManager.Instance.GetExtraTrash();
+
+        for (int i = 0; i < num; i++)
+        {
+            do
+            {
+                pos = Random.Range(0, positions.Count);
+ 
+            } while (trashSpawned[pos]);
+
+            trashSpawned[pos] = true;
+
+            Instantiate(prefab, positions[pos].position, Quaternion.identity);
         }
     }
 }
