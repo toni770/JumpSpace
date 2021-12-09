@@ -16,6 +16,7 @@ TagManager:
   - Atractor
   - Atmosphere
   - Turret
+  - DataManager
   layers:
   - Default
   - TransparentFX

@@ -34,7 +34,15 @@ public class LevelManager : MonoBehaviour
     {
         if(!test)
         {
-            actualPlanet = planets[level - 1].GetComponent<Planet>();
+            if (DataManager.Instance.gameFinished)
+            {
+                actualPlanet = planets[Random.Range(0,level-1)].GetComponent<Planet>();
+                print("Loading Random Level");
+            }
+            else
+            {
+                actualPlanet = planets[level - 1].GetComponent<Planet>();
+            }
             Instantiate(actualPlanet.gameObject);
         }
         else

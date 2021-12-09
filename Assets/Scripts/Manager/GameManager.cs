@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private int trashNeeded = 20;
+    [SerializeField] private int[] trashNeeded;
     [SerializeField] [Range(0, 1)] private float percentExtraTrash = 0.2f;
-    [SerializeField] private int actualLevel = 1;
     [SerializeField] private CameraController cameraController;
+
+    [Header("DEBUG")]
+    [SerializeField] private bool debugMode = false;
+    [SerializeField] private int actualLevel = 1;
 
     public bool isPlaying { get; private set; } = false;
 
@@ -45,32 +48,51 @@ public class GameManager : MonoBehaviour
 
     private void StartGame()
     {
+        if (!debugMode) 
+            if(DataManager.Instance!=null) 
+                actualLevel = DataManager.Instance.actualLevel;
+
         levelManager.LoadLevel(actualLevel);
 
         cameraController.target = levelManager.player.transform;
 
         isPlaying = true;
         actualTrash = 0;
-        uiManager.UpdateTrash(actualTrash, trashNeeded);
+        uiManager.UpdateTrash(actualTrash, trashNeeded[actualLevel-1]);
+
+        print("Loaded Level " + actualLevel + " and you need " + trashNeeded[actualLevel - 1] + " of trash");
     }
 
     public void EndGame(bool win)
     {
         isPlaying = false;
         uiManager.EndGame(win);
+
+        if(win)
+        {
+            if(DataManager.Instance!=null)
+            {
+                DataManager.Instance.IncreaseLevel();
+                DataManager.Instance.SaveData();
+            }
+        }
     }
 
     public void GetTrash()
     {
         actualTrash += 1;
-        uiManager.UpdateTrash(actualTrash, trashNeeded);
+        uiManager.UpdateTrash(actualTrash, trashNeeded[actualLevel-1]);
     }
 
     public void CheckEnd()
     {
-        if(actualTrash >= trashNeeded && isPlaying)
+        if (debugMode) EndGame(true);
+        else
         {
-            EndGame(true);
+            if (actualTrash >= trashNeeded[actualLevel - 1] && isPlaying)
+            {
+                EndGame(true);
+            }
         }
     }
 
@@ -79,13 +101,8 @@ public class GameManager : MonoBehaviour
         uiManager.UpdateFuel(actual, max);
     }
 
-    public int GetTrashNeeded()
-    {
-        return trashNeeded;
-    }
-
     public int GetExtraTrash()
     {
-        return trashNeeded + (int)(trashNeeded * percentExtraTrash);
+        return trashNeeded[actualLevel - 1] + (int)(trashNeeded[actualLevel-1] * percentExtraTrash);
     }
 }

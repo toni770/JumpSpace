@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -14,21 +15,20 @@ public class UIManager : MonoBehaviour
     }
 
     [Header("MENUS")]
-    [SerializeField]
-    private GameObject gameMenu;
-    [SerializeField]
-    private GameObject endMenu;
+    [SerializeField] private GameObject gameMenu;
+    [SerializeField] private GameObject endMenu;
     [Header("TEXTS")]
-    [SerializeField]
-    private Text endText;
-    [SerializeField]
-    private Text trashText;
+    [SerializeField] private Text endText;
+    [SerializeField] private Text trashText;
+    [SerializeField] private TextMeshProUGUI levelText;
+    [SerializeField] private TextMeshProUGUI coinsText;
     [Header("OTHERS")]
-    [SerializeField]
-    private Image fuelSlider;
-    public void UpdateTrash(int actual, int max)
+    [SerializeField] private Image fuelSlider;
+
+    //BUTTONS
+    public void PlayGame()
     {
-        trashText.text = actual.ToString() + '/' + max.ToString();
+        SceneManager.LoadScene((int)level.Game);
     }
 
     public void EndGame(bool win)
@@ -43,15 +43,31 @@ public class UIManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+   
+    public void MainMenu()
+    {
+        SceneManager.LoadScene((int)level.MainMenu);
+    }
+
+    //TEXTS
+    public void UpdateTrash(int actual, int max)
+    {
+        trashText.text = actual.ToString() + '/' + max.ToString();
+    }
 
     public void UpdateFuel(float actual, float max)
     {
         fuelSlider.fillAmount = actual / max;
     }
 
-    public void PlayGame()
+    public void UpdateCurrentLevel(int actual)
     {
-        SceneManager.LoadScene(((int)level.Game));
+        levelText.text = actual.ToString();
+    }
+
+    public void UpdateCoins(int actual)
+    {
+        coinsText.text = actual.ToString();
     }
 
 }
