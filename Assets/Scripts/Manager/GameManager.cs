@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
 
 
-
     public static GameManager Instance
     {
         get
@@ -48,11 +47,23 @@ public class GameManager : MonoBehaviour
 
     private void StartGame()
     {
-        if (!debugMode) 
-            if(DataManager.Instance!=null) 
+        if (!debugMode)
+        {
+            if (DataManager.Instance != null)
+            {
                 actualLevel = DataManager.Instance.actualLevel;
 
-        levelManager.LoadLevel(actualLevel);
+                levelManager.LoadLevel(actualLevel);
+                levelManager.playerStats.InitStats(DataManager.Instance.GetSpeedValue(),
+                                                    DataManager.Instance.GetRangeValue(),
+                                                    DataManager.Instance.GetFuelValue());
+
+                print("Speed(" + DataManager.Instance.statsLvl[0] + ") = " + DataManager.Instance.GetSpeedValue());
+                print("Range(" + DataManager.Instance.statsLvl[1] + ") = " + DataManager.Instance.GetRangeValue());
+                print("Fuel(" + DataManager.Instance.statsLvl[2] + ") = " + DataManager.Instance.GetFuelValue());
+            }
+        }
+               
 
         cameraController.target = levelManager.player.transform;
 
@@ -86,13 +97,9 @@ public class GameManager : MonoBehaviour
 
     public void CheckEnd()
     {
-        if (debugMode) EndGame(true);
-        else
+        if (actualTrash >= trashNeeded[actualLevel - 1] && isPlaying)
         {
-            if (actualTrash >= trashNeeded[actualLevel - 1] && isPlaying)
-            {
-                EndGame(true);
-            }
+            EndGame(true);
         }
     }
 

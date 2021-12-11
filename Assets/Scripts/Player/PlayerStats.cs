@@ -10,16 +10,12 @@ public class PlayerStats : MonoBehaviour
     public float maxFuel = 100;
     public float atractorRange = 2;
 
-    [SerializeField]
-    private float godModeDuration = 5;
-    [SerializeField]
-    private float godModeExtraSpeed = 3;
-    [SerializeField]
-    private float reserveDiscountSpeed = 5;
+    [SerializeField] private float godModeDuration = 5;
+    [SerializeField] private float godModeExtraSpeed = 3;
+    [SerializeField] private float reserveDiscountSpeed = 5;
 
     [Header("Objects")]
-    [SerializeField]
-    private SphereCollider atractor;
+    [SerializeField] private SphereCollider atractor;
 
     [HideInInspector]
     public float speed { get; private set; } = 10;
@@ -44,6 +40,13 @@ public class PlayerStats : MonoBehaviour
         {
             EnterGodMode(false);
         }
+    }
+
+    public void InitStats(float _speed, float _range, float _fuel)
+    {
+        speed = _speed;
+        atractorRange = _range;
+        maxFuel = _fuel;
     }
     private void StartGame()
     {

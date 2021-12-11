@@ -25,6 +25,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject trashPrefab;
         
 
+    public PlayerStats playerStats { get; private set; }
 
     private Planet actualPlanet;
     private bool[] trashSpawned;
@@ -53,6 +54,7 @@ public class LevelManager : MonoBehaviour
         actualPlanet.InitSpawns();
 
         player = Instantiate(playerPrefab, actualPlanet.playerSpawn.position, Quaternion.identity);
+        playerStats = player.GetComponent<PlayerStats>();
 
         SpawnItem(actualPlanet.turretSpawns, turretPrefab);
         SpawnItem(actualPlanet.fuelSpawns, fuelPrefab);

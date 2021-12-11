@@ -1207,6 +1207,7 @@ MonoBehaviour:
   endText: {fileID: 1093481277}
   trashText: {fileID: 1778947764}
   levelText: {fileID: 0}
+  coinsText: {fileID: 0}
   fuelSlider: {fileID: 103908050}
 --- !u!4 &1419551423
 Transform:

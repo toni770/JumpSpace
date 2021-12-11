@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class StatsController : MonoBehaviour
 {
-    [SerializeField]
-    private int[] lvlPrices;
-
     private StatButton[] buttons;
 
 
@@ -40,7 +37,7 @@ public class StatsController : MonoBehaviour
         if (DataManager.Instance.statCompleted(index))
             buttons[index].RemovePrice();
         else
-            buttons[index].ChangePrice(lvlPrices[DataManager.Instance.statsLvl[index] - 1]);
+            buttons[index].ChangePrice(DataManager.Instance.lvlPrices[DataManager.Instance.statsLvl[index] - 1]);
     }
 
     private void UpdateStates()

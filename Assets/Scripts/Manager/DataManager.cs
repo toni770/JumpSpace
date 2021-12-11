@@ -11,6 +11,8 @@ public class DataManager : MonoBehaviour
      * 2: Range
      * 3: Fuel
      */
+
+    //DATA TO SAVE
     public int coins { get; private set; }
     public int actualLevel { get; private set; }
     public int jetpack { get; private set; }
@@ -23,17 +25,22 @@ public class DataManager : MonoBehaviour
 
     public bool gameFinished { get; private set; }
 
-    [SerializeField]
-    private int levelNum = 3;
-    [SerializeField]
-    private int hatsNum = 5;
-    [SerializeField]
-    private int jetPackNum = 5;
-    [SerializeField]
-    private int itemsNum = 3;
-    [SerializeField]
-    private int itemsLvlNum = 3;
+    //Variables
+    [SerializeField] private int levelNum = 3;
+    [SerializeField] private int hatsNum = 5;
+    [SerializeField] private int jetPackNum = 5;
+    [SerializeField] private int itemsNum = 3;
+    [SerializeField] private int itemsLvlNum = 3;
 
+    [Header("StatsInfo")]
+    [TextArea][Tooltip("Doesn't do anything. Just comments shown in inspector")]
+    [SerializeField] private string Notes = "1: Speed , 2: Range, 3: Fuel";
+
+    public int[] lvlPrices;
+
+    public float[] speedLevels;
+    public float[] rangeLevels;
+    public float[] fuelLevels;
 
     private GameData data;
 
@@ -145,6 +152,19 @@ public class DataManager : MonoBehaviour
     public bool statCompleted(int index)
     {
         return statsLvl[index] == itemsLvlNum;
+    }
+
+    public float GetSpeedValue()
+    {
+        return speedLevels[statsLvl[0]-1];
+    }
+    public float GetRangeValue()
+    {
+        return rangeLevels[statsLvl[1]-1];
+    }
+    public float GetFuelValue()
+    {
+        return fuelLevels[statsLvl[2]-1];
     }
 
     private void RemoveData()
