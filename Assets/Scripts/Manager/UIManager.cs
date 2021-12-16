@@ -15,6 +15,8 @@ public class UIManager : MonoBehaviour
     }
 
     [Header("MENUS")]
+    [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject shopMenu;
     [SerializeField] private GameObject gameMenu;
     [SerializeField] private GameObject endMenu;
     [Header("TEXTS")]
@@ -47,6 +49,18 @@ public class UIManager : MonoBehaviour
     public void MainMenu()
     {
         SceneManager.LoadScene((int)level.MainMenu);
+    }
+
+    public void OpenShop()
+    {
+        mainMenu.SetActive(false);
+        shopMenu.SetActive(true);
+    }
+
+    public void CloseShop()
+    {
+        mainMenu.SetActive(true);
+        shopMenu.SetActive(false);
     }
 
     //TEXTS

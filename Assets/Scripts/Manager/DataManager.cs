@@ -14,8 +14,8 @@ public class DataManager : MonoBehaviour
 
     //DATA TO SAVE
     public int coins { get; private set; }
-    public int actualLevel { get; private set; }
-    public int jetpack { get; private set; }
+    public int actualLevel;
+    public int jetpack;
     public int hat { get; private set; }
 
     public int[] statsLvl { get; private set; }

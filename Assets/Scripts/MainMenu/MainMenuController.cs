@@ -9,6 +9,8 @@ public class MainMenuController : MonoBehaviour
 
     private static MainMenuController _instance;
 
+    [SerializeField] private PlayerItemsController itemsPlayer;
+
     public static MainMenuController Instance
     {
         get
@@ -35,4 +37,11 @@ public class MainMenuController : MonoBehaviour
         DataManager.Instance.IncreaseCoins(value);
         uiManager.UpdateCoins(DataManager.Instance.coins);
     }
+
+    public void ChangePlayerJetPack(int index)
+    {
+        itemsPlayer.ChangeJetPack(index);
+    }
+
+
 }
