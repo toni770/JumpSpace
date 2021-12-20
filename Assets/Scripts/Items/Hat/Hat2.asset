@@ -10,8 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a964d8170c6a72419560fce1eec59f5, type: 3}
-  m_Name: JetPack1
+  m_Name: Hat2
   m_EditorClassIdentifier: 
-  itemId: 1
   price: 0
-  image: {fileID: 21300000, guid: 30cb50b15638ffc408b9bb08a80fa37d, type: 3}
+  image: {fileID: 21300000, guid: ec9e18712cace6b47ae3ad1dc290ad6a, type: 3}

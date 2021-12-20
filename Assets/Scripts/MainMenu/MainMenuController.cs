@@ -38,9 +38,12 @@ public class MainMenuController : MonoBehaviour
         uiManager.UpdateCoins(DataManager.Instance.coins);
     }
 
-    public void ChangePlayerJetPack(int index)
+    public void ChangePlayerItem(int item, int index)
     {
-        itemsPlayer.ChangeJetPack(index);
+        itemsPlayer.ChangeItem(item, index);
+
+        DataManager.Instance.items[item] = index + 1;
+        DataManager.Instance.SaveData();
     }
 
 

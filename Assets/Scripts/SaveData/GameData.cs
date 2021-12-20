@@ -8,8 +8,8 @@ public class GameData
 
     public int coins;
     public int actualLevel;
-    public int jetpack;
-    public int hat;
+
+    public int[] items;
 
     public int[] statsLvl;
 
@@ -25,8 +25,8 @@ public class GameData
     {
         coins = data.coins;
         actualLevel = data.actualLevel;
-        jetpack = data.jetpack;
-        hat = data.hat;
+
+        items = data.items;
 
         statsLvl = data.statsLvl;
 

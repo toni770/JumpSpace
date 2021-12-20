@@ -5,26 +5,22 @@ using UnityEngine;
 public class PlayerItemsController : MonoBehaviour
 {
     [SerializeField] private Transform parent;
-    [SerializeField] private Transform jetPackPosition;
-    [SerializeField] private GameObject[] jetPacksPrefab;
 
-    GameObject actualJetPack;
+    [SerializeField] private PlayerItem[] playerItems;
+
     private void Start()
     {
         if(DataManager.Instance != null)
         {
-            SpawnJetPack(DataManager.Instance.jetpack-1);
+            for (int i = 0; i < playerItems.Length; i++)
+            {
+                playerItems[i].Change(DataManager.Instance.items[i]-1, parent);
+            }
         }
     }
 
-    private void SpawnJetPack(int jetNum)
+    public void ChangeItem(int item, int index)
     {
-        actualJetPack = Instantiate(jetPacksPrefab[jetNum], parent);
-    }
-
-    public void ChangeJetPack(int jetNum)
-    {
-        if (actualJetPack != null) Destroy(actualJetPack);
-        SpawnJetPack(jetNum);
+        playerItems[item].Change(index, parent);
     }
 }

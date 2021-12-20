@@ -15,9 +15,8 @@ public class DataManager : MonoBehaviour
     //DATA TO SAVE
     public int coins { get; private set; }
     public int actualLevel;
-    public int jetpack;
-    public int hat { get; private set; }
 
+    public int[] items;
     public int[] statsLvl { get; private set; }
 
     public bool[] hatsUnlocked { get; private set; }
@@ -29,8 +28,9 @@ public class DataManager : MonoBehaviour
     [SerializeField] private int levelNum = 3;
     [SerializeField] private int hatsNum = 5;
     [SerializeField] private int jetPackNum = 5;
-    [SerializeField] private int itemsNum = 3;
-    [SerializeField] private int itemsLvlNum = 3;
+    [SerializeField] private int statsNum = 3;
+    [SerializeField] private int statsLvlNum = 3;
+    [SerializeField] private int itemsNum = 2;
 
     [Header("StatsInfo")]
     [TextArea][Tooltip("Doesn't do anything. Just comments shown in inspector")]
@@ -83,8 +83,8 @@ public class DataManager : MonoBehaviour
         {
             coins = data.coins;
             actualLevel = data.actualLevel;
-            jetpack = data.jetpack;
-            hat = data.hat;
+
+            items = data.items;
 
             statsLvl = data.statsLvl;
 
@@ -100,11 +100,17 @@ public class DataManager : MonoBehaviour
     {
         coins = 10000;
         actualLevel = 1;
-        jetpack = 1;
-        hat = 1;
 
-        statsLvl = new int[itemsNum];
+        items = new int[itemsNum];
+
         for (int i = 0; i < itemsNum; i++)
+        {
+            items[i] = 0;
+        }
+        items[((int)GlobalVars.Items.jetpack)] = 1;
+
+        statsLvl = new int[statsNum];
+        for (int i = 0; i < statsNum; i++)
              statsLvl[i] = 1;
  
 
@@ -140,7 +146,7 @@ public class DataManager : MonoBehaviour
 
     public void IncreaseStat(int index)
     {
-        if (statsLvl[index] < itemsLvlNum)
+        if (statsLvl[index] < statsLvlNum)
             statsLvl[index]++;
     }
 
@@ -151,7 +157,7 @@ public class DataManager : MonoBehaviour
 
     public bool statCompleted(int index)
     {
-        return statsLvl[index] == itemsLvlNum;
+        return statsLvl[index] == statsLvlNum;
     }
 
     public float GetSpeedValue()
