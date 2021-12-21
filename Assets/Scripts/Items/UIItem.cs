@@ -19,12 +19,6 @@ public abstract class UIItem : MonoBehaviour
         itemController = transform.parent.GetComponent<UIItemGroup>();
         LoadInfo();
     }
-
-    private void LoadInfo()
-    {
-        itemImage.sprite = itemData.image;
-    }
-
     public void Select(bool select)
     {
         selectedImage.gameObject.SetActive(select);
@@ -33,6 +27,11 @@ public abstract class UIItem : MonoBehaviour
     public void SelectItem()
     {
         itemController.SelectItem(this);
+    }
+
+    private void LoadInfo()
+    {
+        itemImage.sprite = itemData.image;
     }
 
 }

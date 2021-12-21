@@ -5,8 +5,7 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     [Header("VARS")]
-    [SerializeField]
-    private float initSpeed = 10;
+    [SerializeField] private float initSpeed = 10;
     public float maxFuel = 100;
     public float atractorRange = 2;
 
@@ -17,10 +16,7 @@ public class PlayerStats : MonoBehaviour
     [Header("Objects")]
     [SerializeField] private SphereCollider atractor;
 
-    [HideInInspector]
-    public float speed { get; private set; } = 10;
-
-
+    [HideInInspector] public float speed { get; private set; } = 10;
     public bool isGodMode { get; private set; } = false;
     private float godCount = 0;
 

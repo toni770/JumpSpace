@@ -12,10 +12,10 @@ public class PlayerMovement : MonoBehaviour
     private PlayerFuel playerFuel;
 
     //vars
-    float heading;
-    Quaternion desiredRotQ;
+    private float heading;
+    private Quaternion desiredRotQ;
     private Vector3 dir;
-    IInteractable interactable;
+    private IInteractable interactable;
 
     private void Awake()
     {

@@ -51,16 +51,10 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene((int)level.MainMenu);
     }
 
-    public void OpenShop()
+    public void OpenShop(bool shop)
     {
-        mainMenu.SetActive(false);
-        shopMenu.SetActive(true);
-    }
-
-    public void CloseShop()
-    {
-        mainMenu.SetActive(true);
-        shopMenu.SetActive(false);
+        mainMenu.SetActive(!shop);
+        shopMenu.SetActive(shop);
     }
 
     //TEXTS

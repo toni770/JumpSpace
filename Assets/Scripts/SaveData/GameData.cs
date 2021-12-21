@@ -13,12 +13,7 @@ public class GameData
 
     public int[] statsLvl;
 
-    public int speedLvl;
-    public int radiusLvl;
-    public int fuelLvl;
-
-    public bool[] hatsUnlocked;
-    public bool[] jetPacksUnlocked;
+    public bool[][] itemsUnlocked;
 
     public bool gameFinished;
     public GameData(DataManager data)
@@ -30,8 +25,7 @@ public class GameData
 
         statsLvl = data.statsLvl;
 
-        hatsUnlocked = data.hatsUnlocked;
-        jetPacksUnlocked = data.jetPacksUnlocked;
+        itemsUnlocked = data.itemsUnlocked;
 
         gameFinished = data.gameFinished;
     }

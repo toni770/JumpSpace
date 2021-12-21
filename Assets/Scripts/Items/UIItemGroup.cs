@@ -5,12 +5,16 @@ using UnityEngine;
 public class UIItemGroup : MonoBehaviour
 {
     [SerializeField] private GlobalVars.Items itemType = GlobalVars.Items.jetpack;
+    [SerializeField] private bool canDiselect = false;
 
     private List<UIItem> itemList;
 
     private int selectedItem = -1;
     
+    //vars
     int startItem;
+    int index;
+
     private void Awake()
     {
         LoadArray();
@@ -39,11 +43,20 @@ public class UIItemGroup : MonoBehaviour
             itemList[selectedItem].Select(false);
         }
 
-        selectedItem = itemList.IndexOf(item);
+        index = itemList.IndexOf(item);
 
-        itemList[selectedItem].Select(true);
+        if(canDiselect && selectedItem == index)
+        {
+            selectedItem = -1;
+        }
+        else
+        {
+            selectedItem = index;
+            itemList[selectedItem].Select(true);
+        }
 
         ChangeGameItem();
+
     }
 
     private void ChangeGameItem()

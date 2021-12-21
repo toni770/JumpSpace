@@ -6,15 +6,19 @@ using TMPro;
 
 public class StatButton : MonoBehaviour
 {
+    [SerializeField] private GlobalVars.Stats stat = GlobalVars.Stats.speed;
     [SerializeField] private TextMeshProUGUI priceText;
     [SerializeField] private TextMeshProUGUI lvlText;
 
     [SerializeField] private Color LockColor = Color.red;
+
+    private StatsController statsController;
     private Button btn;
 
     private void Awake()
     {
         btn = GetComponent<Button>();
+        statsController = transform.parent.GetComponent<StatsController>();
     }
 
     public void ChangePrice(int value)
@@ -46,5 +50,10 @@ public class StatButton : MonoBehaviour
     {
         btn.interactable = false;
         priceText.color = LockColor;
+    }
+
+    public void ImproveStat()
+    {
+        statsController.ImproveStat((int)stat);
     }
 }

@@ -54,13 +54,13 @@ public class GameManager : MonoBehaviour
                 actualLevel = DataManager.Instance.actualLevel;
 
                 levelManager.LoadLevel(actualLevel);
-                levelManager.playerStats.InitStats(DataManager.Instance.GetSpeedValue(),
-                                                    DataManager.Instance.GetRangeValue(),
-                                                    DataManager.Instance.GetFuelValue());
+                levelManager.playerStats.InitStats(DataManager.Instance.GetStatValue(((int)GlobalVars.Stats.speed)),
+                                                    DataManager.Instance.GetStatValue(((int)GlobalVars.Stats.range)),
+                                                    DataManager.Instance.GetStatValue(((int)GlobalVars.Stats.fuel)));
 
-                print("Speed(" + DataManager.Instance.statsLvl[0] + ") = " + DataManager.Instance.GetSpeedValue());
-                print("Range(" + DataManager.Instance.statsLvl[1] + ") = " + DataManager.Instance.GetRangeValue());
-                print("Fuel(" + DataManager.Instance.statsLvl[2] + ") = " + DataManager.Instance.GetFuelValue());
+                print("Speed(" + DataManager.Instance.statsLvl[0] + ") = " + DataManager.Instance.GetStatValue(((int)GlobalVars.Stats.speed)));
+                print("Range(" + DataManager.Instance.statsLvl[1] + ") = " + DataManager.Instance.GetStatValue(((int)GlobalVars.Stats.range)));
+                print("Fuel(" + DataManager.Instance.statsLvl[2] + ") = " + DataManager.Instance.GetStatValue(((int)GlobalVars.Stats.fuel)));
             }
         }
                

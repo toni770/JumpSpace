@@ -34,10 +34,10 @@ public class StatsController : MonoBehaviour
     {
         buttons[index].Changelvl(DataManager.Instance.statsLvl[index]);
 
-        if (DataManager.Instance.statCompleted(index))
+        if (DataManager.Instance.StatCompleted(index))
             buttons[index].RemovePrice();
         else
-            buttons[index].ChangePrice(DataManager.Instance.lvlPrices[DataManager.Instance.statsLvl[index] - 1]);
+            buttons[index].ChangePrice(DataManager.Instance.statsData[index].prices[DataManager.Instance.statsLvl[index] - 1]);
     }
 
     private void UpdateStates()

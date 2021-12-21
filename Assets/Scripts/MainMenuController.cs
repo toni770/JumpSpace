@@ -6,10 +6,12 @@ public class MainMenuController : MonoBehaviour
 {
 
     private UIManager uiManager;
-
+    [SerializeField] private Animator cameraAnimator;
     private static MainMenuController _instance;
 
     [SerializeField] private PlayerItemsController itemsPlayer;
+
+    private bool shopOpened = false;
 
     public static MainMenuController Instance
     {
@@ -44,6 +46,13 @@ public class MainMenuController : MonoBehaviour
 
         DataManager.Instance.items[item] = index + 1;
         DataManager.Instance.SaveData();
+    }
+
+    public void OpenShop()
+    {
+        shopOpened = !shopOpened;
+        cameraAnimator.SetBool("shop", shopOpened);
+        uiManager.OpenShop(shopOpened);
     }
 
 

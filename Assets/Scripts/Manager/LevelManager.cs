@@ -29,6 +29,8 @@ public class LevelManager : MonoBehaviour
 
     private Planet actualPlanet;
     private bool[] trashSpawned;
+
+    //vars
     private int pos;
     int num;
     public void LoadLevel(int level)

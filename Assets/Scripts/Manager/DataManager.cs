@@ -6,41 +6,26 @@ using UnityEditor.SceneManagement;
 
 public class DataManager : MonoBehaviour
 {
-    /*STATS
-     * 1: Speed
-     * 2: Range
-     * 3: Fuel
-     */
 
     //DATA TO SAVE
     public int coins { get; private set; }
-    public int actualLevel;
+    [HideInInspector] public int actualLevel;
 
-    public int[] items;
+    [HideInInspector] public int[] items;
     public int[] statsLvl { get; private set; }
 
-    public bool[] hatsUnlocked { get; private set; }
-    public bool[] jetPacksUnlocked { get; private set; }
+    public bool[][] itemsUnlocked;
 
     public bool gameFinished { get; private set; }
 
     //Variables
     [SerializeField] private int levelNum = 3;
-    [SerializeField] private int hatsNum = 5;
-    [SerializeField] private int jetPackNum = 5;
-    [SerializeField] private int statsNum = 3;
-    [SerializeField] private int statsLvlNum = 3;
-    [SerializeField] private int itemsNum = 2;
+    [Header("---ITEM INFO---")]
+    [SerializeField] private int itemsTypes = 2;
+    [SerializeField] private int[] itemsNum;
 
-    [Header("StatsInfo")]
-    [TextArea][Tooltip("Doesn't do anything. Just comments shown in inspector")]
-    [SerializeField] private string Notes = "1: Speed , 2: Range, 3: Fuel";
-
-    public int[] lvlPrices;
-
-    public float[] speedLevels;
-    public float[] rangeLevels;
-    public float[] fuelLevels;
+    [Header("---STATS INFO---")]
+    public StatData[] statsData;
 
     private GameData data;
 
@@ -88,8 +73,7 @@ public class DataManager : MonoBehaviour
 
             statsLvl = data.statsLvl;
 
-            hatsUnlocked = data.hatsUnlocked;
-            jetPacksUnlocked = data.jetPacksUnlocked;
+            itemsUnlocked = data.itemsUnlocked;
 
             gameFinished = data.gameFinished;
 
@@ -101,24 +85,27 @@ public class DataManager : MonoBehaviour
         coins = 10000;
         actualLevel = 1;
 
-        items = new int[itemsNum];
+        //Init items lvl
+        items = new int[itemsTypes];
 
-        for (int i = 0; i < itemsNum; i++)
+        for (int i = 0; i < itemsTypes; i++)
         {
             items[i] = 0;
         }
         items[((int)GlobalVars.Items.jetpack)] = 1;
 
-        statsLvl = new int[statsNum];
-        for (int i = 0; i < statsNum; i++)
+        //Init stats
+        statsLvl = new int[statsData.Length];
+        for (int i = 0; i < statsData.Length; i++)
              statsLvl[i] = 1;
- 
 
-        hatsUnlocked = new bool[hatsNum];
-        InitBoolArray(hatsUnlocked);
-
-        jetPacksUnlocked = new bool[jetPackNum];
-        InitBoolArray(jetPacksUnlocked);
+        //Init items check
+        itemsUnlocked = new bool[itemsTypes][];
+        for (int i = 0; i < itemsUnlocked.Length; i++)
+        {
+            itemsUnlocked[i] = new bool[itemsNum[i]];
+            InitBoolArray(itemsUnlocked[i]);
+        }
 
         gameFinished = false;
     }
@@ -146,37 +133,23 @@ public class DataManager : MonoBehaviour
 
     public void IncreaseStat(int index)
     {
-        if (statsLvl[index] < statsLvlNum)
+        if (statsLvl[index] < statsData[index].levels)
             statsLvl[index]++;
     }
 
-    public int getStat(int index)
+    public int GetStat(int index)
     {
         return statsLvl[index];
     }
 
-    public bool statCompleted(int index)
+    public bool StatCompleted(int index)
     {
-        return statsLvl[index] == statsLvlNum;
+        return statsLvl[index] == statsData[index].levels;
     }
 
-    public float GetSpeedValue()
+    public float GetStatValue(int stat)
     {
-        return speedLevels[statsLvl[0]-1];
-    }
-    public float GetRangeValue()
-    {
-        return rangeLevels[statsLvl[1]-1];
-    }
-    public float GetFuelValue()
-    {
-        return fuelLevels[statsLvl[2]-1];
-    }
-
-    private void RemoveData()
-    {
-        InitData();
-        SaveData();
+        return statsData[stat].values[statsLvl[stat] - 1];
     }
 
 }

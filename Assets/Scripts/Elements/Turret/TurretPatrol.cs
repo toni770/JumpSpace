@@ -22,9 +22,4 @@ public class TurretPatrol : MonoBehaviour
         }
     }
 
-    private void OnEnable()
-    {
-       // print("TURRET: PATROL");
-    }
-
 }
