@@ -10,9 +10,11 @@ public class MainMenuController : MonoBehaviour
     private static MainMenuController _instance;
 
     [SerializeField] private PlayerItemsController itemsPlayer;
+    [SerializeField] private UIItemGroup jetPackGroup;
+    [SerializeField] private StatsController statsController;
 
     private bool shopOpened = false;
-
+    private bool moneyOpened = false;
     public static MainMenuController Instance
     {
         get
@@ -53,7 +55,18 @@ public class MainMenuController : MonoBehaviour
         shopOpened = !shopOpened;
         cameraAnimator.SetBool("shop", shopOpened);
         uiManager.OpenShop(shopOpened);
+
+        if (shopOpened) jetPackGroup.CheckPrices();
+        else statsController.UpdateStates();
     }
 
+    public void OpenMoney()
+    {
+        moneyOpened = !moneyOpened;
+
+        uiManager.OpenMoney(moneyOpened);
+
+        if (!shopOpened) jetPackGroup.CheckPrices();
+    }
 
 }

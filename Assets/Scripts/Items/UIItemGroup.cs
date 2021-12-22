@@ -33,29 +33,35 @@ public class UIItemGroup : MonoBehaviour
         for (int i = 0; i < transform.childCount; i++)
         {
             itemList.Add(transform.GetChild(i).GetComponent<UIItem>());
+      
+            itemList[i].LoadInfo(DataManager.Instance.itemsUnlocked[(int)itemType][i]);
+            
         }
     }
 
     public void SelectItem(UIItem item)
     {
-        if(selectedItem >= 0)
-        {
-            itemList[selectedItem].Select(false);
-        }
-
         index = itemList.IndexOf(item);
 
-        if(canDiselect && selectedItem == index)
+        if (DataManager.Instance.itemsUnlocked[(int)itemType][index])
         {
-            selectedItem = -1;
-        }
-        else
-        {
-            selectedItem = index;
-            itemList[selectedItem].Select(true);
-        }
+            if (selectedItem >= 0)
+            {
+                itemList[selectedItem].Select(false);
+            }
 
-        ChangeGameItem();
+            if (canDiselect && selectedItem == index)
+            {
+                selectedItem = -1;
+            }
+            else
+            {
+                selectedItem = index;
+                itemList[selectedItem].Select(true);
+            }
+
+            ChangeGameItem();
+        }
 
     }
 
@@ -67,5 +73,39 @@ public class UIItemGroup : MonoBehaviour
     private int StartItem()
     {
         return DataManager.Instance.items[(int)itemType] - 1;
+    }
+
+    public void Unlock(UIItem item)
+    {
+        index = itemList.IndexOf(item);
+        if(!DataManager.Instance.itemsUnlocked[(int)itemType][index])
+        {
+            DataManager.Instance.itemsUnlocked[(int)itemType][index] = true;
+            DataManager.Instance.SaveData();
+
+            item.UnlockItem();
+
+            SelectItem(item);
+        }
+    }
+
+    public void Buy(int money, UIItem item)
+    {
+        if (DataManager.Instance.coins >= money)
+        {
+            MainMenuController.Instance.ChangeCoins(-money);
+            DataManager.Instance.SaveData();
+
+            Unlock(item);
+            CheckPrices();
+        }
+    }
+
+    public void CheckPrices()
+    {
+        for (int i = 0; i < itemList.Count; i++)
+        {
+            ((UIBuyItem)itemList[i]).CheckPrice(DataManager.Instance.coins);
+        }
     }
 }

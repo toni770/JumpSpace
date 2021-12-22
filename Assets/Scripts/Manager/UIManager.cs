@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject shopMenu;
     [SerializeField] private GameObject gameMenu;
     [SerializeField] private GameObject endMenu;
+    [SerializeField] private GameObject moneyMenu;
     [Header("TEXTS")]
     [SerializeField] private Text endText;
     [SerializeField] private Text trashText;
@@ -55,6 +56,12 @@ public class UIManager : MonoBehaviour
     {
         mainMenu.SetActive(!shop);
         shopMenu.SetActive(shop);
+    }
+
+    public void OpenMoney(bool money)
+    {
+        shopMenu.SetActive(!money);
+        moneyMenu.SetActive(money);
     }
 
     //TEXTS

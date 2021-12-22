@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   price: 500
   image: {fileID: 21300000, guid: 9b7004bfd384698458217ab2a09b9375, type: 3}
+  lockImage: {fileID: 21300000, guid: 9d3af4b49f107f64f89adbff1d3017a3, type: 3}

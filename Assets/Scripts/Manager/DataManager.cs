@@ -82,7 +82,7 @@ public class DataManager : MonoBehaviour
     }
     private void InitData()
     {
-        coins = 10000;
+        coins = 1000;
         actualLevel = 1;
 
         //Init items lvl
@@ -106,6 +106,7 @@ public class DataManager : MonoBehaviour
             itemsUnlocked[i] = new bool[itemsNum[i]];
             InitBoolArray(itemsUnlocked[i]);
         }
+        itemsUnlocked[((int)GlobalVars.Items.jetpack)][0] = true;
 
         gameFinished = false;
     }
@@ -129,6 +130,7 @@ public class DataManager : MonoBehaviour
     public void IncreaseCoins(int value)
     {
         coins += value;
+        if (coins < 0) coins = 0;
     }
 
     public void IncreaseStat(int index)

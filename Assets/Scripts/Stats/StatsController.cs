@@ -40,7 +40,7 @@ public class StatsController : MonoBehaviour
             buttons[index].ChangePrice(DataManager.Instance.statsData[index].prices[DataManager.Instance.statsLvl[index] - 1]);
     }
 
-    private void UpdateStates()
+    public void UpdateStates()
     {
         for (int i = 0; i < buttons.Length; i++)
         {

@@ -5,20 +5,20 @@ using UnityEngine.UI;
 
 public abstract class UIItem : MonoBehaviour
 {
-    [SerializeField] private ItemData itemData;
+    [SerializeField] protected ItemData itemData;
 
     [SerializeField] private Image itemImage;
     [SerializeField] private Image selectedImage;
+    [SerializeField] protected GameObject unlockButton;
 
-    private UIItemGroup itemController;
+    protected UIItemGroup itemController;
 
-    public bool unlocked;
 
     private void Awake()
     {
         itemController = transform.parent.GetComponent<UIItemGroup>();
-        LoadInfo();
     }
+
     public void Select(bool select)
     {
         selectedImage.gameObject.SetActive(select);
@@ -29,9 +29,22 @@ public abstract class UIItem : MonoBehaviour
         itemController.SelectItem(this);
     }
 
-    private void LoadInfo()
+    public virtual void LoadInfo(bool unlocked)
+    {
+        if(unlocked)
+            itemImage.sprite = itemData.image;
+        else
+            itemImage.sprite = itemData.lockImage;
+
+        unlockButton.SetActive(!unlocked);
+    }
+
+    public void UnlockItem()
     {
         itemImage.sprite = itemData.image;
+        unlockButton.SetActive(false);
     }
+
+    public virtual void Unlock() { }
 
 }

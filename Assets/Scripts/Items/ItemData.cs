@@ -7,5 +7,6 @@ public class ItemData : ScriptableObject
 {
     public int price;
     public Sprite image;
+    public Sprite lockImage;
 
 }
