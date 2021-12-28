@@ -66,8 +66,9 @@ public class PlayerFuel : MonoBehaviour
     public void RefillFuel()
     {
         currentFuel = playerStats.maxFuel;
-        GetReserve(false);
         GameManager.Instance.UpdateFuel(currentFuel, playerStats.maxFuel);
+        if (isReserve)
+            GetReserve(false);
     }
 
     private void GetReserve(bool reserve)

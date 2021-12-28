@@ -82,7 +82,7 @@ public class DataManager : MonoBehaviour
     }
     private void InitData()
     {
-        coins = 1000;
+        coins = 10000;
         actualLevel = 1;
 
         //Init items lvl

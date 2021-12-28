@@ -55,9 +55,11 @@ public class TurretAttack : MonoBehaviour
 
     public void Rotate()
     {
-        var lookPos = new Vector3(stateMachine.target.position.x, 
-                                    transform.position.y , 
-                                    stateMachine.target.position.z) - transform.position;
+        /* var lookPos = new Vector3(stateMachine.target.position.x, 
+                                     transform.position.y , 
+                                     stateMachine.target.position.z) - transform.position;*/
+
+        var lookPos = stateMachine.target.position - transform.position;
 
         var rotation = Quaternion.LookRotation(lookPos);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotSpeed * Time.deltaTime);

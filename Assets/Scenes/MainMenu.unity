@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0.15819687, g: 0.24982964, b: 0.4245283, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 02ec821eb5be7874ba471f972e362a97, type: 2}
   m_HaloStrength: 0.5
@@ -3016,6 +3016,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1493807905}
   - component: {fileID: 1493807904}
+  - component: {fileID: 1493807906}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -3035,18 +3036,18 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.3
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
+    m_Strength: 0.5
+    m_Bias: 1
+    m_NormalBias: 1
     m_NearPlane: 0.2
     m_CullingMatrixOverride:
       e00: 1
@@ -3099,6 +3100,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &1493807906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493807903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UsePipelineSettings: 0
 --- !u!1 &1603119282
 GameObject:
   m_ObjectHideFlags: 0
@@ -5221,134 +5235,6 @@ PrefabInstance:
     - target: {fileID: 6075765125864876286, guid: b7e112f506f089d49ac7810984b3965c, type: 3}
       propertyPath: m_Name
       value: DataManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075765125864876287, guid: b7e112f506f089d49ac7810984b3965c, type: 3}
-      propertyPath: Notes
-      value: '1: Speed , 2: Range, 3: Fuel'
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075765125864876287, guid: b7e112f506f089d49ac7810984b3965c, type: 3}
-      propertyPath: itemsLvlNum
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075765125864876287, guid: b7e112f506f089d49ac7810984b3965c, type: 3}
-      propertyPath: itemsNum.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075765125864876287, guid: b7e112f506f089d49ac7810984b3965c, type: 3}
-      propertyPath: lvlPrices.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075765125864876287, guid: b7e112f506f089d49ac7810984b3965c, type: 3}
-      propertyPath: statsData.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075765125864876287, guid: b7e112f506f089d49ac7810984b3965c, type: 3}
-      propertyPath: fuelLevels.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075765125864876287, guid: b7e112f506f089d49ac7810984b3965c, type: 3}
-      propertyPath: itemsNum.Array.data[0]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075765125864876287, guid: b7e112f506f089d49ac7810984b3965c, type: 3}
-      propertyPath: itemsNum.Array.data[1]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075765125864876287, guid: b7e112f506f089d49ac7810984b3965c, type: 3}
-      propertyPath: rangeLevels.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075765125864876287, guid: b7e112f506f089d49ac7810984b3965c, type: 3}
-      propertyPath: speedLevels.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075765125864876287, guid: b7e112f506f089d49ac7810984b3965c, type: 3}
-      propertyPath: lvlPrices.Array.data[0]
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075765125864876287, guid: b7e112f506f089d49ac7810984b3965c, type: 3}
-      propertyPath: lvlPrices.Array.data[1]
-      value: 700
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075765125864876287, guid: b7e112f506f089d49ac7810984b3965c, type: 3}
-      propertyPath: lvlPrices.Array.data[2]
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075765125864876287, guid: b7e112f506f089d49ac7810984b3965c, type: 3}
-      propertyPath: lvlPrices.Array.data[3]
-      value: 1500
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075765125864876287, guid: b7e112f506f089d49ac7810984b3965c, type: 3}
-      propertyPath: statsData.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 177bebc6617e26b4abcd8f439884a61e, type: 2}
-    - target: {fileID: 6075765125864876287, guid: b7e112f506f089d49ac7810984b3965c, type: 3}
-      propertyPath: statsData.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: cc65ba3bbbf6cf24d9a41cc48a2d45b2, type: 2}
-    - target: {fileID: 6075765125864876287, guid: b7e112f506f089d49ac7810984b3965c, type: 3}
-      propertyPath: statsData.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: 323b9bdb6e88a9645970e5857b0435d9, type: 2}
-    - target: {fileID: 6075765125864876287, guid: b7e112f506f089d49ac7810984b3965c, type: 3}
-      propertyPath: fuelLevels.Array.data[0]
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075765125864876287, guid: b7e112f506f089d49ac7810984b3965c, type: 3}
-      propertyPath: fuelLevels.Array.data[1]
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075765125864876287, guid: b7e112f506f089d49ac7810984b3965c, type: 3}
-      propertyPath: fuelLevels.Array.data[2]
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075765125864876287, guid: b7e112f506f089d49ac7810984b3965c, type: 3}
-      propertyPath: fuelLevels.Array.data[3]
-      value: 170
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075765125864876287, guid: b7e112f506f089d49ac7810984b3965c, type: 3}
-      propertyPath: fuelLevels.Array.data[4]
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075765125864876287, guid: b7e112f506f089d49ac7810984b3965c, type: 3}
-      propertyPath: rangeLevels.Array.data[0]
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075765125864876287, guid: b7e112f506f089d49ac7810984b3965c, type: 3}
-      propertyPath: rangeLevels.Array.data[1]
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075765125864876287, guid: b7e112f506f089d49ac7810984b3965c, type: 3}
-      propertyPath: rangeLevels.Array.data[2]
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075765125864876287, guid: b7e112f506f089d49ac7810984b3965c, type: 3}
-      propertyPath: rangeLevels.Array.data[3]
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075765125864876287, guid: b7e112f506f089d49ac7810984b3965c, type: 3}
-      propertyPath: rangeLevels.Array.data[4]
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075765125864876287, guid: b7e112f506f089d49ac7810984b3965c, type: 3}
-      propertyPath: speedLevels.Array.data[0]
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075765125864876287, guid: b7e112f506f089d49ac7810984b3965c, type: 3}
-      propertyPath: speedLevels.Array.data[1]
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075765125864876287, guid: b7e112f506f089d49ac7810984b3965c, type: 3}
-      propertyPath: speedLevels.Array.data[2]
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075765125864876287, guid: b7e112f506f089d49ac7810984b3965c, type: 3}
-      propertyPath: speedLevels.Array.data[3]
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 6075765125864876287, guid: b7e112f506f089d49ac7810984b3965c, type: 3}
-      propertyPath: speedLevels.Array.data[4]
-      value: 17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7e112f506f089d49ac7810984b3965c, type: 3}

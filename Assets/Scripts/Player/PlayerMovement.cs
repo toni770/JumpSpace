@@ -63,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if((interactable = other.GetComponent<IInteractable>()) != null)
         {
+            print("INTERACT");
             interactable.Interact(gameObject);
         }
     }

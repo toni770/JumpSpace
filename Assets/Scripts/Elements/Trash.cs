@@ -27,6 +27,14 @@ public class Trash : MonoBehaviour, IInteractable
             targetPos = other.transform;
         }
     }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Atractor"))
+        {
+            atract = false;
+            targetPos = null;
+        }
+    }
     public void Interact(GameObject player)
     {
         GameManager.Instance.GetTrash();

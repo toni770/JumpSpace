@@ -393,7 +393,6 @@ GameObject:
   - component: {fileID: 67931358}
   - component: {fileID: 67931359}
   - component: {fileID: 67931360}
-  - component: {fileID: 67931361}
   - component: {fileID: 1795050966}
   m_Layer: 0
   m_Name: Torreta
@@ -457,7 +456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f165632e429fb54092ef1bf826819e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turretOff: {fileID: 67931361}
+  turretOff: {fileID: 0}
   turretPatrol: {fileID: 67931360}
   turretAttack: {fileID: 67931359}
   turretStun: {fileID: 67931358}
@@ -501,18 +500,6 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 905580f3c3d90b441a8a3da2a6b641b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &67931361
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5802315017403626478}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 919d27cd2b748a247b7022ada4fa22fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!135 &1795050966

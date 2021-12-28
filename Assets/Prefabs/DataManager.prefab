@@ -44,8 +44,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3359d6eddf645bb44bf1116aa2b2a60c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hatsNum: 5
-  jetPackNum: 5
+  actualLevel: 0
+  items: 
+  levelNum: 3
+  itemsTypes: 2
+  itemsNum: 0500000005000000
+  statsData:
+  - {fileID: 11400000, guid: 177bebc6617e26b4abcd8f439884a61e, type: 2}
+  - {fileID: 11400000, guid: cc65ba3bbbf6cf24d9a41cc48a2d45b2, type: 2}
+  - {fileID: 11400000, guid: 323b9bdb6e88a9645970e5857b0435d9, type: 2}
 --- !u!114 &6075765125864876273
 MonoBehaviour:
   m_ObjectHideFlags: 0
