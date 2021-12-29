@@ -35,8 +35,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        dir = new Vector3(playerInput.horizontal, 0, playerInput.vertical).normalized * Time.deltaTime * playerStats.speed;
-        if (playerInput.horizontal != 0 || playerInput.vertical != 0)  transform.Translate(Vector3.forward * Time.deltaTime * playerStats.speed);
+       // dir = new Vector3(playerInput.horizontal, 0, playerInput.vertical).normalized * Time.deltaTime * playerStats.CurrentSpeed();
+        if (playerInput.horizontal != 0 || playerInput.vertical != 0)  transform.Translate(Vector3.forward * Time.deltaTime * playerStats.CurrentSpeed());
     }
 
     private void Rotate()

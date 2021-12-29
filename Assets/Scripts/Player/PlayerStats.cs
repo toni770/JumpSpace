@@ -4,20 +4,30 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
+
+    private enum States
+    {
+        normal,
+        reserve,
+        god
+    }
+
+    private States currentState;
+    private States previousState;
+
     [Header("VARS")]
     [SerializeField] private float initSpeed = 10;
     public float maxFuel = 100;
     public float atractorRange = 2;
 
     [SerializeField] private float godModeDuration = 5;
-    [SerializeField] private float godModeExtraSpeed = 3;
-    [SerializeField] private float reserveDiscountSpeed = 5;
+    [SerializeField] [Range(0, 1)] private float godModeExtraSpeed = 0.5f;
+    [SerializeField] [Range(0, 1)] private float reserveDiscountSpeed = 0.5f;
 
     [Header("Objects")]
     [SerializeField] private SphereCollider atractor;
 
     [HideInInspector] public float speed { get; private set; } = 10;
-    public bool isGodMode { get; private set; } = false;
     private float godCount = 0;
 
     private void Awake()
@@ -32,9 +42,22 @@ public class PlayerStats : MonoBehaviour
 
     private void Update()
     {
-        if(isGodMode && Time.time >= godCount)
+        if(currentState == States.god && Time.time >= godCount)
         {
             EnterGodMode(false);
+        }
+
+        switch (currentState)
+        {
+            case States.normal:
+                print("Normal");
+                break;
+            case States.reserve:
+                print("Reserve");
+                break;
+            case States.god:
+                print("God");
+                break;
         }
     }
 
@@ -46,7 +69,7 @@ public class PlayerStats : MonoBehaviour
     }
     private void StartGame()
     {
-        isGodMode = false;
+        currentState = States.normal;
     }
     private void UpdateAtractorSize()
     {
@@ -55,25 +78,50 @@ public class PlayerStats : MonoBehaviour
 
     public void EnterReserve(bool reserve)
     {
-        if (reserve) speed -= reserveDiscountSpeed;
+        if(currentState != States.god)
+            currentState = reserve ? States.reserve : States.normal;
+        
         else
-            speed += reserveDiscountSpeed;
+            previousState = reserve ? States.reserve : States.normal;
     }
     public void EnterGodMode(bool god)
     {
-        isGodMode = god;
         if (god)
         {
+            previousState = currentState;
+            currentState = States.god;
             print("ENTER GOD MODE");
             godCount = Time.time + godModeDuration;
-            speed += godModeExtraSpeed;
         } 
         else
         {
+            currentState = previousState;
             print("EXIT GOD MODE");
             godCount = 0;
-            speed -= godModeExtraSpeed;
+        }
+    }
+
+    public float CurrentSpeed()
+    {
+        switch (currentState)
+        {
+            case States.normal:
+                return speed;
+                break;
+            case States.reserve:
+                return speed - speed * reserveDiscountSpeed;
+                break;
+            case States.god:
+                return speed + speed * godModeExtraSpeed;
+                break;
         }
 
+        return speed;
+
+    }
+
+    public bool IsGodMode()
+    {
+        return currentState == States.god;
     }
 }

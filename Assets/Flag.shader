@@ -5,6 +5,7 @@ Shader "Unlit/Flag"
         _MainTex ("Texture", 2D) = "white" {}
         _Speed ("Speed", Range(1,5)) = 1 
         _Frequency("Frequency", Range(1,5)) = 1
+        _Amplitude("Amplitude", Range(1,5)) = 1
     }
     SubShader
     {
@@ -34,10 +35,13 @@ Shader "Unlit/Flag"
             float4 _MainTex_ST;
             float _Speed;
             float _Frequency;
+            float _Amplitude;
 
             float4 flag(float4 vertex, float2  uv)
             {
-                vertex.y += sin((uv.x - (_Time.y * _Speed)) * _Frequency) * uv.x ;
+                vertex.y += (sin(4 * uv.x - (_Time.y * _Speed) * _Frequency)  - cos(5 * uv.y - (_Time.y * _Speed) * _Frequency)) * _Amplitude / 5;
+                   
+                    //sin((uv.x - (_Time.y * _Speed)) * _Frequency) * uv.x ;
                 return vertex;
             }
             v2f vert (appdata v)

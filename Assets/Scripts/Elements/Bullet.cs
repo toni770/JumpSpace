@@ -15,10 +15,11 @@ public class Bullet : MonoBehaviour, IInteractable
 
     private float lifeCount = 0;
 
-    private void Awake()
+    private void OnEnable()
     {
         lifeCount = Time.time + lifeTime;
     }
+
     private void Update()
     {
         transform.Translate(dir * speed * Time.deltaTime);
@@ -35,6 +36,7 @@ public class Bullet : MonoBehaviour, IInteractable
     
     private void Death()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        //Destroy(gameObject);
     }
 }
