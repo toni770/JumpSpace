@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private int[] trashNeeded;
     [SerializeField] [Range(0, 1)] private float percentExtraTrash = 0.2f;
     [SerializeField] private CameraController cameraController;
+
+    [SerializeField] bl_Joystick joystick;
 
     [Header("DEBUG")]
     [SerializeField] private bool debugMode = false;
@@ -18,25 +20,11 @@ public class GameManager : MonoBehaviour
 
     private UIManager uiManager;
     private LevelManager levelManager;
-    private static GameManager _instance;
+    
 
-
-    public static GameManager Instance
+    protected override void Awake()
     {
-        get
-        {
-            if (_instance == null)
-            {
-                Debug.LogError("GameManager is Null");
-            }
-            
-            return _instance;
-        }
-    }
-
-    private void Awake()
-    {
-        _instance = this;
+        base.Awake();
         uiManager = GetComponent<UIManager>();
         levelManager = GetComponent<LevelManager>();
     }
@@ -57,6 +45,8 @@ public class GameManager : MonoBehaviour
                 levelManager.playerStats.InitStats(DataManager.Instance.GetStatValue(((int)GlobalVars.Stats.speed)),
                                                     DataManager.Instance.GetStatValue(((int)GlobalVars.Stats.range)),
                                                     DataManager.Instance.GetStatValue(((int)GlobalVars.Stats.fuel)));
+
+                levelManager.player.GetComponent<PlayerInput>().SetJoystick(joystick);
 
                 print("Speed(" + DataManager.Instance.statsLvl[0] + ") = " + DataManager.Instance.GetStatValue(((int)GlobalVars.Stats.speed)));
                 print("Range(" + DataManager.Instance.statsLvl[1] + ") = " + DataManager.Instance.GetStatValue(((int)GlobalVars.Stats.range)));

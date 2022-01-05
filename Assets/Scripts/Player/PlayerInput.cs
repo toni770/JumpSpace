@@ -17,7 +17,12 @@ public class PlayerInput : MonoBehaviour
 
     private void GetDirections()
     {
-        vertical =  Input.GetAxis("Vertical");
-        horizontal =  Input.GetAxis("Horizontal");
+        vertical =  joystick.Vertical;//Input.GetAxis("Vertical");
+        horizontal = joystick.Horizontal;//Input.GetAxis("Horizontal");
+    }
+
+    public void SetJoystick(bl_Joystick _joystick)
+    {
+        joystick = _joystick;
     }
 }

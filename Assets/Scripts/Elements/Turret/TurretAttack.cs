@@ -15,7 +15,7 @@ public class TurretAttack : MonoBehaviour
     private TurretPlayerDetection playerDetection;
     private float shootCount = 0;
 
-    private Vector3 rotationMask;
+    private Vector3 targetPos;
     private GameObject obj;
 
     private void Awake()
@@ -23,7 +23,6 @@ public class TurretAttack : MonoBehaviour
         stateMachine = GetComponent<TurretStateMachine>();
         playerDetection = GetComponent<TurretPlayerDetection>();
         shootCount = 0;
-        rotationMask = new Vector3(0, 1, 0);
     }
 
     private void Update()
@@ -53,14 +52,16 @@ public class TurretAttack : MonoBehaviour
 
     public void Rotate()
     {
-        var rotation = Quaternion.LookRotation(stateMachine.target.position - transform.position);
+        var pos = ProjectPointOnPlane(transform.up, transform.position, stateMachine.target.position);
 
-        // Quaternion LookAtRotationOnly_Y = Quaternion.Euler(transform.rotation.eulerAngles.x, rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(pos, transform.up), Time.deltaTime * rotSpeed);
+    }
 
-        Quaternion LookAtRotationOnly_Y = Quaternion.Euler(model.rotation.eulerAngles.x, rotation.eulerAngles.y, model.rotation.eulerAngles.z);
-        // var rot = Quaternion.Euler(Vector3.Scale(rotation, rotationMask));
-        model.rotation = LookAtRotationOnly_Y;
-       // model.localRotation = Quaternion.Slerp(model.localRotation, rot, rotSpeed * Time.deltaTime);
+    private Vector3 ProjectPointOnPlane(Vector3 planeNormal , Vector3 planePoint , Vector3 point)
+    {
+     planeNormal.Normalize();
+     var distance = -Vector3.Dot(planeNormal.normalized, (point - planePoint));
+     return point + planeNormal * distance;
     }
 
 

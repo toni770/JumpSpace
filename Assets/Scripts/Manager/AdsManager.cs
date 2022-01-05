@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Advertisements;
 using System;
 
-public class AdsManager : MonoBehaviour, IUnityAdsListener
+public class AdsManager : Singleton<AdsManager>, IUnityAdsListener
 {
 #if UNITY_IOS
     string gameId="4519618";
@@ -16,20 +16,10 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
 
     private Action OnRewardedSucced;
 
-    private static AdsManager _instance;
-    public static AdsManager Instance
-    {
-        get
-        {
-            if (_instance == null)
-                print("AdsManager is null");
-            return _instance;
-        }
-    }
 
-    private void Awake()
+    protected override void Awake()
     {
-        _instance = this;
+        base.Awake();
         Advertisement.Initialize(gameId);
         Advertisement.AddListener(this);
     }

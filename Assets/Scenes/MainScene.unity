@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.012927106, g: 0.08988736, b: 0.22739962, a: 1}
+  m_IndirectSpecularColor: {r: 0.014310076, g: 0.08928882, b: 0.2270557, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -910,8 +910,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  upDistance: 29.7
-  backDistance: 8.2
+  upDistance: 39.9
+  backDistance: 13.9
   trackingSpeed: 3
   rotationSpeed: 9
 --- !u!114 &963194230
@@ -1224,6 +1224,7 @@ MonoBehaviour:
   trashNeeded: 32000000050000000a000000
   percentExtraTrash: 0.2
   cameraController: {fileID: 963194229}
+  joystick: {fileID: 1444981365}
   debugMode: 0
   actualLevel: 1
 --- !u!114 &1419551422
@@ -1286,6 +1287,17 @@ MonoBehaviour:
   fuelPrefab: {fileID: 6991444691945147938, guid: ba947a2c51185c5409c08a09a2f3639f, type: 3}
   powerUpPrefab: {fileID: 3438690254805444383, guid: 6168d6a52a03dba42a68f8a4d0fefca2, type: 3}
   trashPrefab: {fileID: 2834005011174845527, guid: 87268b8f12d93e846a0151b18b6b9504, type: 3}
+--- !u!114 &1444981365 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 11467636, guid: 7973d81b61b491640b7a0d00c9de83d3, type: 3}
+  m_PrefabInstance: {fileID: 1921614936}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77624f28614e33247a9ad124a2d27f78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1454286482
 GameObject:
   m_ObjectHideFlags: 0
@@ -1873,7 +1885,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 165178, guid: 7973d81b61b491640b7a0d00c9de83d3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11417906, guid: 7973d81b61b491640b7a0d00c9de83d3, type: 3}
       propertyPath: m_Color.b
@@ -1885,6 +1897,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11417906, guid: 7973d81b61b491640b7a0d00c9de83d3, type: 3}
       propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11467636, guid: 7973d81b61b491640b7a0d00c9de83d3, type: 3}
+      propertyPath: SmoothTime
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22406132, guid: 7973d81b61b491640b7a0d00c9de83d3, type: 3}

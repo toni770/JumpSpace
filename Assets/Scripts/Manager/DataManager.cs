@@ -2,9 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using UnityEditor.SceneManagement;
-
-public class DataManager : MonoBehaviour
+public class DataManager : SingletonPersistent<DataManager>
 {
 
     //DATA TO SAVE
@@ -28,33 +26,13 @@ public class DataManager : MonoBehaviour
     public StatData[] statsData;
 
     private GameData data;
-
-    private static DataManager _instance;
-    public static DataManager Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                print("DataManager is Null");
-            }
-
-            return _instance;
-        }
-    }
-
     
-    private void Awake()
+    protected override void Awake()
     {
-        _instance = this;
+        base.Awake();
 
         InitData();
         LoadData();
-    }
-
-    private void OnLevelWasLoaded(int level)
-    {
-       _instance = this;
     }
 
     public void SaveData()

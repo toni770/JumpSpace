@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainMenuController : MonoBehaviour
+public class MainMenuController : Singleton<MainMenuController>
 {
 
     private UIManager uiManager;
     [SerializeField] private Animator cameraAnimator;
-    private static MainMenuController _instance;
 
     [SerializeField] private PlayerItemsController itemsPlayer;
     [SerializeField] private UIItemGroup jetPackGroup;
@@ -15,19 +14,10 @@ public class MainMenuController : MonoBehaviour
 
     private bool shopOpened = false;
     private bool moneyOpened = false;
-    public static MainMenuController Instance
-    {
-        get
-        {
-            if (_instance == null)
-                print("MainMenuController is null");
 
-            return _instance;
-        }
-    }
-    private void Awake()
+    protected override void Awake()
     {
-        _instance = this;
+        base.Awake();
         uiManager = GetComponent<UIManager>();
     }
     private void Start()

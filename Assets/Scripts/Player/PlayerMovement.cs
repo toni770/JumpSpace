@@ -22,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         playerStats = GetComponent<PlayerStats>();
         playerFuel = GetComponent<PlayerFuel>();
+
+
     }
 
     private void Update()
@@ -36,7 +38,10 @@ public class PlayerMovement : MonoBehaviour
     private void Move()
     {
        // dir = new Vector3(playerInput.horizontal, 0, playerInput.vertical).normalized * Time.deltaTime * playerStats.CurrentSpeed();
-        if (playerInput.horizontal != 0 || playerInput.vertical != 0)  transform.Translate(Vector3.forward * Time.deltaTime * playerStats.CurrentSpeed());
+        //if (playerInput.horizontal != 0 || playerInput.vertical != 0)  transform.Translate(Vector3.forward * Time.deltaTime * playerStats.CurrentSpeed());
+
+        Vector3 moveDir = new Vector3(playerInput.horizontal, 0, playerInput.vertical).normalized;
+        transform.Translate(moveDir * playerStats.CurrentSpeed() * Time.deltaTime);
     }
 
     private void Rotate()
