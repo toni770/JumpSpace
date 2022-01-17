@@ -11,9 +11,6 @@ public class LevelManager : MonoBehaviour
 
     [Space]
     public GameObject[] planets;
-
-
-
     
     public GameObject player { private set; get; }
 
@@ -55,8 +52,8 @@ public class LevelManager : MonoBehaviour
 
         actualPlanet.InitSpawns();
 
-        player = Instantiate(playerPrefab, actualPlanet.playerSpawn.position, Quaternion.identity);
-        playerStats = player.GetComponent<PlayerStats>();
+     /*   player = Instantiate(playerPrefab, actualPlanet.playerSpawn.position, Quaternion.identity);
+        playerStats = player.GetComponent<PlayerStats>();*/
 
         SpawnItem(actualPlanet.turretSpawns, turretPrefab);
         SpawnItem(actualPlanet.fuelSpawns, fuelPrefab);

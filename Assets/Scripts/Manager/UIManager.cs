@@ -18,7 +18,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject shopMenu;
     [SerializeField] private GameObject gameMenu;
-    [SerializeField] private GameObject endMenu;
+    [SerializeField] private GameObject loseMenu;
+    [SerializeField] private GameObject winMenu;
     [SerializeField] private GameObject moneyMenu;
     [Header("TEXTS")]
     [SerializeField] private Text endText;
@@ -31,15 +32,26 @@ public class UIManager : MonoBehaviour
     //BUTTONS
     public void PlayGame()
     {
-        SceneManager.LoadScene((int)level.Game);
+        //SceneManager.LoadScene((int)level.Game);
+        gameMenu.SetActive(true);
+        mainMenu.SetActive(false);
+
+        coinsText.gameObject.SetActive(false);
+        GameManager.Instance.StartGame();
     }
 
     public void EndGame(bool win)
     {
         gameMenu.SetActive(false);
-        endMenu.SetActive(true);
-
-        endText.text = win ? "Victory" : "Defeat";
+        if(win)
+        {
+            winMenu.SetActive(true);
+        }
+        else
+        {
+            loseMenu.SetActive(true);
+        }
+        
     }
 
     public void Replay()

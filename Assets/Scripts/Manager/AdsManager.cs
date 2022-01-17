@@ -33,23 +33,23 @@ public class AdsManager : Singleton<AdsManager>, IUnityAdsListener
         }
         else
         {
-            print("Rewarded is not ready!");
+           // print("Rewarded is not ready!");
         }
     }
 
     public void OnUnityAdsReady(string placementId)
     {
-        print("ADS ARE READY");
+      //  print("ADS ARE READY");
     }
 
     public void OnUnityAdsDidError(string message)
     {
-        print("ADS ERROR: " + message);
+       // print("ADS ERROR: " + message);
     }
 
     public void OnUnityAdsDidStart(string placementId)
     {
-        print("ADS START");
+       // print("ADS START");
     }
 
     public void OnUnityAdsDidFinish(string placementId, ShowResult showResult)

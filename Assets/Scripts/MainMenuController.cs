@@ -59,4 +59,10 @@ public class MainMenuController : Singleton<MainMenuController>
         if (!shopOpened) jetPackGroup.CheckPrices();
     }
 
+    public void PlayGame()
+    {
+        uiManager.PlayGame();
+        cameraAnimator.enabled = false;
+    }
+
 }

@@ -14,6 +14,8 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private bool debugMode = false;
     [SerializeField] private int actualLevel = 1;
 
+    [SerializeField] private GameObject player;
+
     public bool isPlaying { get; private set; } = false;
 
     private int actualTrash = 0;
@@ -21,6 +23,7 @@ public class GameManager : Singleton<GameManager>
     private UIManager uiManager;
     private LevelManager levelManager;
     
+
 
     protected override void Awake()
     {
@@ -30,32 +33,31 @@ public class GameManager : Singleton<GameManager>
     }
     private void Start()
     {
-        StartGame();
+        InitGame();
     }
 
-    private void StartGame()
+    private void InitGame()
     {
-        if (!debugMode)
+         if (!debugMode)
         {
             if (DataManager.Instance != null)
             {
                 actualLevel = DataManager.Instance.actualLevel;
 
                 levelManager.LoadLevel(actualLevel);
-                levelManager.playerStats.InitStats(DataManager.Instance.GetStatValue(((int)GlobalVars.Stats.speed)),
-                                                    DataManager.Instance.GetStatValue(((int)GlobalVars.Stats.range)),
-                                                    DataManager.Instance.GetStatValue(((int)GlobalVars.Stats.fuel)));
 
-                levelManager.player.GetComponent<PlayerInput>().SetJoystick(joystick);
-
-                print("Speed(" + DataManager.Instance.statsLvl[0] + ") = " + DataManager.Instance.GetStatValue(((int)GlobalVars.Stats.speed)));
-                print("Range(" + DataManager.Instance.statsLvl[1] + ") = " + DataManager.Instance.GetStatValue(((int)GlobalVars.Stats.range)));
-                print("Fuel(" + DataManager.Instance.statsLvl[2] + ") = " + DataManager.Instance.GetStatValue(((int)GlobalVars.Stats.fuel)));
+                player.GetComponent<PlayerInput>().SetJoystick(joystick);
             }
         }
-               
+    }
 
-        cameraController.target = levelManager.player.transform;
+    public void StartGame()
+    {              
+        player.GetComponent<PlayerStats>().InitStats(DataManager.Instance.GetStatValue(((int)GlobalVars.Stats.speed)),
+                                    DataManager.Instance.GetStatValue(((int)GlobalVars.Stats.range)),
+                                    DataManager.Instance.GetStatValue(((int)GlobalVars.Stats.fuel)));
+
+        cameraController.target = player.transform;
 
         isPlaying = true;
         actualTrash = 0;
