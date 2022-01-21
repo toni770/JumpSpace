@@ -26,6 +26,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text trashText;
     [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private TextMeshProUGUI coinsText;
+
+    [SerializeField] private TextMeshProUGUI endMoneyText;
+
+    [SerializeField] private TextMeshProUGUI endTrashText;
+
     [Header("OTHERS")]
     [SerializeField] private Image fuelSlider;
 
@@ -36,7 +41,7 @@ public class UIManager : MonoBehaviour
         gameMenu.SetActive(true);
         mainMenu.SetActive(false);
 
-        coinsText.gameObject.SetActive(false);
+        coinsText.transform.parent.gameObject.SetActive(false);
         GameManager.Instance.StartGame();
     }
 
@@ -95,6 +100,16 @@ public class UIManager : MonoBehaviour
     public void UpdateCoins(int actual)
     {
         coinsText.text = actual.ToString();
+    }
+
+    public void UpdateEndMoney(int actual)
+    {
+        endMoneyText.text = actual.ToString();
+    }
+
+    public void UpdateEndTrash(int actual, int max)
+    {
+        endTrashText.text = actual.ToString() + '/' + max.ToString();
     }
 
 }

@@ -6,6 +6,8 @@ public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private int[] trashNeeded;
     [SerializeField] [Range(0, 1)] private float percentExtraTrash = 0.2f;
+
+    [SerializeField] private int trashValue = 5;
     [SerializeField] private CameraController cameraController;
 
     [SerializeField] bl_Joystick joystick;
@@ -73,6 +75,8 @@ public class GameManager : Singleton<GameManager>
 
         if(win)
         {
+            uiManager.UpdateEndTrash(actualTrash,GetExtraTrash());
+            uiManager.UpdateEndMoney(actualTrash * trashValue);
             if(DataManager.Instance!=null)
             {
                 DataManager.Instance.IncreaseLevel();

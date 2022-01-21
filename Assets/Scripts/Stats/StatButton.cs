@@ -9,6 +9,7 @@ public class StatButton : MonoBehaviour
     [SerializeField] private GlobalVars.Stats stat = GlobalVars.Stats.speed;
     [SerializeField] private TextMeshProUGUI priceText;
     [SerializeField] private TextMeshProUGUI lvlText;
+    [SerializeField] private GameObject improveImg;
 
     [SerializeField] private Color LockColor = Color.red;
 
@@ -28,7 +29,7 @@ public class StatButton : MonoBehaviour
 
     public void Changelvl(int value)
     {
-        lvlText.text = "lvl." + value.ToString();
+        lvlText.text = "lvl. " + value.ToString();
     }
 
     public int GetPrice()
@@ -42,7 +43,8 @@ public class StatButton : MonoBehaviour
 
     public void RemovePrice()
     {
-        priceText.text = "";
+        priceText.transform.parent.gameObject.SetActive(false);
+        improveImg.SetActive(false);
         btn.interactable = false;
     }
 

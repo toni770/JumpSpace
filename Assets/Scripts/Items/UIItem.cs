@@ -11,6 +11,7 @@ public abstract class UIItem : MonoBehaviour
     [SerializeField] private Image selectedImage;
     [SerializeField] protected GameObject unlockButton;
 
+    [SerializeField] protected GameObject unlockIcon;
     protected UIItemGroup itemController;
 
 
@@ -37,12 +38,14 @@ public abstract class UIItem : MonoBehaviour
             itemImage.sprite = itemData.lockImage;
 
         unlockButton.SetActive(!unlocked);
+        unlockIcon.SetActive(!unlocked);
     }
 
     public void UnlockItem()
     {
         itemImage.sprite = itemData.image;
         unlockButton.SetActive(false);
+        unlockIcon.SetActive(false);
     }
 
     public virtual void Unlock() { }

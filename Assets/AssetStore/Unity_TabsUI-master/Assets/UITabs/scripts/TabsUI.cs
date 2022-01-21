@@ -16,6 +16,8 @@ namespace EasyUI.Tabs {
       [Header ("Tabs customization :")]
       [SerializeField] private Color themeColor = Color.gray ;
       [SerializeField] private float tabSpacing = 2f ;
+
+      [SerializeField] private float selectedY = 1;
       [Space]
       [Header ("OnTabChange event :")]
       public TabsUIEvent OnTabChange ;
@@ -88,6 +90,15 @@ namespace EasyUI.Tabs {
 
             tabBtns [ previous ].uiImage.color = tabColorInactive ;
             tabBtns [ current ].uiImage.color = tabColorActive ;
+
+            tabBtns [ previous ].tabImage.color = tabColorInactive ;
+            tabBtns [ current ].tabImage.color = tabColorActive ;
+
+            tabBtns [ previous ].transform.position = new Vector2(tabBtns [ previous ].transform.position.x, 
+                                                                  tabBtns [ previous ].transform.position.y - selectedY);
+
+            tabBtns [ current ].transform.position = new Vector2(tabBtns [ current ].transform.position.x, 
+                                                                  tabBtns [ current ].transform.position.y + selectedY);
 
             tabBtns [ previous ].uiLayoutElement.preferredHeight = tabHeightInactive ;
             tabBtns [ current ].uiLayoutElement.preferredHeight = tabHeightActive ;
