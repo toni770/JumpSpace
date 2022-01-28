@@ -44,7 +44,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.57
+  m_Radius: 2.08
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &826745480
 MonoBehaviour:
@@ -108,7 +108,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &282136309165495580
 Transform:
   m_ObjectHideFlags: 0
@@ -295,10 +295,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 347173dc4f406594981c29b354fb0882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 4544436129196652327, guid: 4ace4f79107214d4c96ee995b99d3899, type: 3}
   bulletPosition: {fileID: 1100047307}
-  shootSpeed: 0.5
-  rotSpeed: 4
+  shootSpeed: 0.3
+  rotSpeed: 6
   model: {fileID: 4645178653204074520}
 --- !u!114 &67931360
 MonoBehaviour:
@@ -323,7 +322,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 7
+  m_Radius: 19
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6106639112381882803
 GameObject:
@@ -350,7 +349,7 @@ Transform:
   m_GameObject: {fileID: 6106639112381882803}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5091606, y: 1.5091606, z: 1.5091606}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7222570844343105546}

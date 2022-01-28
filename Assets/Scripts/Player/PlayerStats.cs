@@ -26,6 +26,10 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Objects")]
     [SerializeField] private SphereCollider atractor;
+    [SerializeField] private GameObject mesh;
+
+    [SerializeField] private Animator playerAnim;
+    [SerializeField] private float jumpAnimTime = 1f;
 
     [HideInInspector] public float speed { get; private set; } = 10;
     private float godCount = 0;
@@ -59,6 +63,25 @@ public class PlayerStats : MonoBehaviour
                 print("God");
                 break;
         }
+    }
+
+    
+    public void Destroy(bool destroy) 
+    {
+        mesh.SetActive(!destroy);
+    }
+
+    public void GoShip()
+    {
+        playerAnim.SetTrigger("Ship");
+        StartCoroutine(shipAnim());
+    }
+
+    IEnumerator shipAnim()
+    {
+        yield return new WaitForSeconds(jumpAnimTime);
+        Destroy(true);
+        
     }
 
     public void InitStats(float _speed, float _range, float _fuel)

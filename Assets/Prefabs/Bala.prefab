@@ -29,6 +29,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.38, y: 21.95, z: -4.73}
   m_LocalScale: {x: 0.47231, y: 0.47231, z: 0.47231}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4544436130097310654}
   m_Father: {fileID: 0}
@@ -60,7 +61,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planet: {fileID: 0}
-  staticItem: 0
 --- !u!114 &8022425714088079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeTime: 3
   speed: 10
-  damage: 2
+  damage: 5
 --- !u!1 &4544436130097310655
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,6 +104,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4544436129196652313}
   m_RootOrder: 0
@@ -127,6 +128,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -135,7 +137,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0476ef818a58ffb4ba689468ccadf333, type: 2}
+  - {fileID: 2100000, guid: a9436a4a7b57ee540a825bf9d0ffde5a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

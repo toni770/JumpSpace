@@ -18,6 +18,13 @@ public class GameManager : Singleton<GameManager>
 
     [SerializeField] private GameObject player;
 
+    [Header("End Menu")]
+    [SerializeField] private int multiplyReward = 3;
+
+    [SerializeField] private float nextbuttonShowTime =  2; 
+
+    [SerializeField] private float deathTime = 2;
+
     public bool isPlaying { get; private set; } = false;
 
     private int actualTrash = 0;
@@ -25,7 +32,8 @@ public class GameManager : Singleton<GameManager>
     private UIManager uiManager;
     private LevelManager levelManager;
     
-
+    private GameObject shipZone;
+    public bool revived {get; private set;}
 
     protected override void Awake()
     {
@@ -62,6 +70,7 @@ public class GameManager : Singleton<GameManager>
         cameraController.target = player.transform;
 
         isPlaying = true;
+        revived = false;
         actualTrash = 0;
         uiManager.UpdateTrash(actualTrash, trashNeeded[actualLevel-1]);
 
@@ -71,32 +80,93 @@ public class GameManager : Singleton<GameManager>
     public void EndGame(bool win)
     {
         isPlaying = false;
+        if(!win) player.GetComponent<PlayerStats>().Destroy(true);
+
+        StartCoroutine(FinishGame(win));        
+    }
+
+    public void SetShip(GameObject zone)
+    {
+        shipZone = zone;
+    }
+
+    IEnumerator FinishGame(bool win)
+    {
+        yield return new WaitForSeconds(deathTime);
         uiManager.EndGame(win);
 
         if(win)
         {
-            uiManager.UpdateEndTrash(actualTrash,GetExtraTrash());
+            uiManager.UpdateEndTrash(actualTrash,trashNeeded[actualLevel-1]);
             uiManager.UpdateEndMoney(actualTrash * trashValue);
             if(DataManager.Instance!=null)
             {
+                DataManager.Instance.IncreaseCoins(actualTrash * trashValue);
                 DataManager.Instance.IncreaseLevel();
                 DataManager.Instance.SaveData();
             }
+            StartCoroutine(showNext());
         }
+    }
+
+    IEnumerator showNext()
+    {
+        yield return new WaitForSeconds(nextbuttonShowTime);
+        uiManager.ShowNextBtn();
+    }
+    public void Revive()
+    {
+        AdsManager.Instance.PlayRewardedAd(ResetGame);
+    }
+
+    public void Multiply()
+    {
+        AdsManager.Instance.PlayRewardedAd(MultiplyMoney);
+    }
+
+    private void MultiplyMoney()
+    {
+        uiManager.HideMultiply();
+        uiManager.UpdateEndMoney(actualTrash * trashValue * multiplyReward);
+        if(DataManager.Instance!=null)
+            {
+                DataManager.Instance.IncreaseCoins(actualTrash * trashValue * multiplyReward);
+                DataManager.Instance.IncreaseLevel();
+                DataManager.Instance.SaveData();
+            }
+    }
+
+    private void ResetGame()
+    {
+        isPlaying = true;
+        uiManager.Revive();
+        revived = true;
+
+        player.GetComponent<PlayerFuel>().RefillFuel();
+        player.GetComponent<PlayerStats>().Destroy(false);
+
     }
 
     public void GetTrash()
     {
         actualTrash += 1;
         uiManager.UpdateTrash(actualTrash, trashNeeded[actualLevel-1]);
+
+        shipZone.SetActive(EnoughTrash());
     }
 
     public void CheckEnd()
     {
-        if (actualTrash >= trashNeeded[actualLevel - 1] && isPlaying)
+        EndGame(true);
+        /*if (EnoughTrash())
         {
             EndGame(true);
-        }
+        }*/
+    }
+
+    private bool EnoughTrash()
+    {
+        return (actualTrash >= trashNeeded[actualLevel - 1] && isPlaying);
     }
 
     public void UpdateFuel(float actual, float max)

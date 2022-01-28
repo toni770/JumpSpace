@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-public class DataManager : SingletonPersistent<DataManager>
+public class DataManager : Singleton<DataManager>
 {
 
     //DATA TO SAVE
@@ -18,6 +18,8 @@ public class DataManager : SingletonPersistent<DataManager>
 
     //Variables
     [SerializeField] private int levelNum = 3;
+    public int planetNum = 5;
+    
     [Header("---ITEM INFO---")]
     [SerializeField] private int itemsTypes = 2;
     [SerializeField] private int[] itemsNum;
@@ -61,7 +63,7 @@ public class DataManager : SingletonPersistent<DataManager>
     private void InitData()
     {
         coins = 10000;
-        actualLevel = 1;
+        actualLevel =5;
 
         //Init items lvl
         items = new int[itemsTypes];

@@ -22,7 +22,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject winMenu;
     [SerializeField] private GameObject moneyMenu;
     [Header("TEXTS")]
-    [SerializeField] private Text endText;
     [SerializeField] private Text trashText;
     [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private TextMeshProUGUI coinsText;
@@ -33,6 +32,11 @@ public class UIManager : MonoBehaviour
 
     [Header("OTHERS")]
     [SerializeField] private Image fuelSlider;
+    [SerializeField] private GameObject reviveButton;
+    [SerializeField] private GameObject nextButton;
+    [SerializeField] private GameObject multiplyButton;
+
+    [SerializeField] private GameObject fuelBar;
 
     //BUTTONS
     public void PlayGame()
@@ -42,6 +46,7 @@ public class UIManager : MonoBehaviour
         mainMenu.SetActive(false);
 
         coinsText.transform.parent.gameObject.SetActive(false);
+        fuelBar.SetActive(true);
         GameManager.Instance.StartGame();
     }
 
@@ -55,8 +60,15 @@ public class UIManager : MonoBehaviour
         else
         {
             loseMenu.SetActive(true);
-        }
-        
+            reviveButton.SetActive(!GameManager.Instance.revived);
+
+        }  
+    }
+
+    public void Revive()
+    {
+        loseMenu.SetActive(false);
+        gameMenu.SetActive(true);
     }
 
     public void Replay()
@@ -75,10 +87,20 @@ public class UIManager : MonoBehaviour
         shopMenu.SetActive(shop);
     }
 
+    public void ShowNextBtn()
+    {
+        nextButton.SetActive(true);
+    }
+
     public void OpenMoney(bool money)
     {
         shopMenu.SetActive(!money);
         moneyMenu.SetActive(money);
+    }
+
+    public void HideMultiply()
+    {
+        multiplyButton.SetActive(false);
     }
 
     //TEXTS

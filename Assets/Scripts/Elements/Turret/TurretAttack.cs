@@ -9,6 +9,8 @@ public class TurretAttack : MonoBehaviour
     [SerializeField] private float shootSpeed = 1;
     [SerializeField] private float rotSpeed = 4;
 
+    [SerializeField] private float firstShootDelay = 1;
+
     [SerializeField] private Transform model;
 
     private TurretStateMachine stateMachine;
@@ -76,6 +78,7 @@ public class TurretAttack : MonoBehaviour
     private void OnEnable()
     {
         print("TURRET: ATTACK");
+        shootCount = Time.time + firstShootDelay;
     }
 
 
