@@ -296,9 +296,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPosition: {fileID: 1100047307}
-  shootSpeed: 0.3
   rotSpeed: 6
   model: {fileID: 4645178653204074520}
+  bullets:
+  - {fileID: 11400000, guid: 657620215c9fa664b866dd1be9d6f8fb, type: 2}
+  - {fileID: 11400000, guid: 6c3cbfe46898aba498b80efdcf507c03, type: 2}
 --- !u!114 &67931360
 MonoBehaviour:
   m_ObjectHideFlags: 0

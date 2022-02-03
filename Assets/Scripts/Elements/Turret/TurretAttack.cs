@@ -5,13 +5,12 @@ using UnityEngine;
 public class TurretAttack : MonoBehaviour
 {
     [SerializeField] private Transform bulletPosition;
-
-    [SerializeField] private float shootSpeed = 1;
     [SerializeField] private float rotSpeed = 4;
-
-    [SerializeField] private float firstShootDelay = 1;
-
     [SerializeField] private Transform model;
+
+    [SerializeField] private BulletType[] bullets;
+
+    private BulletType actualBullet;
 
     private TurretStateMachine stateMachine;
     private TurretPlayerDetection playerDetection;
@@ -25,6 +24,9 @@ public class TurretAttack : MonoBehaviour
         stateMachine = GetComponent<TurretStateMachine>();
         playerDetection = GetComponent<TurretPlayerDetection>();
         shootCount = 0;
+
+        //actualBullet = bullets[Random.Range(0,bullets.Length)];
+        actualBullet = bullets[1];
     }
 
     private void Update()
@@ -48,7 +50,7 @@ public class TurretAttack : MonoBehaviour
         if (Time.time >= shootCount)
         {
             Shoot();
-            shootCount = Time.time + shootSpeed;
+            shootCount = Time.time + actualBullet.shootSpeed;
         }
     }
 
@@ -69,7 +71,7 @@ public class TurretAttack : MonoBehaviour
 
     private void Shoot()
     {
-        obj = BulletPooling.Instance.GetPooledObj();
+        obj = BulletPooling.Instance.GetPooledObj(actualBullet.id);
         obj.transform.position = bulletPosition.position;
         obj.transform.rotation = model.rotation;
         obj.SetActive(true);
@@ -78,7 +80,7 @@ public class TurretAttack : MonoBehaviour
     private void OnEnable()
     {
         print("TURRET: ATTACK");
-        shootCount = Time.time + firstShootDelay;
+        shootCount = Time.time + actualBullet.firstShootDelay;
     }
 
 

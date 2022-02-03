@@ -2,49 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletPooling : MonoBehaviour
+public class BulletPooling : Singleton<BulletPooling>
 {
-    [SerializeField] private GameObject prefab;
-
-    private List<GameObject> objects = new List<GameObject>();
+    [SerializeField] private GameObject[] prefab;
+    [SerializeField] private int numObjects =  2;
+    private List<GameObject>[] objects;
 
     private GameObject obj;
 
-    private static BulletPooling _instance;
 
-    public static BulletPooling Instance
+    protected override void Awake()
     {
-        get
+        base.Awake();
+        objects = new List<GameObject>[numObjects];
+        for(int i=0;i<objects.Length;i++)
         {
-            if (_instance == null)
-                Debug.Log("Bullet Pooling is null");
-            return _instance;
+            objects[i] = new List<GameObject>();
         }
     }
-
-    private void Awake()
+    public GameObject GetPooledObj(int type)
     {
-        _instance = this;
-    }
-
-    public GameObject GetPooledObj()
-    {
-        for (int i = 0; i < objects.Count; i++)
+        for (int i = 0; i < objects[type].Count; i++)
         {
-            if(!objects[i].activeInHierarchy)
+            if(!objects[type][i].activeInHierarchy)
             {
-                return objects[i];
+                return objects[type][i];
             }
         }
 
-        return AddItem();
+        return AddItem(type);
     }
 
-    private GameObject AddItem()
+    private GameObject AddItem(int type)
     {
-        obj = Instantiate(prefab);
+        obj = Instantiate(prefab[type]);
         obj.SetActive(false);
-        objects.Add(obj);
+        objects[type].Add(obj);
 
         return obj;
     }

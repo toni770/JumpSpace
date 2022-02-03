@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]
-    private float rotSmooth = 5;
+    [SerializeField] private float rotSmooth = 5;
+    [SerializeField] private GameObject mesh;
 
     private PlayerInput playerInput;
     private PlayerStats playerStats;
@@ -46,22 +46,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void Rotate()
     {
-        if(Input.GetKey(KeyCode.A))
+        float heading = Mathf.Atan2(playerInput.horizontal, playerInput.vertical);
+        if(playerInput.horizontal!=0 || playerInput.vertical!=0)
         {
-            transform.Rotate(0, -150 * Time.deltaTime, 0);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.Rotate(0, 150 * Time.deltaTime, 0);
-        }
-        /*
-        heading = Mathf.Atan2(playerInput.horizontal, playerInput.vertical);
-        if (playerInput.horizontal != 0 || playerInput.vertical != 0)
-        {
-            desiredRotQ = Quaternion.Euler(0, heading * Mathf.Rad2Deg, 0);
+            //mesh.transform.localRotation = Quaternion.Euler(0, heading * Mathf.Rad2Deg, 0);
 
-            transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotQ, Time.deltaTime * rotSmooth);
-        }*/
+            var desiredRotQ = Quaternion.Euler(0, heading * Mathf.Rad2Deg, 0);
+
+            mesh.transform.localRotation = Quaternion.Lerp(mesh.transform.localRotation, desiredRotQ, Time.deltaTime * rotSmooth);
+        }
+    
     }
 
     private void OnTriggerEnter(Collider other)
