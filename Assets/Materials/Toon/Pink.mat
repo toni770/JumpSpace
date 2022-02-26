@@ -60,7 +60,7 @@ Material:
     - _Specular: 0
     - _Strength: 0.165
     m_Colors:
-    - _AmbientColor: {r: 0.7058824, g: 0.45098042, b: 0.63529414, a: 1}
+    - _AmbientColor: {r: 1, g: 0.68235296, b: 0.7372549, a: 1}
     - _Color: {r: 1, g: 0.68235296, b: 0.7372549, a: 1}
     - _FresnelColor: {r: 0.9433962, g: 0.77874684, b: 0.83010733, a: 1}
     - _InnerFresnelColor: {r: 1, g: 1, b: 1, a: 1}

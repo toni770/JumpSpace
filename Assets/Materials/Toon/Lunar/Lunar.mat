@@ -50,7 +50,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Brigthness: 0.516
+    - _Brigthness: 1
     - _Detail: 0.12
     - _FresnelStrength: 1
     - _InnerFresnelStrength: 1
