@@ -15,7 +15,7 @@ public class RewardItem : MonoBehaviour
     private void Awake()
     {
         priceText.text = price.ToString() + " $";
-        valueText.text = value.ToString() + " coins";
+        valueText.text = value.ToString();
     }
     public void GetMoney()
     {

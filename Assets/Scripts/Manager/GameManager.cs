@@ -72,9 +72,9 @@ public class GameManager : Singleton<GameManager>
         isPlaying = true;
         revived = false;
         actualTrash = 0;
-        uiManager.UpdateTrash(actualTrash, trashNeeded[actualLevel-1]);
+        uiManager.UpdateTrash(actualTrash, trashNeeded[levelManager.Level]);
 
-        print("Loaded Level " + actualLevel + " and you need " + trashNeeded[actualLevel - 1] + " of trash");
+        print("Loaded Level " + actualLevel + " and you need " + trashNeeded[levelManager.Level] + " of trash");
     }
 
     public void EndGame(bool win)
@@ -150,7 +150,7 @@ public class GameManager : Singleton<GameManager>
     public void GetTrash()
     {
         actualTrash += 1;
-        uiManager.UpdateTrash(actualTrash, trashNeeded[actualLevel-1]);
+        uiManager.UpdateTrash(actualTrash, trashNeeded[levelManager.Level]);
 
         shipZone.SetActive(EnoughTrash());
     }
@@ -174,8 +174,8 @@ public class GameManager : Singleton<GameManager>
         uiManager.UpdateFuel(actual, max);
     }
 
-    public int GetExtraTrash()
+    public int GetExtraTrash(int level)
     {
-        return trashNeeded[actualLevel - 1] + (int)(trashNeeded[actualLevel-1] * percentExtraTrash);
+        return trashNeeded[level] + (int)(trashNeeded[level] * percentExtraTrash);
     }
 }

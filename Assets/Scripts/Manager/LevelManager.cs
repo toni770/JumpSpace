@@ -30,18 +30,21 @@ public class LevelManager : MonoBehaviour
     //vars
     private int pos;
     int num;
+    public int Level {private set; get;}
     public void LoadLevel(int level)
     {
+        Level = level-1;
         if(!test)
         {
             if (DataManager.Instance.gameFinished)
             {
-                actualPlanet = planets[Random.Range(0,level-1)].GetComponent<Planet>();
+                Level = Random.Range(0,Level);
+                actualPlanet = planets[Level].GetComponent<Planet>();
                 print("Loading Random Level");
             }
             else
             {
-                actualPlanet = planets[level - 1].GetComponent<Planet>();
+                actualPlanet = planets[Level].GetComponent<Planet>();
             }
             Instantiate(actualPlanet.gameObject);
         }
@@ -74,7 +77,8 @@ public class LevelManager : MonoBehaviour
     private void SpawnTrash(List<Transform> positions, GameObject prefab)
     {
         trashSpawned = new bool[positions.Count];
-        num = GameManager.Instance.GetExtraTrash();
+        print("LEVEEEEL: " + Level.ToString());
+        num = GameManager.Instance.GetExtraTrash(Level);
 
         for (int i = 0; i < num; i++)
         {

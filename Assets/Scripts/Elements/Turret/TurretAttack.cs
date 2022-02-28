@@ -26,7 +26,7 @@ public class TurretAttack : MonoBehaviour
         shootCount = 0;
 
         //actualBullet = bullets[Random.Range(0,bullets.Length)];
-        actualBullet = bullets[1];
+        actualBullet = bullets[Random.Range(0,2)];
     }
 
     private void Update()
