@@ -190,7 +190,7 @@ MonoBehaviour:
   powerUpRoot: {fileID: 2678981907288395350}
   fuelRoot: {fileID: 951813221185319103}
   trashRoot: {fileID: 4437397548160080569}
-  distance: 45
+  distance: 40
 --- !u!1 &7371904198825180030
 GameObject:
   m_ObjectHideFlags: 0

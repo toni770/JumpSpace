@@ -50,19 +50,6 @@ public class PlayerStats : MonoBehaviour
         {
             EnterGodMode(false);
         }
-
-        switch (currentState)
-        {
-            case States.normal:
-                print("Normal");
-                break;
-            case States.reserve:
-                print("Reserve");
-                break;
-            case States.god:
-                print("God");
-                break;
-        }
     }
 
     

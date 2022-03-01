@@ -19,9 +19,9 @@ public class Ship : MonoBehaviour ,IInteractable
     private void Update() {
         if(playerIn)
         {
-            playerTrans.position = Vector3.Lerp(playerTrans.position, transform.position, Time.deltaTime * transitionSpeed);
+           /* playerTrans.position = Vector3.Lerp(playerTrans.position, transform.position, Time.deltaTime * transitionSpeed);
 
-            playerTrans.rotation = Quaternion.Lerp(playerTrans.rotation, transform.rotation, Time.deltaTime * transitionSpeed);
+            playerTrans.rotation = Quaternion.Lerp(playerTrans.rotation, transform.rotation, Time.deltaTime * transitionSpeed);*/
         }
     }
     public void Interact(GameObject player)
@@ -30,6 +30,9 @@ public class Ship : MonoBehaviour ,IInteractable
         GetComponent<MeshRenderer>().enabled = false;
         playerIn = true;
         playerTrans = player.transform;
+
+        playerTrans.position = transform.position;
+        playerTrans.rotation = Quaternion.Euler(new Vector3(0,0,1));
 
         player.GetComponent<PlayerStats>().GoShip();
         StartCoroutine(Despegue());

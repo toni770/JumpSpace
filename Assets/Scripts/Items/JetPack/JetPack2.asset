@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a964d8170c6a72419560fce1eec59f5, type: 3}
   m_Name: JetPack2
   m_EditorClassIdentifier: 
-  price: 400
+  price: 1500
   image: {fileID: 21300000, guid: 074fe7f3982da424d9e4a32151efadd2, type: 3}
   lockImage: {fileID: 21300000, guid: d11f522e2fb1e404086c60ba7edf5e01, type: 3}
