@@ -82,7 +82,7 @@ public class UIManager : MonoBehaviour
     }
 
     public void OpenShop(bool shop)
-    {
+    {        
         mainMenu.SetActive(!shop);
         shopMenu.SetActive(shop);
     }

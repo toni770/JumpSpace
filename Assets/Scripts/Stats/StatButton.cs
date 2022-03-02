@@ -16,9 +16,16 @@ public class StatButton : MonoBehaviour
     private StatsController statsController;
     private Button btn;
 
+    private bool _interactable = true;
+
+    private Color _enabledColor;
+    private Color _disabledColor;
+
     private void Awake()
     {
         btn = GetComponent<Button>();
+        _enabledColor = btn.colors.normalColor;
+        _disabledColor = btn.colors.disabledColor;
         statsController = transform.parent.GetComponent<StatsController>();
     }
 
@@ -45,17 +52,36 @@ public class StatButton : MonoBehaviour
     {
         priceText.transform.parent.gameObject.SetActive(false);
         improveImg.SetActive(false);
-        btn.interactable = false;
+        SetInteractable(false);
     }
 
     public void Lock()
     {
-        btn.interactable = false;
+        SetInteractable(false);
         priceText.color = LockColor;
     }
 
     public void ImproveStat()
     {
-        statsController.ImproveStat((int)stat);
+        if(_interactable)
+        {
+            statsController.ImproveStat((int)stat);
+            JuiceManager.Instance.ShakeScale(transform,0.5f,0.5f);
+        }
+        else
+        {
+            JuiceManager.Instance.ShakePos(transform,0.5f,3f);
+        }
+    }
+
+    public void SetInteractable(bool inter)
+    {
+        _interactable = inter;
+        ColorBlock cb = btn.colors;
+        cb.normalColor = inter? _enabledColor:_disabledColor;
+        cb.highlightedColor = cb.normalColor;
+        cb.selectedColor = cb.normalColor;
+        cb.pressedColor = new Vector4(cb.pressedColor.r, cb.pressedColor.g, cb.pressedColor.b, cb.normalColor.a);
+        btn.colors = cb;
     }
 }
