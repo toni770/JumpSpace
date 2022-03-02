@@ -62,6 +62,10 @@ public class UIItemGroup : MonoBehaviour
 
             ChangeGameItem();
         }
+        else
+        {
+            item.LockedAnimation();
+        }
 
     }
 

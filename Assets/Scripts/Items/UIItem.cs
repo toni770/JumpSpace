@@ -14,15 +14,37 @@ public abstract class UIItem : MonoBehaviour
     [SerializeField] protected GameObject unlockIcon;
     protected UIItemGroup itemController;
 
-
+    private bool _animIni = false;
     private void Awake()
     {
         itemController = transform.parent.GetComponent<UIItemGroup>();
+
+    }
+
+    private void Start() {
+        if(!_animIni)
+        {
+            JuiceManager.Instance.ConstantSizable(itemImage.transform, 1.1f, 0.4f);
+            JuiceManager.Instance.StopAnimation(itemImage.transform, true);     
+            _animIni = true;
+        }
+        
     }
 
     public void Select(bool select)
     {
+        if(!_animIni)
+        {
+            JuiceManager.Instance.ConstantSizable(itemImage.transform, 1.1f, 0.4f);
+            JuiceManager.Instance.StopAnimation(itemImage.transform, true);     
+            _animIni = true;
+        }
+        
         selectedImage.gameObject.SetActive(select);
+        if(select)  JuiceManager.Instance.StopAnimation(itemImage.transform, false);
+        else JuiceManager.Instance.StopAnimation(itemImage.transform, true);
+
+
     }
 
     public void SelectItem()
@@ -49,5 +71,10 @@ public abstract class UIItem : MonoBehaviour
     }
 
     public virtual void Unlock() { }
+
+    public void LockedAnimation()
+    {
+        JuiceManager.Instance.ShakePos(unlockIcon.transform,0.5f,2f);
+    }
 
 }

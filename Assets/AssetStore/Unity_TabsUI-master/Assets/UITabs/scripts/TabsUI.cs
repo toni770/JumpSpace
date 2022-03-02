@@ -82,6 +82,7 @@ namespace EasyUI.Tabs {
             if (OnTabChange != null)
                OnTabChange.Invoke (tabIndex) ;
 
+            JuiceManager.Instance.ShakeScale(tabBtns[tabIndex].transform,0.2f,0.2f);
             previous = current ;
             current = tabIndex ;
 

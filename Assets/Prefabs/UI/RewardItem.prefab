@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 447209041761336535}
   - component: {fileID: 5071440940340954954}
   - component: {fileID: 3634192169306727459}
+  - component: {fileID: 7438068267754571515}
   m_Layer: 5
   m_Name: BuyButton
   m_TagString: Untagged
@@ -62,7 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.8821174, b: 0.033018887, a: 1}
+  m_Color: {r: 1, g: 0.9544025, b: 0.8632076, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -159,6 +160,26 @@ MonoBehaviour:
   titleText: {fileID: 0}
   descriptionText: {fileID: 0}
   priceText: {fileID: 0}
+--- !u!95 &7438068267754571515
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222654962192998617}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 27458234154535742b35c046a81bf246, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &731109838105229053
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,7 +309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5420759d937af1449edcba2f510921a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 100
+  value: 1000
   price: 2.99
   priceText: {fileID: 3728273470473852444}
   valueText: {fileID: 805441761839852460}

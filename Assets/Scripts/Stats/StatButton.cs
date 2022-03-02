@@ -67,6 +67,7 @@ public class StatButton : MonoBehaviour
         {
             statsController.ImproveStat((int)stat);
             JuiceManager.Instance.ShakeScale(transform,0.5f,0.5f);
+            JuiceManager.Instance.PlayerImprovement();
         }
         else
         {
