@@ -7,6 +7,7 @@ public class Fuel : MonoBehaviour, IInteractable
     public void Interact(GameObject player)
     {
         player.GetComponent<PlayerFuel>().RefillFuel();
+        player.GetComponent<PlayerMovement>().PlayerBlow();        
         Destroy(gameObject);
     }
 }

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a0b91d702da38749b144bde9f61200d, type: 3}
   m_Name: LaserBullet
   m_EditorClassIdentifier: 
-  prefab: {fileID: 4544436129196652327, guid: 4ace4f79107214d4c96ee995b99d3899, type: 3}
+  id: 0
   shootSpeed: 0.3
   firstShootDelay: 1
+  strength: 0.3

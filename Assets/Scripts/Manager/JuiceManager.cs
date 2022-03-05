@@ -45,4 +45,10 @@ public class JuiceManager : Singleton<JuiceManager>
         _player.DOMove(_player.position + new Vector3(0,2,0), 0.25f).SetEase(Ease.InOutSine).SetLoops(2,LoopType.Yoyo);
         //_player.DORotate(new Vector3(0,360,0),  0.5f, RotateMode.FastBeyond360).SetEase(Ease.Linear);
     }
+
+    public void PlayerDamaged(float strength = 0.2f)
+    {
+        ShakePos(_camera,1f, strength);
+    }
+
 }

@@ -75,6 +75,7 @@ public class TurretAttack : MonoBehaviour
         obj.transform.position = bulletPosition.position;
         obj.transform.rotation = model.rotation;
         obj.SetActive(true);
+        JuiceManager.Instance.ShakeScale(transform, actualBullet.strength,0.5f);
     }
 
     private void OnEnable()

@@ -36,7 +36,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject nextButton;
     [SerializeField] private GameObject multiplyButton;
 
-    [SerializeField] private GameObject fuelBar;
+    [SerializeField] private Animator fuelAnim;
 
     //BUTTONS
     public void PlayGame()
@@ -46,7 +46,6 @@ public class UIManager : MonoBehaviour
         mainMenu.SetActive(false);
 
         coinsText.transform.parent.gameObject.SetActive(false);
-        fuelBar.SetActive(true);
         GameManager.Instance.StartGame();
     }
 
@@ -133,5 +132,22 @@ public class UIManager : MonoBehaviour
     {
         endTrashText.text = actual.ToString() + '/' + max.ToString();
     }
+
+    //SliderFuel
+    public void FuelDamaged()
+    {
+        fuelAnim.SetTrigger("Damaged");
+    }
+
+    public void FuelHealed()
+    {
+        fuelAnim.SetTrigger("Healed");
+    }
+
+    public void ReserveMode(bool reserve)
+    {
+        fuelAnim.SetBool("Reserve", reserve);
+    }
+
 
 }

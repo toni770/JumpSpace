@@ -10,7 +10,6 @@ public class Trash : MonoBehaviour, IInteractable
 
     private bool atract = false;
     private Transform targetPos;
-
     private void Update()
     {
         if(atract)
@@ -38,8 +37,7 @@ public class Trash : MonoBehaviour, IInteractable
     public void Interact(GameObject player)
     {
         GameManager.Instance.GetTrash();
+        player.GetComponent<PlayerMovement>().PlayerBlow();
         Destroy(gameObject);
     }
-
-    
 }

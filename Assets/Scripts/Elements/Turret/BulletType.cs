@@ -8,4 +8,6 @@ public class BulletType : ScriptableObject
     public int id;
     public float shootSpeed;
     public float firstShootDelay;
+
+    public float strength;
 }

@@ -178,4 +178,19 @@ public class GameManager : Singleton<GameManager>
     {
         return trashNeeded[level] + (int)(trashNeeded[level] * percentExtraTrash);
     }
+
+    public void FuelDamaged()
+    {
+        uiManager.FuelDamaged();
+    }
+
+    public void FuelHealed()
+    {
+        uiManager.FuelHealed();
+    }
+
+    public void ReserveMode(bool reserve)
+    {
+        uiManager.ReserveMode(reserve);
+    }
 }

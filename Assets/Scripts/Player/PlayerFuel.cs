@@ -11,12 +11,15 @@ public class PlayerFuel : MonoBehaviour
     [SerializeField]
     private float fuelConsumitionSpeed = 2;
 
+
     public bool isReserve { get; private set; } = false;
 
     private float currentFuel = 0;
     private float reserveCount = 0;
 
     private PlayerStats playerStats;
+
+    private bool _alive = true;
 
     private void Awake()
     {
@@ -51,13 +54,19 @@ public class PlayerFuel : MonoBehaviour
         RefillFuel();
     }
 
-    public void GetDamage(float damage)
+    public void GetDamage(float damage, bool externalDamage = false)
     {
-         if(!playerStats.IsGodMode())
+         if(!playerStats.IsGodMode() && _alive)
         {
-            if (isReserve) Death();
+            if (isReserve) 
+                Death();
             else
             {
+                if(externalDamage) 
+                {
+                    JuiceManager.Instance.PlayerDamaged();
+                    GameManager.Instance.FuelDamaged();
+                }
                 currentFuel -= damage;
                 if (currentFuel <= 0)
                 {
@@ -70,7 +79,9 @@ public class PlayerFuel : MonoBehaviour
     }
 
     public void RefillFuel()
-    {
+    {   
+        GameManager.Instance.FuelHealed();
+        if(!_alive) _alive = true;
         currentFuel = playerStats.maxFuel;
         GameManager.Instance.UpdateFuel(currentFuel, playerStats.maxFuel);
         if (isReserve)
@@ -79,6 +90,7 @@ public class PlayerFuel : MonoBehaviour
 
     private void GetReserve(bool reserve)
     {
+        GameManager.Instance.ReserveMode(reserve);
         isReserve = reserve;
         playerStats.EnterReserve(reserve);
         reserveCount = 0;
@@ -86,6 +98,9 @@ public class PlayerFuel : MonoBehaviour
 
     private void Death()
     {
+        GameManager.Instance.ReserveMode(false);
+        _alive = false;
+        JuiceManager.Instance.PlayerDamaged(1);
         GameManager.Instance.EndGame(false);
     }
 }

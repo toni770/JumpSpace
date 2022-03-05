@@ -62,8 +62,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if((interactable = other.GetComponent<IInteractable>()) != null)
         {
-            print("INTERACT");
             interactable.Interact(gameObject);
         }
+    }
+
+    public void PlayerBlow()
+    {
+        JuiceManager.Instance.ShakeScale(mesh.transform,0.15f,0.5f);
+        print("BOOM");
     }
 }

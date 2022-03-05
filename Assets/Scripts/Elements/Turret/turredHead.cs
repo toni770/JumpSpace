@@ -11,6 +11,6 @@ public class turredHead : MonoBehaviour, IInteractable
     public void Interact(GameObject player)
     {
         if(player.GetComponent<PlayerStats>().IsGodMode() && turret.currentState != turret.turretStun)
-            turret.NewState(turret.turretStun);
+            turret.NewState(turret.turretStun);     
     }
 }

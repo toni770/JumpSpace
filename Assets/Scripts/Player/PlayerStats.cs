@@ -32,12 +32,14 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float jumpAnimTime = 1f;
 
     [HideInInspector] public float speed { get; private set; } = 10;
+    private Material _material;
     private float godCount = 0;
 
     private void Awake()
     {
         UpdateAtractorSize();
         speed = initSpeed;
+        _material = mesh.GetComponent<SkinnedMeshRenderer>().sharedMaterial;
     }
     private void Start()
     {
@@ -98,6 +100,7 @@ public class PlayerStats : MonoBehaviour
     {
         if (god)
         {
+            _material.SetInt("_Inmune",1);
             previousState = currentState;
             currentState = States.god;
             print("ENTER GOD MODE");
@@ -108,6 +111,7 @@ public class PlayerStats : MonoBehaviour
             currentState = previousState;
             print("EXIT GOD MODE");
             godCount = 0;
+            _material.SetInt("_Inmune",0);
         }
     }
 
@@ -117,13 +121,10 @@ public class PlayerStats : MonoBehaviour
         {
             case States.normal:
                 return speed;
-                break;
             case States.reserve:
                 return speed - speed * reserveDiscountSpeed;
-                break;
             case States.god:
                 return speed + speed * godModeExtraSpeed;
-                break;
         }
 
         return speed;

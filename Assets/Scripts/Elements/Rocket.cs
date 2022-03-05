@@ -37,7 +37,7 @@ public class Rocket : MonoBehaviour, IInteractable
 
     public void Interact(GameObject player)
     {
-        player.GetComponent<PlayerFuel>().GetDamage(damage);
+        player.GetComponent<PlayerFuel>().GetDamage(damage, true);
         Death();
     }
 

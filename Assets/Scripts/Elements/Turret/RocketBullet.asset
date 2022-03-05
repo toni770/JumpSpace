@@ -15,3 +15,4 @@ MonoBehaviour:
   id: 1
   shootSpeed: 3
   firstShootDelay: 1
+  strength: 0.5
