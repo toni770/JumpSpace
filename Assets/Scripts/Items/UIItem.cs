@@ -12,6 +12,8 @@ public abstract class UIItem : MonoBehaviour
     [SerializeField] protected GameObject unlockButton;
 
     [SerializeField] protected GameObject unlockIcon;
+
+    [SerializeField] protected float animStregnth = 1.1f;
     protected UIItemGroup itemController;
 
     private bool _animIni = false;
@@ -24,7 +26,7 @@ public abstract class UIItem : MonoBehaviour
     private void Start() {
         if(!_animIni)
         {
-            JuiceManager.Instance.ConstantSizable(itemImage.transform, 1.1f, 0.4f);
+            JuiceManager.Instance.ConstantSizable(itemImage.transform, animStregnth, 0.4f);
             JuiceManager.Instance.StopAnimation(itemImage.transform, true);     
             _animIni = true;
         }

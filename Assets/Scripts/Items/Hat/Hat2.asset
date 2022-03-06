@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Hat2
   m_EditorClassIdentifier: 
   price: 0
-  image: {fileID: 21300000, guid: ec9e18712cace6b47ae3ad1dc290ad6a, type: 3}
-  lockImage: {fileID: 21300000, guid: f8fec103948f7ba4ab55bc7dc35bb43e, type: 3}
+  image: {fileID: 21300000, guid: 67d8686176506c141aad7b369fb65970, type: 3}
+  lockImage: {fileID: 21300000, guid: 218407c64bd14ef42ac372937337bc76, type: 3}

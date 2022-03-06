@@ -443,6 +443,7 @@ MonoBehaviour:
   selectedImage: {fileID: 697251901574379727}
   unlockButton: {fileID: 3480091541151207363}
   unlockIcon: {fileID: 8518317368340961741}
+  animStregnth: 1.1
 --- !u!114 &287399324674883791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -526,7 +527,7 @@ RectTransform:
   m_GameObject: {fileID: 6469404187408904163}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.45712572, y: 0.45712572, z: 0.45712572}
+  m_LocalScale: {x: 1.004701, y: 1.004701, z: 1.004701}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3846497424973177555}
