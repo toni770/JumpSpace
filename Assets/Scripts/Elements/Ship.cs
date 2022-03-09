@@ -8,6 +8,8 @@ public class Ship : MonoBehaviour ,IInteractable
     [SerializeField] private float despegueDelay = 1;
     
     [SerializeField] private float transitionSpeed = 1;
+
+    [SerializeField] private Transform parent;
     private bool playerIn = false;
     private Transform playerTrans;
     private void Start() 
@@ -34,6 +36,7 @@ public class Ship : MonoBehaviour ,IInteractable
         playerTrans.position = transform.position;
         playerTrans.rotation = Quaternion.Euler(new Vector3(0,0,1));
 
+        JuiceManager.Instance.PlayerJumpToPosition(parent.position);
         player.GetComponent<PlayerStats>().GoShip();
         StartCoroutine(Despegue());
     }

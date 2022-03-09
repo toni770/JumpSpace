@@ -35,11 +35,14 @@ public class PlayerStats : MonoBehaviour
     private Material _material;
     private float godCount = 0;
 
+    private PlayerItemsController _playerItemsController;
+
     private void Awake()
     {
         UpdateAtractorSize();
         speed = initSpeed;
-        _material = mesh.GetComponent<SkinnedMeshRenderer>().sharedMaterial;
+        _material = mesh.GetComponent<SkinnedMeshRenderer>().material;
+        _playerItemsController = GetComponent<PlayerItemsController>();
     }
     private void Start()
     {
@@ -62,6 +65,7 @@ public class PlayerStats : MonoBehaviour
 
     public void GoShip()
     {
+        
         playerAnim.SetTrigger("Ship");
         StartCoroutine(shipAnim());
     }
@@ -101,18 +105,22 @@ public class PlayerStats : MonoBehaviour
         if (god)
         {
             _material.SetInt("_Inmune",1);
-            previousState = currentState;
-            currentState = States.god;
-            print("ENTER GOD MODE");
             godCount = Time.time + godModeDuration;
+
+            if(currentState != States.god)
+            {
+                previousState = currentState;
+                currentState = States.god;
+            }
         } 
         else
         {
             currentState = previousState;
-            print("EXIT GOD MODE");
             godCount = 0;
             _material.SetInt("_Inmune",0);
         }
+
+        _playerItemsController.GodMode(god);
     }
 
     public float CurrentSpeed()

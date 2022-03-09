@@ -23,4 +23,12 @@ public class PlayerItemsController : MonoBehaviour
     {
         playerItems[item].Change(index, parent);
     }
+
+    public void GodMode(bool god)
+    {
+        foreach(PlayerItem item in playerItems)
+        {
+            item.GodMode(god);
+        }
+    }
 }

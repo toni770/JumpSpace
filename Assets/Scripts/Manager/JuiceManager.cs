@@ -19,11 +19,13 @@ public class JuiceManager : Singleton<JuiceManager>
 
     public void ShakeScale(Transform target, float duration, float strength)
     {
+        target.DORestart();
         target.DOShakeScale(duration, strength);
     }
 
     public void ShakePos(Transform target, float duration, float strength)
     {
+        target.DORestart();
         target.DOShakePosition(duration, strength);
     }
 
@@ -42,13 +44,20 @@ public class JuiceManager : Singleton<JuiceManager>
 
     public void PlayerImprovement()
     {
+        _player.DORestart();
         _player.DOMove(_player.position + new Vector3(0,2,0), 0.25f).SetEase(Ease.InOutSine).SetLoops(2,LoopType.Yoyo);
         //_player.DORotate(new Vector3(0,360,0),  0.5f, RotateMode.FastBeyond360).SetEase(Ease.Linear);
     }
 
     public void PlayerDamaged(float strength = 0.2f)
     {
+        _camera.DORestart();
         ShakePos(_camera,1f, strength);
+    }
+
+    public void PlayerJumpToPosition(Vector3 pos)
+    {
+        _player.DOJump(pos, 10, 1, 1);
     }
 
 }
