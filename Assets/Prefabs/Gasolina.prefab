@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6991444691945147936}
   - component: {fileID: 6991444691945147943}
   - component: {fileID: 725274434579765238}
+  - component: {fileID: 3648169722779726096}
   m_Layer: 0
   m_Name: Gasolina
   m_TagString: Fuel
@@ -75,6 +76,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee4b4951686b114ab0899559a68ce3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &3648169722779726096
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6991444691945147938}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5c8db9bbd0636b54da3a1da0e533b3b0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6991444692433524964
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,7 +204,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 05dddccaffb423b42a7b05e62103247f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 05dddccaffb423b42a7b05e62103247f, type: 3}
       propertyPath: m_LocalPosition.y

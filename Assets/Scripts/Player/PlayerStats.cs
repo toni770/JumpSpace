@@ -32,6 +32,8 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float jumpAnimTime = 1f;
 
     [HideInInspector] public float speed { get; private set; } = 10;
+
+    [SerializeField] private GameObject _skeletton;
     private Material _material;
     private float godCount = 0;
 
@@ -61,6 +63,7 @@ public class PlayerStats : MonoBehaviour
     public void Destroy(bool destroy) 
     {
         mesh.SetActive(!destroy);
+        _skeletton.SetActive(!destroy);
     }
 
     public void GoShip()

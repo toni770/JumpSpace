@@ -25,6 +25,8 @@ public class GameManager : Singleton<GameManager>
 
     [SerializeField] private float deathTime = 2;
 
+    [SerializeField] private ArrowIndicator arrow;
+
     public bool isPlaying { get; private set; } = false;
 
     private int actualTrash = 0;
@@ -35,6 +37,9 @@ public class GameManager : Singleton<GameManager>
     private GameObject shipZone;
     public bool revived {get; private set;}
 
+
+
+
     protected override void Awake()
     {
         base.Awake();
@@ -44,6 +49,7 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         InitGame();
+        AdsManager.Instance.PlayAd();
     }
 
     private void InitGame()
@@ -88,6 +94,7 @@ public class GameManager : Singleton<GameManager>
     public void SetShip(GameObject zone)
     {
         shipZone = zone;
+        arrow.AssignTarget(shipZone.transform);
     }
 
     IEnumerator FinishGame(bool win)
@@ -153,6 +160,7 @@ public class GameManager : Singleton<GameManager>
         uiManager.UpdateTrash(actualTrash, trashNeeded[levelManager.Level]);
 
         shipZone.SetActive(EnoughTrash());
+        arrow.gameObject.SetActive(EnoughTrash());
     }
 
     public void CheckEnd()
@@ -166,7 +174,7 @@ public class GameManager : Singleton<GameManager>
 
     private bool EnoughTrash()
     {
-        return (actualTrash >= trashNeeded[actualLevel - 1] && isPlaying);
+        return (actualTrash >= trashNeeded[levelManager.Level] && isPlaying);
     }
 
     public void UpdateFuel(float actual, float max)
@@ -193,4 +201,6 @@ public class GameManager : Singleton<GameManager>
     {
         uiManager.ReserveMode(reserve);
     }
+
+
 }

@@ -18,7 +18,8 @@ public class TurretAttack : MonoBehaviour
 
     private Vector3 targetPos;
     private GameObject obj;
-
+ 
+    private Vector3 _originalSize;
     private void Awake()
     {
         stateMachine = GetComponent<TurretStateMachine>();
@@ -27,6 +28,8 @@ public class TurretAttack : MonoBehaviour
 
         //actualBullet = bullets[Random.Range(0,bullets.Length)];
         actualBullet = bullets[Random.Range(0,2)];
+
+        _originalSize = transform.localScale;
     }
 
     private void Update()
@@ -75,7 +78,7 @@ public class TurretAttack : MonoBehaviour
         obj.transform.position = bulletPosition.position;
         obj.transform.rotation = model.rotation;
         obj.SetActive(true);
-        JuiceManager.Instance.ShakeScale(transform, actualBullet.strength,0.5f);
+        JuiceManager.Instance.ShakeScale(transform, _originalSize, actualBullet.strength,0.5f);
     }
 
     private void OnEnable()

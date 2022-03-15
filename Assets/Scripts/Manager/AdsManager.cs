@@ -7,17 +7,46 @@ using System;
 public class AdsManager : Singleton<AdsManager>, IUnityAdsListener
 {
 
-    string gameId = "4519619";
-    string rewarded = "Rewarded_Android";
+    private string gameId = "4519619";
+    private string rewarded = "Rewarded_Android";
+    private string _interstitial = "Interstitial_Android";
 
     private Action OnRewardedSucced;
+
+    private bool _showAd;
+    private float _adCount;
+
+    [SerializeField] float _adTime = 300;
 
 
     protected override void Awake()
     {
-        base.Awake();
-        Advertisement.Initialize(gameId);
-        Advertisement.AddListener(this);
+        if(Instance != null) 
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+
+            base.Awake();
+
+            Advertisement.Initialize(gameId);
+            Advertisement.AddListener(this);
+            print("AWAKEEEEEEEEEEEEEEEEEEEEEE");
+            ResetAdCount();
+        }
+        
+       
+    }
+
+    private void Update() 
+    {
+        if(!_showAd && Time.time >= _adCount)
+        {
+            _showAd = true;
+            print("AHORA");
+        }
     }
 
     public void PlayRewardedAd(Action OnSuccess)
@@ -26,11 +55,33 @@ public class AdsManager : Singleton<AdsManager>, IUnityAdsListener
         if(Advertisement.IsReady(rewarded))
         {
             Advertisement.Show(rewarded);
+            ResetAdCount();
         }
         else
         {
            // print("Rewarded is not ready!");
         }
+    }
+
+     public void ResetAdCount()
+    {
+        _showAd = false;
+        _adCount = Time.time + _adTime;
+        print("RESETTTTTTTTTTTTTTTTTT");
+    }
+
+
+    public void PlayAd()
+    {
+        if(_showAd)
+        {
+            if(Advertisement.IsReady(_interstitial))
+            {
+                Advertisement.Show(_interstitial);
+            }
+            ResetAdCount();
+        }
+        
     }
 
     public void OnUnityAdsReady(string placementId)

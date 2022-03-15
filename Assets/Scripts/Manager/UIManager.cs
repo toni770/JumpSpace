@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
@@ -38,6 +37,11 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private Animator fuelAnim;
 
+    private SceneLoader _sceneLoader;
+
+        private void Awake() {
+        _sceneLoader = GetComponent<SceneLoader>();
+    }
     //BUTTONS
     public void PlayGame()
     {
@@ -72,12 +76,12 @@ public class UIManager : MonoBehaviour
 
     public void Replay()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        _sceneLoader.ReloadScene();
     }
    
     public void MainMenu()
     {
-        SceneManager.LoadScene((int)level.MainMenu);
+        _sceneLoader.ReloadScene();
     }
 
     public void OpenShop(bool shop)

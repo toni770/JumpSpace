@@ -21,12 +21,16 @@ public class StatButton : MonoBehaviour
     private Color _enabledColor;
     private Color _disabledColor;
 
+    private Vector3 _originalScale;
+
     private void Awake()
     {
         btn = GetComponent<Button>();
         _enabledColor = btn.colors.normalColor;
         _disabledColor = btn.colors.disabledColor;
         statsController = transform.parent.GetComponent<StatsController>();
+
+        _originalScale = transform.localScale;
     }
 
     public void ChangePrice(int value)
@@ -66,12 +70,8 @@ public class StatButton : MonoBehaviour
         if(_interactable)
         {
             statsController.ImproveStat((int)stat);
-            JuiceManager.Instance.ShakeScale(transform,0.5f,0.5f);
+            JuiceManager.Instance.ShakeScale(transform,_originalScale,0.5f,0.5f);
             JuiceManager.Instance.PlayerImprovement();
-        }
-        else
-        {
-            JuiceManager.Instance.ShakePos(transform,0.5f,3f);
         }
     }
 

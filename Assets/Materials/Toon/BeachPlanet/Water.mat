@@ -54,7 +54,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Brigthness: 0.63
+    - _Brigthness: 0.556
     - _Detail: 0.1
     - _DistorsionSpeed: -0.351
     - _DistorsionStrength: 5.46
@@ -64,7 +64,7 @@ Material:
     - _QueueOffset: 0
     - _Smoothness: 0.117
     - _Specular: 0
-    - _Strength: 0.456
+    - _Strength: 0.218
     m_Colors:
     - _AmbientColor: {r: 0.8632076, g: 0.8787521, b: 1, a: 1}
     - _Color: {r: 0.22014059, g: 0.30637553, b: 0.9150943, a: 1}

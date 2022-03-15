@@ -32,6 +32,6 @@ public class TurretStun : MonoBehaviour
     private void OnEnable()
     {
         stunCount = Time.time + stunTime;
-        JuiceManager.Instance.ShakePos(transform, 0.2f,0.5f);
+        JuiceManager.Instance.ShakePos(transform,transform.position, 0.2f,0.5f);
     }
 }

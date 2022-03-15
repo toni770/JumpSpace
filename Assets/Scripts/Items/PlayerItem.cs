@@ -32,13 +32,17 @@ public class PlayerItem : MonoBehaviour
 
     public void GodMode(bool god)
     {
-        foreach(MeshRenderer mat in _materials)
+        if(actual != null)
         {
-            foreach(Material material in mat.materials)
+            foreach(MeshRenderer mat in _materials)
             {
-                material.SetInt("_Inmune",god?1:0);
+                foreach(Material material in mat.materials)
+                {
+                    material.SetInt("_Inmune",god?1:0);
+                }
+            
             }
-           
         }
+        
     }
 }

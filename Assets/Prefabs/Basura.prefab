@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2834005011174845524}
   - component: {fileID: 4228593171156788111}
   - component: {fileID: 139613727790559359}
+  - component: {fileID: 1578851151}
   m_Layer: 0
   m_Name: Basura
   m_TagString: Trash
@@ -61,6 +62,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   atractSpeed: 20
+  _minSecs: 1
+  _maxSecs: 3
 --- !u!136 &139613727790559359
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -75,6 +78,26 @@ CapsuleCollider:
   m_Height: 7.89
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &1578851151
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2834005011174845527}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6e91abe5d031edd4fbb436756791e22b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &4681799453921942795
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -88,7 +111,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b550657d762275546952390137e78151, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b550657d762275546952390137e78151, type: 3}
       propertyPath: m_LocalPosition.y

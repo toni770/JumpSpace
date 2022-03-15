@@ -8,7 +8,7 @@ public class Gravity : MonoBehaviour
 
     private void Update()
     {
-        //MoveToDistance();
+        //if (planet!=null) MoveToDistance(40);
         ApplyGravity();
     }
 

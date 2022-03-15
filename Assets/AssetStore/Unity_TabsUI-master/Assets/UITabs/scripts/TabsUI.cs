@@ -35,9 +35,12 @@ namespace EasyUI.Tabs {
 
       private int tabBtnsNum, tabContentNum ;
 
+      private Vector3 _originalSize;
+
 
       private void Start () {
          GetTabBtns () ;
+         _originalSize = tabBtns[0].transform.localScale;
       }
 
       private void GetTabBtns () {
@@ -82,7 +85,7 @@ namespace EasyUI.Tabs {
             if (OnTabChange != null)
                OnTabChange.Invoke (tabIndex) ;
 
-            JuiceManager.Instance.ShakeScale(tabBtns[tabIndex].transform,0.2f,0.2f);
+            JuiceManager.Instance.ShakeScale(tabBtns[tabIndex].transform, _originalSize,0.2f,0.2f);
             previous = current ;
             current = tabIndex ;
 

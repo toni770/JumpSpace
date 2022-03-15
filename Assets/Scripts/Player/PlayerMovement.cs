@@ -17,12 +17,14 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 dir;
     private IInteractable interactable;
 
+    private Vector3 _originalScale;
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
         playerStats = GetComponent<PlayerStats>();
         playerFuel = GetComponent<PlayerFuel>();
-
+        _originalScale = mesh.transform.localScale;
 
     }
 
@@ -68,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void PlayerBlow()
     {
-        JuiceManager.Instance.ShakeScale(mesh.transform,0.15f,0.5f);
+        JuiceManager.Instance.ShakeScale(mesh.transform,_originalScale, 0.15f,0.5f);
         print("BOOM");
     }
 }

@@ -17,15 +17,17 @@ public class JuiceManager : Singleton<JuiceManager>
         target.DOScale(new Vector3(strength ,strength,strength),duration).SetLoops(-1,LoopType.Yoyo).SetEase(Ease.InOutSine);
     }   
 
-    public void ShakeScale(Transform target, float duration, float strength)
+    public void ShakeScale(Transform target, Vector3 originalSize, float duration, float strength)
     {
-        target.DORestart();
+        target.DOKill();
+        target.transform.localScale = originalSize;
         target.DOShakeScale(duration, strength);
     }
 
-    public void ShakePos(Transform target, float duration, float strength)
+    public void ShakePos(Transform target, Vector3 originalpos,float duration, float strength)
     {
-        target.DORestart();
+        target.DOKill();
+        target.transform.position = originalpos;
         target.DOShakePosition(duration, strength);
     }
 
@@ -52,12 +54,17 @@ public class JuiceManager : Singleton<JuiceManager>
     public void PlayerDamaged(float strength = 0.2f)
     {
         _camera.DORestart();
-        ShakePos(_camera,1f, strength);
+        ShakePos(_camera,_camera.position,1f, strength);
     }
 
     public void PlayerJumpToPosition(Vector3 pos)
     {
         _player.DOJump(pos, 10, 1, 1);
+    }
+
+    public void Jump(Transform target, float jumpPower = 10, float duration = 1)
+    {
+        target.DOJump(target.position, jumpPower, 1, duration);
     }
 
 }

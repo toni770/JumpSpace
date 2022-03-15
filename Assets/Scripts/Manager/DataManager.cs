@@ -88,7 +88,7 @@ public class DataManager : Singleton<DataManager>
         }
         itemsUnlocked[((int)GlobalVars.Items.jetpack)][0] = true;
 
-        gameFinished = false;
+        gameFinished = true;
     }
 
     private void InitBoolArray(bool[] array)

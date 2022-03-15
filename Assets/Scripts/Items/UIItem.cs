@@ -16,11 +16,12 @@ public abstract class UIItem : MonoBehaviour
     [SerializeField] protected float animStregnth = 1.1f;
     protected UIItemGroup itemController;
 
+    private Vector3 _originalpos;
     private bool _animIni = false;
     private void Awake()
     {
         itemController = transform.parent.GetComponent<UIItemGroup>();
-
+        _originalpos = unlockIcon.transform.position;
     }
 
     private void Start() {
@@ -76,7 +77,7 @@ public abstract class UIItem : MonoBehaviour
 
     public void LockedAnimation()
     {
-        JuiceManager.Instance.ShakePos(unlockIcon.transform,0.5f,2f);
+        JuiceManager.Instance.ShakePos(unlockIcon.transform,_originalpos,0.5f,2f);
     }
 
 }
