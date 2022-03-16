@@ -21,6 +21,7 @@ public class PlayerFuel : MonoBehaviour
 
     private bool _alive = true;
 
+    [SerializeField] private GameObject explosionPrefab;
     private void Awake()
     {
         playerStats = GetComponent<PlayerStats>();
@@ -98,6 +99,8 @@ public class PlayerFuel : MonoBehaviour
 
     private void Death()
     {
+        ParticlesManager.Instance.SpawnParticle(explosionPrefab, transform.position, transform.rotation);
+
         GameManager.Instance.ReserveMode(false);
         _alive = false;
         JuiceManager.Instance.PlayerDamaged(1);

@@ -13,6 +13,8 @@ public class StatButton : MonoBehaviour
 
     [SerializeField] private Color LockColor = Color.red;
 
+    [SerializeField] private ParticleSystem _effect;
+
     private StatsController statsController;
     private Button btn;
 
@@ -69,6 +71,8 @@ public class StatButton : MonoBehaviour
     {
         if(_interactable)
         {
+            _effect.Stop();
+            _effect.Play();
             statsController.ImproveStat((int)stat);
             JuiceManager.Instance.ShakeScale(transform,_originalScale,0.5f,0.5f);
             JuiceManager.Instance.PlayerImprovement();

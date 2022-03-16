@@ -31,4 +31,10 @@ public class PlayerItemsController : MonoBehaviour
             item.GodMode(god);
         }
     }
+
+    public void ReserveMode(bool reserve)
+    {
+        foreach(PlayerItem item in playerItems)
+            item.ReserveMode(reserve);
+    }
 }

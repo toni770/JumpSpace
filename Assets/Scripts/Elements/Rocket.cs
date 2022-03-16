@@ -16,6 +16,8 @@ public class Rocket : MonoBehaviour, IInteractable
 
     private float lifeCount = 0;
 
+    [SerializeField] private GameObject _explosionParticle;
+
     private void OnEnable()
     {
         lifeCount = Time.time + lifeTime;
@@ -43,6 +45,7 @@ public class Rocket : MonoBehaviour, IInteractable
 
     private void Death()
     {
+        ParticlesManager.Instance.SpawnParticle(_explosionParticle,transform.position, transform.rotation);
         gameObject.SetActive(false);
         //Destroy(gameObject);
     }

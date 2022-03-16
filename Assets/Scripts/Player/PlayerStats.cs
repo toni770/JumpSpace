@@ -102,6 +102,8 @@ public class PlayerStats : MonoBehaviour
         
         else
             previousState = reserve ? States.reserve : States.normal;
+
+        _playerItemsController.ReserveMode(reserve);
     }
     public void EnterGodMode(bool god)
     {
@@ -115,12 +117,16 @@ public class PlayerStats : MonoBehaviour
                 previousState = currentState;
                 currentState = States.god;
             }
+
+            _playerItemsController.ReserveMode(false);
         } 
         else
         {
             currentState = previousState;
             godCount = 0;
             _material.SetInt("_Inmune",0);
+
+            _playerItemsController.ReserveMode(currentState == States.reserve);
         }
 
         _playerItemsController.GodMode(god);

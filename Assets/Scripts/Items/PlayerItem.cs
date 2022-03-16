@@ -4,17 +4,26 @@ using UnityEngine;
 
 public class PlayerItem : MonoBehaviour
 {
-    [SerializeField] string itemName;
+    enum item {Hats,Jetpacks}
+    [SerializeField] item itemName;
     [SerializeField] private Transform position;
     [SerializeField] private GameObject[] prefabs;
 
     private GameObject actual;
     private MeshRenderer[] _materials;
+
+    private JetpackEffects _jetpackEffects;
     private void Spawn(int num, Transform parent)
     {
         if(num >= 0)
         {
             actual = Instantiate(prefabs[num], parent);
+
+            if(itemName == item.Jetpacks) 
+            {
+                _jetpackEffects = actual.GetComponent<JetpackEffects>();
+            }
+
             if(actual.GetComponent<MeshRenderer>() != null)
             {
                 _materials = new MeshRenderer[1];
@@ -44,5 +53,11 @@ public class PlayerItem : MonoBehaviour
             }
         }
         
+    }
+
+    public void ReserveMode(bool reserve)
+    {
+        if(itemName == item.Jetpacks)
+            _jetpackEffects.ReserveMode(reserve);
     }
 }

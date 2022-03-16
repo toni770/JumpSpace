@@ -63,6 +63,7 @@ MonoBehaviour:
   lifeTime: 3
   speed: 10
   damage: 5
+  _effectPrefab: {fileID: 8443917809889825470, guid: 29706a1b0e23f0c41856eb16e369a22e, type: 3}
 --- !u!136 &2830779330105295369
 CapsuleCollider:
   m_ObjectHideFlags: 0

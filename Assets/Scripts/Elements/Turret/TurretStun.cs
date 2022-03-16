@@ -11,6 +11,8 @@ public class TurretStun : MonoBehaviour
     private TurretStateMachine stateMachine;
     private TurretPlayerDetection playerDetection;
 
+    [SerializeField] private ParticleSystem _effect;
+
     float stunCount = 0;
 
     private void Awake()
@@ -31,7 +33,12 @@ public class TurretStun : MonoBehaviour
     }
     private void OnEnable()
     {
+        _effect.Play();
         stunCount = Time.time + stunTime;
         JuiceManager.Instance.ShakePos(transform,transform.position, 0.2f,0.5f);
+    }
+
+    private void OnDisable() {
+        _effect.Stop();
     }
 }

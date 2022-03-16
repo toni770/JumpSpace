@@ -10,6 +10,8 @@ public class Ship : MonoBehaviour ,IInteractable
     [SerializeField] private float transitionSpeed = 1;
 
     [SerializeField] private Transform parent;
+
+    [SerializeField] private ParticleSystem _effect;
     private bool playerIn = false;
     private Transform playerTrans;
     private void Start() 
@@ -44,6 +46,9 @@ public class Ship : MonoBehaviour ,IInteractable
     private IEnumerator Despegue()
     {
         yield return new WaitForSeconds(despegueDelay);
+        _effect.Play();
         shipAnim.SetTrigger("Go");
     }
+
+
 }
