@@ -37,6 +37,9 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private Animator fuelAnim;
 
+    [SerializeField] private AudioConfig _audioBtn;
+    [SerializeField] private AudioConfig _audioBtnBack;
+
     private SceneLoader _sceneLoader;
 
         private void Awake() {
@@ -45,6 +48,7 @@ public class UIManager : MonoBehaviour
     //BUTTONS
     public void PlayGame()
     {
+        SoundManager.Instance.MakeSound(_audioBtn);
         //SceneManager.LoadScene((int)level.Game);
         gameMenu.SetActive(true);
         mainMenu.SetActive(false);
@@ -70,22 +74,27 @@ public class UIManager : MonoBehaviour
 
     public void Revive()
     {
+        SoundManager.Instance.MakeSound(_audioBtn);
         loseMenu.SetActive(false);
         gameMenu.SetActive(true);
     }
 
     public void Replay()
     {
+        SoundManager.Instance.MakeSound(_audioBtn);
         _sceneLoader.ReloadScene();
     }
    
     public void MainMenu()
     {
+        SoundManager.Instance.MakeSound(_audioBtn);
         _sceneLoader.ReloadScene();
     }
 
     public void OpenShop(bool shop)
     {        
+        if(shop) SoundManager.Instance.MakeSound(_audioBtn);
+        else SoundManager.Instance.MakeSound(_audioBtnBack);
         mainMenu.SetActive(!shop);
         shopMenu.SetActive(shop);
     }
@@ -97,6 +106,8 @@ public class UIManager : MonoBehaviour
 
     public void OpenMoney(bool money)
     {
+        if(money) SoundManager.Instance.MakeSound(_audioBtn);
+        else SoundManager.Instance.MakeSound(_audioBtnBack);
         shopMenu.SetActive(!money);
         moneyMenu.SetActive(money);
     }

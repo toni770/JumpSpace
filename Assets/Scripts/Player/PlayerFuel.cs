@@ -21,10 +21,19 @@ public class PlayerFuel : MonoBehaviour
 
     private bool _alive = true;
 
+    [SerializeField] private AudioConfig _explosionSound;
+    [SerializeField] private AudioConfig _reserveSound;
+    private AudioSource _audioSource;
+
+    [SerializeField] private float _smokeTime;
+
+    private float _smokeCount;
+
     [SerializeField] private GameObject explosionPrefab;
     private void Awake()
     {
         playerStats = GetComponent<PlayerStats>();
+        _audioSource =GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -42,6 +51,13 @@ public class PlayerFuel : MonoBehaviour
                     GetDamage(Time.deltaTime * fuelConsumitionSpeed);
                 else
                 {
+                    _smokeCount += Time.deltaTime;
+
+                    if(_smokeCount >= _smokeTime)
+                    {
+                        SoundManager.Instance.MakeSound(_reserveSound);
+                        _smokeCount = 0;
+                    }
                     reserveCount += Time.deltaTime;
 
                     if(reserveCount >= fuelReserveTime) Death();
@@ -79,8 +95,15 @@ public class PlayerFuel : MonoBehaviour
         }
     }
 
+    public void ResetSound()
+    {
+         _smokeCount = 0;
+        SoundManager.Instance.MakeSound(_reserveSound);
+    }
     public void RefillFuel()
     {   
+        if(!_audioSource.isPlaying)_audioSource.Play();
+
         GameManager.Instance.FuelHealed();
         if(!_alive) _alive = true;
         currentFuel = playerStats.maxFuel;
@@ -91,14 +114,20 @@ public class PlayerFuel : MonoBehaviour
 
     private void GetReserve(bool reserve)
     {
+        if(!reserve) _audioSource.Play();
+        else _audioSource.Stop();
+
         GameManager.Instance.ReserveMode(reserve);
         isReserve = reserve;
         playerStats.EnterReserve(reserve);
         reserveCount = 0;
+        ResetSound();
     }
 
     private void Death()
     {
+        _audioSource.Stop();
+        SoundManager.Instance.MakeSound(_explosionSound);
         ParticlesManager.Instance.SpawnParticle(explosionPrefab, transform.position, transform.rotation);
 
         GameManager.Instance.ReserveMode(false);

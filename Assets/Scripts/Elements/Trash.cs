@@ -14,6 +14,7 @@ public class Trash : MonoBehaviour, IInteractable
     [SerializeField] private float _minSecs = 2;
     [SerializeField] private float _maxSecs = 7;
 
+    [SerializeField] private AudioConfig _trashSound;
     private Animator _anim;
 
     private float _spawnTime;
@@ -58,6 +59,7 @@ public class Trash : MonoBehaviour, IInteractable
     }
     public void Interact(GameObject player)
     {
+        SoundManager.Instance.MakeSound(_trashSound);
         GameManager.Instance.GetTrash();
         player.GetComponent<PlayerMovement>().PlayerBlow();
         Destroy(gameObject);

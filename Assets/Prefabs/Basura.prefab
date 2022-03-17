@@ -64,6 +64,7 @@ MonoBehaviour:
   atractSpeed: 20
   _minSecs: 1
   _maxSecs: 3
+  _trashSound: {fileID: 11400000, guid: 3eb2e85f676dadb46ae3128231bb89af, type: 2}
 --- !u!136 &139613727790559359
 CapsuleCollider:
   m_ObjectHideFlags: 0

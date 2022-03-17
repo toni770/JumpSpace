@@ -5,10 +5,11 @@ using UnityEngine;
 public class Gravity : MonoBehaviour
 {
     public GameObject planet;
+    private float planetDist;
 
     private void Update()
     {
-        //if (planet!=null) MoveToDistance(40);
+        if (planet!=null) MoveToDistance(planetDist);
         ApplyGravity();
     }
 
@@ -24,10 +25,11 @@ public class Gravity : MonoBehaviour
 
     public void MoveToDistance(float distance)
     {
-   
+        planetDist = distance;
+
         //Calculate the vector between the object and the player
         Vector3 dir = transform.position - planet.transform.position;
- 
+    
                 
         transform.position = dir.normalized * distance;
         

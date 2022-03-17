@@ -25,6 +25,8 @@ public class StatButton : MonoBehaviour
 
     private Vector3 _originalScale;
 
+    [SerializeField] private AudioConfig _audioConfig;
+
     private void Awake()
     {
         btn = GetComponent<Button>();
@@ -71,6 +73,7 @@ public class StatButton : MonoBehaviour
     {
         if(_interactable)
         {
+            SoundManager.Instance.MakeSound(_audioConfig);
             _effect.Stop();
             _effect.Play();
             statsController.ImproveStat((int)stat);

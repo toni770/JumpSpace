@@ -20,6 +20,10 @@ public class TurretAttack : MonoBehaviour
     private GameObject obj;
  
     private Vector3 _originalSize;
+
+    [SerializeField] private AudioConfig _audioAttack;
+    private AudioSource _audioSource;
+
     private void Awake()
     {
         stateMachine = GetComponent<TurretStateMachine>();
@@ -30,6 +34,8 @@ public class TurretAttack : MonoBehaviour
         actualBullet = bullets[Random.Range(0,2)];
 
         _originalSize = transform.localScale;
+
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -83,7 +89,12 @@ public class TurretAttack : MonoBehaviour
 
     private void OnEnable()
     {
-        print("TURRET: ATTACK");
+        _audioSource.clip = _audioAttack.Clip;
+        _audioSource.loop = _audioAttack.Loop;
+        _audioSource.volume = _audioAttack.Volume;
+        _audioSource.pitch = _audioAttack.Pitch;
+        _audioSource.Play();
+
         shootCount = Time.time + actualBullet.firstShootDelay;
     }
 

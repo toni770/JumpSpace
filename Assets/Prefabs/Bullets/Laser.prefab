@@ -64,6 +64,8 @@ MonoBehaviour:
   speed: 10
   damage: 5
   _effectPrefab: {fileID: 8443917809889825470, guid: 29706a1b0e23f0c41856eb16e369a22e, type: 3}
+  _laserSound: {fileID: 11400000, guid: 87f75d4a854c3304eb7b2916fc5364d3, type: 2}
+  _deathSound: {fileID: 11400000, guid: 00ba05199001df9499ba93ffa9876858, type: 2}
 --- !u!136 &2830779330105295369
 CapsuleCollider:
   m_ObjectHideFlags: 0

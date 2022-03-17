@@ -27,6 +27,10 @@ public class GameManager : Singleton<GameManager>
 
     [SerializeField] private ArrowIndicator arrow;
 
+    [SerializeField] private AudioConfig[] _planetMusics;
+
+    [SerializeField] private AudioConfig _unlockSound;
+
     public bool isPlaying { get; private set; } = false;
 
     private int actualTrash = 0;
@@ -37,7 +41,7 @@ public class GameManager : Singleton<GameManager>
     private GameObject shipZone;
     public bool revived {get; private set;}
 
-
+    private AudioSource _audioSource;
 
 
     protected override void Awake()
@@ -45,6 +49,7 @@ public class GameManager : Singleton<GameManager>
         base.Awake();
         uiManager = GetComponent<UIManager>();
         levelManager = GetComponent<LevelManager>();
+        _audioSource = GetComponent<AudioSource>();
     }
     private void Start()
     {
@@ -80,11 +85,21 @@ public class GameManager : Singleton<GameManager>
         actualTrash = 0;
         uiManager.UpdateTrash(actualTrash, trashNeeded[levelManager.Level]);
 
+        int actualPlanet = (int) Mathf.Ceil(((float)levelManager.Level)/5);
+        if(levelManager.Level %5 == 0) actualPlanet += 1;
+        
+        print(actualPlanet.ToString());
+
+        _audioSource.clip = _planetMusics[actualPlanet-1].Clip;
+        _audioSource.volume = _planetMusics[actualPlanet-1].Volume;
+        _audioSource.pitch = _planetMusics[actualPlanet-1].Pitch;
+        _audioSource.Play();
         print("Loaded Level " + actualLevel + " and you need " + trashNeeded[levelManager.Level] + " of trash");
     }
 
     public void EndGame(bool win)
     {
+        _audioSource.Pause();
         isPlaying = false;
         if(!win) player.GetComponent<PlayerStats>().Destroy(true);
 
@@ -123,6 +138,7 @@ public class GameManager : Singleton<GameManager>
     }
     public void Revive()
     {
+        _audioSource.Play();
         AdsManager.Instance.PlayRewardedAd(ResetGame);
     }
 
@@ -133,6 +149,7 @@ public class GameManager : Singleton<GameManager>
 
     private void MultiplyMoney()
     {
+        SoundManager.Instance.MakeSound(_unlockSound);
         uiManager.HideMultiply();
         uiManager.UpdateEndMoney(actualTrash * trashValue * multiplyReward);
         if(DataManager.Instance!=null)

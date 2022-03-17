@@ -39,12 +39,17 @@ public class PlayerStats : MonoBehaviour
 
     private PlayerItemsController _playerItemsController;
 
+    private AudioSource _audioSource;
+
+     private PlayerFuel _playerFuel;
     private void Awake()
     {
         UpdateAtractorSize();
         speed = initSpeed;
         _material = mesh.GetComponent<SkinnedMeshRenderer>().material;
         _playerItemsController = GetComponent<PlayerItemsController>();
+        _audioSource = GetComponent<AudioSource>();
+        _playerFuel = GetComponent<PlayerFuel>();
     }
     private void Start()
     {
@@ -109,6 +114,8 @@ public class PlayerStats : MonoBehaviour
     {
         if (god)
         {
+            if(!_audioSource.isPlaying) _audioSource.Play();
+
             _material.SetInt("_Inmune",1);
             godCount = Time.time + godModeDuration;
 
@@ -127,6 +134,12 @@ public class PlayerStats : MonoBehaviour
             _material.SetInt("_Inmune",0);
 
             _playerItemsController.ReserveMode(currentState == States.reserve);
+
+            if(currentState == States.reserve) 
+            {
+                _audioSource.Stop();
+               _playerFuel.ResetSound();
+            }
         }
 
         _playerItemsController.GodMode(god);

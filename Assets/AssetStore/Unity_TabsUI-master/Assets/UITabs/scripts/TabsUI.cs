@@ -37,6 +37,8 @@ namespace EasyUI.Tabs {
 
       private Vector3 _originalSize;
 
+      [SerializeField] private AudioConfig _audio;
+
 
       private void Start () {
          GetTabBtns () ;
@@ -84,6 +86,8 @@ namespace EasyUI.Tabs {
          if (current != tabIndex) {
             if (OnTabChange != null)
                OnTabChange.Invoke (tabIndex) ;
+
+            SoundManager.Instance.MakeSound(_audio);
 
             JuiceManager.Instance.ShakeScale(tabBtns[tabIndex].transform, _originalSize,0.2f,0.2f);
             previous = current ;

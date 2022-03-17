@@ -18,12 +18,21 @@ public class Rocket : MonoBehaviour, IInteractable
 
     [SerializeField] private GameObject _explosionParticle;
 
+    [SerializeField] private AudioClip _trayectoriaSound;
+    [SerializeField] private AudioConfig _explosionSound;
+    
+    private AudioSource _audioSource;
+
     private void OnEnable()
     {
         lifeCount = Time.time + lifeTime;
+        _audioSource.clip = _trayectoriaSound;
+        _audioSource.Play();
+
     }
     private void Awake() {
         target = GameObject.FindGameObjectWithTag("Player").transform;
+        _audioSource = GetComponent<AudioSource>();
     }
 
 
@@ -45,6 +54,7 @@ public class Rocket : MonoBehaviour, IInteractable
 
     private void Death()
     {
+        SoundManager.Instance.MakeSound(_explosionSound);
         ParticlesManager.Instance.SpawnParticle(_explosionParticle,transform.position, transform.rotation);
         gameObject.SetActive(false);
         //Destroy(gameObject);

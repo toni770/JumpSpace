@@ -17,8 +17,12 @@ public class Bullet : MonoBehaviour, IInteractable
 
     [SerializeField] private GameObject _effectPrefab;
 
+    [SerializeField] private AudioConfig _laserSound;
+    [SerializeField] private AudioConfig _deathSound;
+
     private void OnEnable()
     {
+        SoundManager.Instance.MakeSound(_laserSound);
         lifeCount = Time.time + lifeTime;
     }
 
@@ -38,6 +42,7 @@ public class Bullet : MonoBehaviour, IInteractable
     
     private void Death()
     {
+        SoundManager.Instance.MakeSound(_deathSound);
         ParticlesManager.Instance.SpawnParticle(_effectPrefab,transform.position, transform.rotation);
         gameObject.SetActive(false);
         //Destroy(gameObject);

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float rotSmooth = 5;
@@ -35,14 +35,13 @@ public class PlayerMovement : MonoBehaviour
             Move();
             Rotate();
         }
+        //GetComponent<Gravity>().MoveToDistance(40);
     }
 
     private void Move()
     {
-       // dir = new Vector3(playerInput.horizontal, 0, playerInput.vertical).normalized * Time.deltaTime * playerStats.CurrentSpeed();
-        //if (playerInput.horizontal != 0 || playerInput.vertical != 0)  transform.Translate(Vector3.forward * Time.deltaTime * playerStats.CurrentSpeed());
-
         Vector3 moveDir = new Vector3(playerInput.horizontal, 0, playerInput.vertical).normalized;
+        //Vector3 moveDir = Vector3.forward;
         transform.Translate(moveDir * playerStats.CurrentSpeed() * Time.deltaTime);
     }
 
