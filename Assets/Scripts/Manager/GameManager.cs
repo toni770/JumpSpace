@@ -109,6 +109,7 @@ public class GameManager : Singleton<GameManager>
     public void SetShip(GameObject zone)
     {
         shipZone = zone;
+        shipZone.SetActive(false);
         arrow.AssignTarget(shipZone.transform);
     }
 
@@ -151,11 +152,12 @@ public class GameManager : Singleton<GameManager>
     {
         SoundManager.Instance.MakeSound(_unlockSound);
         uiManager.HideMultiply();
-        uiManager.UpdateEndMoney(actualTrash * trashValue * multiplyReward);
+        uiManager.UpdateEndMoney((actualTrash * trashValue) * multiplyReward);
         if(DataManager.Instance!=null)
             {
-                DataManager.Instance.IncreaseCoins(actualTrash * trashValue * multiplyReward);
-                DataManager.Instance.IncreaseLevel();
+                DataManager.Instance.IncreaseCoins(-actualTrash * trashValue);
+                DataManager.Instance.IncreaseCoins((actualTrash * trashValue) * multiplyReward);
+                //DataManager.Instance.IncreaseLevel();
                 DataManager.Instance.SaveData();
             }
     }

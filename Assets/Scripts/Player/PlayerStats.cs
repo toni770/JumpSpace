@@ -69,6 +69,8 @@ public class PlayerStats : MonoBehaviour
     {
         mesh.SetActive(!destroy);
         _skeletton.SetActive(!destroy);
+        if(destroy) _audioSource.Stop();
+        else _audioSource.Play();
     }
 
     public void GoShip()

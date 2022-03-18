@@ -12,6 +12,9 @@ public class Ship : MonoBehaviour ,IInteractable
     [SerializeField] private Transform parent;
 
     [SerializeField] private ParticleSystem _effect;
+
+    [SerializeField] private AudioConfig _audio;
+
     private bool playerIn = false;
     private Transform playerTrans;
     private void Start() 
@@ -48,6 +51,8 @@ public class Ship : MonoBehaviour ,IInteractable
         yield return new WaitForSeconds(despegueDelay);
         _effect.Play();
         shipAnim.SetTrigger("Go");
+        yield return new WaitForSeconds(0.1f);
+        SoundManager.Instance.MakeSound(_audio);
     }
 
 

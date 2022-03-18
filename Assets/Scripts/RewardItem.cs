@@ -11,6 +11,7 @@ public class RewardItem : MonoBehaviour
     [SerializeField] private TextMeshProUGUI priceText;
     [SerializeField] private TextMeshProUGUI valueText;
 
+    [SerializeField] private AudioConfig _audio;
 
     private void Awake()
     {
@@ -19,6 +20,7 @@ public class RewardItem : MonoBehaviour
     }
     public void GetMoney()
     {
+        SoundManager.Instance.MakeSound(_audio);
         MainMenuController.Instance.ChangeCoins(value);
     }
 }

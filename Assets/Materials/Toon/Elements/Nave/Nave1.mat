@@ -50,7 +50,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Brigthness: 0.689
+    - _Brigthness: 0.205
     - _Detail: 0.35
     - _FresnelStrength: 1.32
     - _InnerFresnelStrength: 1
@@ -60,8 +60,8 @@ Material:
     - _Specular: 0.921
     - _Strength: 0.563
     m_Colors:
-    - _AmbientColor: {r: 0.75294125, g: 0.7411765, b: 0.62352943, a: 0}
-    - _Color: {r: 0.754717, g: 0.73939323, b: 0.6229975, a: 1}
+    - _AmbientColor: {r: 0, g: 0, b: 0, a: 0}
+    - _Color: {r: 0, g: 0, b: 0, a: 1}
     - _FresnelColor: {r: 1, g: 1, b: 1, a: 1}
     - _InnerFresnelColor: {r: 1, g: 1, b: 1, a: 1}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}

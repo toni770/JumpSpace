@@ -30,6 +30,7 @@ public class MainMenuController : Singleton<MainMenuController>
     {
         DataManager.Instance.IncreaseCoins(value);
         uiManager.UpdateCoins(DataManager.Instance.coins);
+        DataManager.Instance.SaveData();
     }
 
     public void ChangePlayerItem(int item, int index)

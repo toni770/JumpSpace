@@ -62,8 +62,8 @@ public class DataManager : Singleton<DataManager>
     }
     private void InitData()
     {
-        coins = 10000;
-        actualLevel =25;
+        coins = 0;
+        actualLevel =1;
 
         //Init items lvl
         items = new int[itemsTypes];
@@ -88,7 +88,7 @@ public class DataManager : Singleton<DataManager>
         }
         itemsUnlocked[((int)GlobalVars.Items.jetpack)][0] = true;
 
-        gameFinished = true;
+        gameFinished = false;
     }
 
     private void InitBoolArray(bool[] array)
