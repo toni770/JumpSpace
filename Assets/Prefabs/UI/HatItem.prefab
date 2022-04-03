@@ -60,13 +60,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 54a58782dbb2395449e86f88b8554e43, type: 3}
+  m_Sprite: {fileID: 823444339, guid: 055cf4697f4999447b347205ffca0779, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -444,6 +444,9 @@ MonoBehaviour:
   unlockButton: {fileID: 3480091541151207363}
   unlockIcon: {fileID: 8518317368340961741}
   animStregnth: 1.1
+  _unlockAudio: {fileID: 11400000, guid: 3d2315ca8ac813442a7f41146da10580, type: 2}
+  _lockedAudio: {fileID: 11400000, guid: c3d755ff999b8a844bdd42b6b3807a67, type: 2}
+  _selectAudio: {fileID: 11400000, guid: d9989f9bc72f16341a5cb0b8b2bc3b35, type: 2}
 --- !u!114 &287399324674883791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -642,7 +645,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7cd2407a957d1b648af8e80f4c9580fd, type: 3}
+  m_Sprite: {fileID: -451473532, guid: 055cf4697f4999447b347205ffca0779, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

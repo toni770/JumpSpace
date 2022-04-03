@@ -58,12 +58,15 @@ public class LevelManager : MonoBehaviour
      /*   player = Instantiate(playerPrefab, actualPlanet.playerSpawn.position, Quaternion.identity);
         playerStats = player.GetComponent<PlayerStats>();*/
 
+    }
+
+    public void SpawnElements()
+    {
         SpawnItem(actualPlanet.turretSpawns, turretPrefab);
         SpawnItem(actualPlanet.fuelSpawns, fuelPrefab);
         SpawnItem(actualPlanet.powerUpSpawns, powerUpPrefab);
 
         SpawnTrash(actualPlanet.trashSpawns, trashPrefab);
-
     }
 
     private void SpawnItem(List<Transform> positions, GameObject prefab)
@@ -77,7 +80,6 @@ public class LevelManager : MonoBehaviour
     private void SpawnTrash(List<Transform> positions, GameObject prefab)
     {
         trashSpawned = new bool[positions.Count];
-        print("LEVEEEEL: " + Level.ToString());
         num = GameManager.Instance.GetExtraTrash(Level);
 
         for (int i = 0; i < num; i++)

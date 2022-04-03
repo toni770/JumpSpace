@@ -48,6 +48,10 @@ public class StatsController : MonoBehaviour
             {
                 buttons[i].Lock();
             }
+            else
+            {
+                if(!DataManager.Instance.StatCompleted(i)) buttons[i].Unlock();
+            }
         }
     }
 

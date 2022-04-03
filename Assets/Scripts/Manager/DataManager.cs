@@ -63,7 +63,7 @@ public class DataManager : Singleton<DataManager>
     private void InitData()
     {
         coins = 0;
-        actualLevel =1;
+        actualLevel =22;
 
         //Init items lvl
         items = new int[itemsTypes];

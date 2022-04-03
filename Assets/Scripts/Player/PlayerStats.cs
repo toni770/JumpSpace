@@ -92,6 +92,8 @@ public class PlayerStats : MonoBehaviour
         speed = _speed;
         atractorRange = _range;
         maxFuel = _fuel;
+
+        UpdateAtractorSize();
     }
     private void StartGame()
     {

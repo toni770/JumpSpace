@@ -22,7 +22,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject moneyMenu;
     [Header("TEXTS")]
     [SerializeField] private Text trashText;
-    [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private TextMeshProUGUI coinsText;
 
     [SerializeField] private TextMeshProUGUI endMoneyText;
@@ -126,11 +125,6 @@ public class UIManager : MonoBehaviour
     public void UpdateFuel(float actual, float max)
     {
         fuelSlider.fillAmount = actual / max;
-    }
-
-    public void UpdateCurrentLevel(int actual)
-    {
-        levelText.text = actual.ToString();
     }
 
     public void UpdateCoins(int actual)

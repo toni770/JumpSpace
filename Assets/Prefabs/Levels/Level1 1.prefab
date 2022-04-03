@@ -1245,6 +1245,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MeteorPlanet1
       objectReference: {fileID: 0}
+    - target: {fileID: 7853706422907745613, guid: b69738b0c92f1e54f95822e1be276184, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b69738b0c92f1e54f95822e1be276184, type: 3}
 --- !u!4 &845013187741992245 stripped

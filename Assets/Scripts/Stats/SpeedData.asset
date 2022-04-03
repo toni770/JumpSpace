@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levels: 5
   values:
-  - 10
   - 12
   - 14
-  - 15
+  - 16
   - 17
+  - 19
   prices: c8000000900100005802000020030000

@@ -70,6 +70,5 @@ public class PlayerMovement : MonoBehaviour
     public void PlayerBlow()
     {
         JuiceManager.Instance.ShakeScale(mesh.transform,_originalScale, 0.15f,0.5f);
-        print("BOOM");
     }
 }

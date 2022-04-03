@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 530aadf847a2bb345b5c108d707c7806, type: 3}
   m_Name: Jetpack
   m_EditorClassIdentifier: 
-  Clip: {fileID: 8300000, guid: 38a4c775623a5894cb6cd6b2451e596d, type: 3}
-  Volume: 0.1
+  Clip: {fileID: 8300000, guid: 46f150e0f2b0f9a4db94973ecfc5dda4, type: 3}
+  Volume: 0.01
   Pitch: 1
   Loop: 1

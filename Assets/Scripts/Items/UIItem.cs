@@ -47,6 +47,7 @@ public abstract class UIItem : MonoBehaviour
             _animIni = true;
         }
         SoundManager.Instance.MakeSound(_selectAudio);
+        
         selectedImage.gameObject.SetActive(select);
         if(select)  JuiceManager.Instance.StopAnimation(itemImage.transform, false);
         else JuiceManager.Instance.StopAnimation(itemImage.transform, true);

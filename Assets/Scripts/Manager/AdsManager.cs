@@ -33,7 +33,6 @@ public class AdsManager : Singleton<AdsManager>, IUnityAdsListener
 
             Advertisement.Initialize(gameId);
             Advertisement.AddListener(this);
-            print("AWAKEEEEEEEEEEEEEEEEEEEEEE");
             ResetAdCount();
         }
         
@@ -67,7 +66,6 @@ public class AdsManager : Singleton<AdsManager>, IUnityAdsListener
     {
         _showAd = false;
         _adCount = Time.time + _adTime;
-        print("RESETTTTTTTTTTTTTTTTTT");
     }
 
 

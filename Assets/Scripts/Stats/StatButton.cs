@@ -68,6 +68,11 @@ public class StatButton : MonoBehaviour
         SetInteractable(false);
         priceText.color = LockColor;
     }
+    public void Unlock()
+    {
+        SetInteractable(true);
+        priceText.color = Color.white;
+    }
 
     public void ImproveStat()
     {

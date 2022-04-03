@@ -73,7 +73,9 @@ public class GameManager : Singleton<GameManager>
     }
 
     public void StartGame()
-    {              
+    {
+        levelManager.SpawnElements();
+
         player.GetComponent<PlayerStats>().InitStats(DataManager.Instance.GetStatValue(((int)GlobalVars.Stats.speed)),
                                     DataManager.Instance.GetStatValue(((int)GlobalVars.Stats.range)),
                                     DataManager.Instance.GetStatValue(((int)GlobalVars.Stats.fuel)));
@@ -87,14 +89,11 @@ public class GameManager : Singleton<GameManager>
 
         int actualPlanet = (int) Mathf.Ceil(((float)levelManager.Level)/5);
         if(levelManager.Level %5 == 0) actualPlanet += 1;
-        
-        print(actualPlanet.ToString());
 
         _audioSource.clip = _planetMusics[actualPlanet-1].Clip;
         _audioSource.volume = _planetMusics[actualPlanet-1].Volume;
         _audioSource.pitch = _planetMusics[actualPlanet-1].Pitch;
         _audioSource.Play();
-        print("Loaded Level " + actualLevel + " and you need " + trashNeeded[levelManager.Level] + " of trash");
     }
 
     public void EndGame(bool win)

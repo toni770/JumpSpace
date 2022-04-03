@@ -22,7 +22,6 @@ public class MainMenuController : Singleton<MainMenuController>
     }
     private void Start()
     {
-        uiManager.UpdateCurrentLevel(DataManager.Instance.actualLevel);
         uiManager.UpdateCoins(DataManager.Instance.coins);
     }
 
@@ -49,6 +48,7 @@ public class MainMenuController : Singleton<MainMenuController>
 
         if (shopOpened) jetPackGroup.CheckPrices();
         else statsController.UpdateStates();
+
     }
 
     public void OpenMoney()
@@ -57,7 +57,7 @@ public class MainMenuController : Singleton<MainMenuController>
 
         uiManager.OpenMoney(moneyOpened);
 
-        if (!shopOpened) jetPackGroup.CheckPrices();
+        if (!moneyOpened) jetPackGroup.CheckPrices();
     }
 
     public void PlayGame()
